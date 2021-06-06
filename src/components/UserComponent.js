@@ -1,10 +1,16 @@
 import  React from 'react';
+import Logout from "./LogOutComponent";
 
 function User(){
     return(
         <div>
-            Welcome User!!
+        <div className="col-md-8">
+        Welcome User!!
         </div>
+        <div className="col-md-4">
+        <Logout/>
+        </div>
+    </div>
     );
 }
 

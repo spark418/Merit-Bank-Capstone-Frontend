@@ -16,17 +16,17 @@ class Main extends Component {
         return (
             <div>
                 <Header />
-                        <Switch>
-                            <Route exact path="/" component={Welcome} />
-                            <Route path="/login" component={Login } />                                                                    
-                            <Route path="/admin" component={Admin} />
-                            <Route path="/user" component={User} />
-                            <Redirect to="/login" />
-                        </Switch>
+                <Switch>
+                    <Route exact path="/" component={Welcome} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/admin" component={Admin} />
+                    <Route path="/user" component={User} />
+                    <Redirect to="/login" />
+                </Switch>
                 <Footer />
             </div>
         );
     }
 }
 
-export default withRouter((Main));
+export default withRouter(Main);

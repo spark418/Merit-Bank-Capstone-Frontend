@@ -11,9 +11,7 @@ function Header() {
                 <div className="col-md-7">
                     <img src="../images/Merit Bank Logo.png" height="100" width="450" alt="MeritBankTitle" />
                 </div>
-                <div className=" col-md-2" >
-                    <a href="/login"><Button type="submit" value="submit" color="primary btn-outline" className="headerLogIn" ><span className="fa fa-sign-in fa-lg">SignIn</span></Button></a>
-                </div>
+                
             </div>
         </Jumbotron>
 

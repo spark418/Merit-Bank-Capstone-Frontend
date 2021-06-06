@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody } from 'reactstrap';
+import { Card, CardBody, Button } from 'reactstrap';
 
 function Welcome() {
     return (
@@ -8,6 +8,7 @@ function Welcome() {
                 <div className="col-md-12">
                     <h1>Welcome to your Most Trusted Bank!!</h1>
                     <h2>Join the MESH</h2>
+                    <a href="/login"><Button type="submit" value="submit" color="primary btn-outline" className="headerLogIn" ><span className="fa fa-sign-in fa-lg">SignIn</span></Button></a> 
                 </div>
             </div>
             <div className="row cardStyle">

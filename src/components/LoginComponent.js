@@ -40,6 +40,7 @@ class Login extends Component {
                     token: Object.jwt,
                     role: Object.roles
                 });
+                localStorage.setItem('token',this.state.token);
                 console.log(this.state.token);
                 console.log(this.state.role);
 
@@ -79,7 +80,7 @@ class Login extends Component {
                     </FormGroup>
                     <FormGroup className="col-sm-5" >
                         <Button type="submit" value="submit" color="primary" className="left">LogIn</Button>
-                        <Button type="submit" value="submit" color="danger" className="right">LogOut</Button>
+    
                     </FormGroup>
                 </Form>
             </div>
