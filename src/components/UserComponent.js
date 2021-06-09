@@ -1,7 +1,11 @@
 import  React from 'react';
-import Logout from "./LogOutComponent";
+import Logout from "./LogoutComponent";
+import { NavLink, Redirect } from 'react-router-dom';
 
-function User(){
+function User({authorized}) {
+    if(authorized==null) {
+        return <Redirect to="/login" />
+    }
     return(
         <div>
         <div className="col-md-8">

@@ -41,6 +41,7 @@ class Login extends Component {
                     role: Object.roles
                 });
                 localStorage.setItem('token',this.state.token);
+                localStorage.setItem('role',this.state.role);
                 console.log(this.state.token);
                 console.log(this.state.role);
 

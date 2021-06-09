@@ -29,5 +29,58 @@
 
 #warn{
   color:red;
+}.jumbotron {
+  margin: 0;
+  
+  background-image: linear-gradient(to right, #37bcdd, #f3f4fc, #78c8d6);
+  color: white; }
+
+  .login{
+    align-content: center;
+    /* margin-left:30%; */
+    /* margin-right: 30%; */
+  }
+
+  #logo{
+    margin-top: 5%;
+    margin-left: 40%;
+    margin-right:auto;
+  }
+
+  .header{
+    width:100%;
+  }
+
+  /* .container{
+    padding:20px;
+    margin: 20px;
+  } */
+
+ #welcomeText{
+   margin-top: 50px;
+   margin-bottom: 50px;
+   text-align: center;
+ }
+
+.headerLogin.button:hover{
+  background-color:rgb(255, 0, 13);
+}
+
+.cdform{
+  font-weight: 500;
+}
+.nav-link:hover {
+  color:gray;
+}
+
+.site-footer {
+  background-image: linear-gradient(#CEC8FF, white);
+  padding: 20px 0;
+}
+
+.row-content {
+  padding: 50px 0;
+  border-bottom: 1px ridge;
+  min-height: 200px;
 }
 

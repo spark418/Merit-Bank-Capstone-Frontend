@@ -6,6 +6,10 @@ import Welcome from './HomePage';
 import Login from './LoginComponent';
 import Admin from './AdminComponent';
 import User from './UserComponent';
+import CDOffering from './CDOfferingComponent';
+import AccountHoldersList from './AccountHoldersList';
+import CreateUser from './CreateUser';
+
 import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
 
 class Main extends Component {
@@ -19,8 +23,12 @@ class Main extends Component {
                 <Switch>
                     <Route exact path="/" component={Welcome} />
                     <Route path="/login" component={Login} />
-                    <Route path="/admin" component={Admin} />
-                    <Route path="/user" component={User} />
+                    <Route path="/admin" component={()=><Admin authorized={localStorage.getItem('role')} />}/>
+                    <Route path="/user" component={()=><User authorized={localStorage.getItem('token')} />}/>
+                    <Route path="/createuser" component={CreateUser} />
+                    <Route path="/cdoffering" component={CDOffering} />
+                    <Route path="/getaccountholders" component={AccountHoldersList} />
+                    <Route path="/createaccountholder" component={CreateUser} />
                     <Redirect to="/login" />
                 </Switch>
                 <Footer />

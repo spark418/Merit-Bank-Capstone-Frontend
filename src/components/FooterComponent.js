@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
 function Footer() {
     return (
-        <div className="container">
+        <div className="site-footer">
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-4 align-self-center">
                     <div className="text-center">
