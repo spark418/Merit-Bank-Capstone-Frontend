@@ -59,7 +59,7 @@ function AccountsTable({ account }) {
     }
     if (account != null) {
         return (
-            <table className="table table-striped">
+            <table className="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <td>AccountHolder Id</td>
