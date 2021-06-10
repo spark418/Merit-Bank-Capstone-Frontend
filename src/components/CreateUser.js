@@ -38,7 +38,7 @@ function CreateUser() {
             .then(res => res.json())
            
             .then(data=> console.log(data))
-            .then(()=> alert("New AccountHolder registered successfully!" ))
+            .then(()=> alert("New User registered successfully!" ))
            
             .catch(err => console.log(err.message));
     }

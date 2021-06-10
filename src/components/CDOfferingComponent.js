@@ -63,7 +63,7 @@ class CDOffering extends Component {
     }
    
     async componentDidMount() {
-        await fetch(CDOffering_URL, {
+        await  fetch(CDOffering_URL, {
             
             method: 'GET',
             headers: {
