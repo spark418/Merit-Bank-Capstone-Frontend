@@ -72,10 +72,6 @@ function AccountHolderContactDetails() {
                         onChange={ev => setAccHolderid(ev.target.value)}></Input>
                 </FormGroup>
 
-                
-
-                
-               
                
                 <FormGroup className="col-sm-5" >
                     <Button type="submit" value="submit" color="primary">Submit</Button>

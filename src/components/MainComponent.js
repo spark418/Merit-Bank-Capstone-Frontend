@@ -9,6 +9,7 @@ import User from './UserComponent';
 import CDOffering from './CDOfferingComponent';
 import AccountHoldersList from './AccountHoldersList';
 import CreateUser from './CreateUser';
+import CreateAccountHolder from './CreateAccountHolder';
 import AccountHolderContactDetails from './AccountHolderContactDetails';
 import {AddPersonalCheckingAccount} from './PersonalCheckingAccount';
 import {GetPersonalCheckingAccount} from './PersonalCheckingAccount';
@@ -24,6 +25,10 @@ import {AddRothIRAAccount} from './RothIRAAccount';
 import {GetRothIRAAccount} from './RothIRAAccount';
 import {AddCDAccount} from './CDAccount';
 import {GetCDAccount} from './CDAccount';
+
+import {UserAddDBACheckingAccount} from './UserDBACheckingAccount';
+import {UserGetDBACheckingAccount} from './UserDBACheckingAccount';
+
 
 import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
 
@@ -43,7 +48,7 @@ class Main extends Component {
                     <Route path="/createuser" component={CreateUser} />
                     <Route path="/cdoffering" component={CDOffering} />
                     <Route path="/getaccountholders" component={AccountHoldersList} />
-                    <Route path="/createaccountholder" component={CreateUser} />
+                    <Route path="/createaccountholder" component={CreateAccountHolder} />
                     <Route path="/addaccountholdercontacts" component={AccountHolderContactDetails} />
                     <Route path="/addPersonalCheckingAccount" component={AddPersonalCheckingAccount} />
                     <Route path="/getPersonalCheckingAccount" component={GetPersonalCheckingAccount} />
@@ -59,6 +64,11 @@ class Main extends Component {
                     <Route path="/getRothIRAAccount" component={GetRothIRAAccount} />
                     <Route path="/addCDAccount" component={AddCDAccount} />
                     <Route path="/getCDAccount" component={GetCDAccount} />
+                    
+                    <Route path="/userAddDBACheckingAccount" component={UserAddDBACheckingAccount} />
+                    <Route path="/userGetDBACheckingAccount" component={UserGetDBACheckingAccount} />
+
+                    
                     <Redirect to="/login" />
                 </Switch>
                 <Footer />
