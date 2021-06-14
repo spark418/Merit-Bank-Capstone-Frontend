@@ -59,8 +59,8 @@ function AccountsTable({ account }) {
     }
     if (account != null) {
         return (
-            <table className="table table-striped table-bordered">
-                <thead>
+            <table className="table table-hover table-responsive table-bordered">
+                <thead style={{fontWeight:600}}>
                     <tr>
                         <td>AccountHolder Id</td>
                         <td>First Name</td>
@@ -71,6 +71,9 @@ function AccountsTable({ account }) {
                         <td>Phone Number</td>
                         <td>Email</td>
                         <td>Address</td>
+
+                        <td>Add New Account</td>
+                        <td>Accounts List</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,7 +90,9 @@ function AccountsTable({ account }) {
                                     <td>{ac.accountHolderContactDetails.phoneNum}</td>
                                     <td>{ac.accountHolderContactDetails.email}</td>
                                     <td>{ac.accountHolderContactDetails.address}</td>
-
+                                    
+                                    <td><a href="/addAccount" className="btn btn-dark fa fa-plus"></a></td>
+                                    <td><a href="/getAccount" className="btn btn-dark fa fa-list"></a></td>
                                 </tr>
                         )}
                 </tbody>

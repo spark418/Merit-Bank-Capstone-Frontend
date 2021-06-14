@@ -8,7 +8,7 @@ const CDOFFERING_URL = "http://localhost:8080/cdofferings";
 const BEST_CDOFFERING_URL="http://localhost:8080/bestcdofferings/{balance}";
 const bearer = 'Bearer ' + localStorage.getItem('token');
 
-class CDOffering extends Component {
+class AdminCDOffering extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -36,7 +36,7 @@ class CDOffering extends Component {
             "interestRate": this.state.interestRate,
             "term": this.state.term
         }
-        if(localStorage.getItem('role')=="[ROLE_ADMIN]"){
+        if(localStorage.getItem('roles')==["ROLE_ADMIN"]){
             await fetch(CDOFFERING_URL, {
                     method: 'POST',
                     body: JSON.stringify(payload),
@@ -137,10 +137,10 @@ class CDOffering extends Component {
                 </div>
 
                 <div className="col-md-4">
-                    <Card>
+                    <Card className='mt-3'>
                 <h2 className="text-center mt-5">CDOfferings List</h2>
-                <table className="table table-striped">
-                    <thead>
+                <table className="table table-hover"  >
+                    <thead style={{fontWeight:600}}>
                         <tr>
                             <td>Id</td>
                             <td>Interest Rate</td>
@@ -187,4 +187,4 @@ class CDOffering extends Component {
     }
 }
 
-export default CDOffering;
+export default AdminCDOffering;

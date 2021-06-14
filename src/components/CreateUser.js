@@ -35,12 +35,35 @@ function CreateUser() {
             },
             credentials: 'same-origin'
         })
-            .then(res => res.json())
-           
-            .then(data=> console.log(data))
-            .then(()=> alert("New User registered successfully!" ))
-           
-            .catch(err => console.log(err.message));
+        .then(res => {
+            if (res.ok) {
+                //console.log(res.json());
+                alert(`Successfully updated the User!`);
+                return res;
+            } else {
+                const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                error.res = res;
+                throw error;
+            }
+        },
+            error => {
+                throw error;
+            }
+        )
+        .then(res => res.json())
+
+        .catch((error) => {
+            if (error.res.status == "400") {
+                alert('\nError: ')
+            }
+            if (error.res.status == "404") {
+                alert('User could not be updated\nError:')
+            }
+            if (error.res.status == "406") {
+                alert('User could not be updated\nError: Invalid details provided')
+            }
+
+        });
     }
 
     return (

@@ -25,12 +25,35 @@ export function AddDBACheckingAccount() {
             },
             credentials: 'same-origin'
         })
-            .then(res => res.json())
+        .then(res=> {
+            if(res.ok){
+                //console.log(res.json());
+                alert(`Successfully opened a new DBA Checking Account for account holder: ${accHolderid}`);
+                return res;
+            } else {
+                const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                error.res = res;
+                throw error ;
+            }
+        },
+        error=> { 
+            throw error;
+        }
+        )
+        .then(res => res.json())
+       
+        .catch((error) => {
+            if(error.res.status == "400"){
+                alert('Account cannot be opened\nError: Excceds the maximum limit of accounts')
+            } 
+            if(error.res.status == "404"){
+                alert('Account cannot be opened\nError: AccountHolder not found')
+            }
+            if(error.res.status == "406"){
+                alert('Account cannot be opened\nError: Invalid details provided')
+            }
 
-            .then(data => console.log(data))
-            .then(() => alert(" Opened a new DBA Checking Account successfully!"))
-
-            .catch(err => console.log(err.message));
+        });
     }
 
     return (
@@ -84,13 +107,47 @@ export function GetDBACheckingAccount() {
                 'Authorization': bearer
             },
         })
+        //     .then(res => res.json())
+        //     .then(res => {
+        //         setAccount(res)
+        //     })
+        //    .then((account)=>console.log(account))
+         
+            //.catch(err => console.log(err.message));
+
+            .then(res=> {
+                if(res.ok){
+                    
+                    return res;
+                } else {
+                    const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                    error.res = res;
+                    throw error ;
+                }
+            },
+            error=> { 
+                throw error;
+            }
+            )
             .then(res => res.json())
             .then(res => {
                 setAccount(res)
             })
-           .then((account)=>console.log(account))
-         
-            .catch(err => console.log(err.message));
+            .then((account)=>console.log(account))
+           
+            .catch((error) => {
+                if(error.res.status == "400"){
+                    alert('Account cannot be opened\nError: Excceds the maximum limit of accounts')
+                } 
+                if(error.res.status == "404"){
+                    alert('Error: AccountHolder not found')
+                }
+                if(error.res.status == "406"){
+                    alert('Error: Invalid details provided')
+                }
+
+            });
+
     }
     return (
         <div className="container mt-5">
@@ -126,8 +183,8 @@ function AccountsTable({ account }) {
     } 
      if (account != null) {
         return (
-            <table className="table table-striped">
-                <thead>
+            <table className="table table-bordered table-responsive table-hover">
+                <thead style={{fontWeight:600}}>
                     <tr>
                         <td>Account Num</td>
                         <td>Balance</td>

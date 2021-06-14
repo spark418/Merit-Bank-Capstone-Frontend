@@ -26,8 +26,66 @@ function Admin({ authorized }) {
                         </NavItem>
 
                     </Nav>
+                    <Nav navbar>
+                        <NavItem className="mr-4">
+                            <NavLink className="nav-link" to="/createaccountholder">
+                                <span className="fa fa-user fa-lg text-white" >Create AccountHolder</span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
 
                     <Nav navbar>
+                        <NavItem className="mr-4">
+                            <NavLink className="nav-link" to="/addaccountholdercontacts">
+                                <span className="fa fa-address-card-o fa-lg text-white" >Add AccountHolder Contacts</span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+
+                    <Nav navbar>
+                        <NavItem className="mr-4">
+                            <NavLink className="nav-link" to="/getaccountholders">
+
+                                <span className="fa fa-user fa-lg text-white"> Account Holders List</span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+
+                    <Nav navbar>
+                        <NavItem className="mr-4">
+                            <NavLink className="nav-link" to="/getaccountholder">
+                                <span className="fa fa-money fa-lg text-white" >Account Holder Info</span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <Nav navbar>
+                        <NavItem className="mr-4">
+                            <NavLink className="nav-link" to="/cdoffering">
+                                <span className="fa fa-money fa-lg text-white"> CDOffering</span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+
+                    <Nav navbar>
+                        <NavItem className="mr-4">
+                            <NavLink className="nav-link" to="/home">
+                                <span className="fa fa-money fa-lg text-white" >Transactions</span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <Nav navbar>
+                        <NavItem className="mr-4">
+                            <NavLink className="nav-link" to="/login">
+                                <span className="fa fa-sign-out fa-lg text-white" ><Logout /></span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+
+
+                </div>
+            </Navbar>
+
+                    {/* <Nav navbar>
                         <NavItem className="mr-4">
                             <NavLink className="nav-link" to="/cdoffering">
                                 <span className="fa fa-money fa-lg text-white"> CDOffering</span>
@@ -85,7 +143,7 @@ function Admin({ authorized }) {
 
 
                 </div>
-            </Navbar>
+            </Navbar> */}
 
             {/* </div> */}
             <div className="container ">
@@ -94,7 +152,7 @@ function Admin({ authorized }) {
                         <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
+                                style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
                                 <div className="card-body text-white">
                                     <h5 className="card-title">DBA Checking Account</h5>
@@ -113,7 +171,7 @@ function Admin({ authorized }) {
                         <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
+                                style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
                                 <div className="card-body text-white">
                                     <h5 className="card-title">Personal Checking Account</h5>
@@ -132,7 +190,7 @@ function Admin({ authorized }) {
                         <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
+                                style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
                                 <div className="card-body text-white">
                                     <h5 className="card-title">Savings Account</h5>
@@ -153,7 +211,7 @@ function Admin({ authorized }) {
                         <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
+                                style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
                                 <div className="card-body text-white">
                                     <h5 className="card-title">CD Account</h5>
@@ -172,7 +230,7 @@ function Admin({ authorized }) {
                         <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
+                                style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
                                 <div className="card-body text-white">
                                     <h5 className="card-title">Regular IRA Account</h5>
@@ -193,7 +251,7 @@ function Admin({ authorized }) {
                         <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
+                                style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
                                 <div class="card-body text-white">
                                     <h5 className="card-title">Roth IRA Account</h5>
@@ -210,7 +268,7 @@ function Admin({ authorized }) {
                         <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
+                                style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
                                 <div class="card-body text-white">
                                     <h5 className="card-title">Rollover IRA Account</h5>

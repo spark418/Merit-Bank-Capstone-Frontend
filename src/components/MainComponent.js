@@ -6,7 +6,8 @@ import Welcome from './HomePage';
 import Login from './LoginComponent';
 import Admin from './AdminComponent';
 import User from './UserComponent';
-import CDOffering from './CDOfferingComponent';
+import AdminCDOffering from './AdminCDOfferingComponent';
+import UserCDOffering from './UserCDOfferingComponent';
 import AccountHoldersList from './AccountHoldersList';
 import CreateUser from './CreateUser';
 import CreateAccountHolder from './CreateAccountHolder';
@@ -28,6 +29,11 @@ import {GetCDAccount} from './CDAccount';
 
 import {UserAddDBACheckingAccount} from './UserDBACheckingAccount';
 import {UserGetDBACheckingAccount} from './UserDBACheckingAccount';
+import {AddAccount} from './AccountsComponent';
+import {GetAccount} from './AccountsComponent';
+
+import {UserAddAccount} from './UserAccountsComponent';
+import {UserGetAccount} from './UserAccountsComponent';
 
 
 import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
@@ -46,7 +52,8 @@ class Main extends Component {
                     <Route path="/admin" component={()=><Admin authorized={localStorage.getItem('role')} />}/>
                     <Route path="/user" component={()=><User authorized={localStorage.getItem('token')} />}/>
                     <Route path="/createuser" component={CreateUser} />
-                    <Route path="/cdoffering" component={CDOffering} />
+                    <Route path="/cdoffering" component={AdminCDOffering} />
+                    <Route path="/userCdoffering" component={UserCDOffering} />
                     <Route path="/getaccountholders" component={AccountHoldersList} />
                     <Route path="/createaccountholder" component={CreateAccountHolder} />
                     <Route path="/addaccountholdercontacts" component={AccountHolderContactDetails} />
@@ -68,6 +75,10 @@ class Main extends Component {
                     <Route path="/userAddDBACheckingAccount" component={UserAddDBACheckingAccount} />
                     <Route path="/userGetDBACheckingAccount" component={UserGetDBACheckingAccount} />
 
+                    <Route path="/addAccount" component={AddAccount}/>
+                    <Route path="/getAccount" component={GetAccount}/>  
+                    <Route path= "/userAddAccounts" component={UserAddAccount}/>
+                    <Route path="/userGetAccounts" component={UserGetAccount}/>
                     
                     <Redirect to="/login" />
                 </Switch>

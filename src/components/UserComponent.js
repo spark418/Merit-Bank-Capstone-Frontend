@@ -7,12 +7,14 @@ import {
 import { NavLink, Redirect } from 'react-router-dom';
 
 function User({authorized}) {
+     
     if(authorized==null) {
         return <Redirect to="/login" />
     }
+    const user=localStorage.getItem('username');
     return (
         <div className="container-fluid title">
-           
+           <h2>Welcome {user} !</h2>
             <Navbar dark sticky="top" >
               
                 <div className="container-fluid" style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}>
@@ -29,7 +31,22 @@ function User({authorized}) {
                         </NavItem>
                     </Nav>
 
-                    
+                    <Nav navbar>
+                     <NavItem className="mr-4">
+                         <NavLink className="nav-link" to="/userGetAccounts">
+
+                             <span className="fa fa-user fa-lg text-white"> Account List</span>
+                         </NavLink>
+                     </NavItem>
+                 </Nav>
+
+                    <Nav navbar>
+                     <NavItem className="mr-4">
+                         <NavLink className="nav-link" to="/userAddAccounts">
+                             <span className="fa fa-address-card-o fa-lg text-white" >Add Account</span>
+                         </NavLink>
+                     </NavItem>
+                 </Nav>
 
                     {/* <Nav navbar>
                         <NavItem className="mr-4">
@@ -79,7 +96,7 @@ function User({authorized}) {
             <div className="container ">
                 <div className="row row-content">
                     <div className="col-md-4">
-                        <Card>
+                        {/* <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
                                 style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
@@ -209,7 +226,7 @@ function User({authorized}) {
                                     <a href="/userGetRolloverIRAAccount" className="btn btn-outline-light">Get Accounts</a>
                                 </div>
                             </div>
-                        </Card>
+                        </Card> */}
                     </div>
                 </div>
             </div>

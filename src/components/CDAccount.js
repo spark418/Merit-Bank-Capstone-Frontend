@@ -29,12 +29,35 @@ export function AddCDAccount() {
             },
             credentials: 'same-origin'
         })
-            .then(res => res.json())
+        .then(res=> {
+            if(res.ok){
+                //console.log(res.json());
+                alert(`Successfully opened a new CD Account for account holder: ${accHolderid}`);
+                return res;
+            } else {
+                const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                error.res = res;
+                throw error ;
+            }
+        },
+        error=> { 
+            throw error;
+        }
+        )
+        .then(res => res.json())
+       
+        .catch((error) => {
+            if(error.res.status == "400"){
+                alert('Account cannot be opened\nError: Excceds the maximum limit of accounts')
+            } 
+            if(error.res.status == "404"){
+                alert('Account cannot be opened\nError: AccountHolder not found')
+            }
+            if(error.res.status == "406"){
+                alert('Account cannot be opened\nError: Invalid details provided')
+            }
 
-            .then(data => console.log(data))
-            .then(() => alert(" Opened a new CD Account successfully!"))
-
-            .catch(err => console.log(err.message));
+        });
     }
 
     return (
@@ -137,7 +160,7 @@ function AccountsTable({ account }) {
      if (account != null) {
         return (
             <table className="table table-striped">
-                <thead>
+                <thead style={{fontWeight:600}}>
                     <tr>
                         <td>Account Num</td>
                         <td>Balance</td>

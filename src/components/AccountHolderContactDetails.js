@@ -31,12 +31,41 @@ function AccountHolderContactDetails() {
             },
             credentials: 'same-origin'
         })
+            // .then(res => res.json())
+           
+            // .then(data=> console.log(data))
+            // .then(()=> alert(" AccountHolder Contact Details registered successfully!" ))
+           
+            // .catch(err => console.log(err.message));
+            .then(res=> {
+                if(res.ok){
+                    //console.log(res.json());
+                    alert(`Successfully added the contact details to Account Holder`);
+                    return res;
+                } else {
+                    const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                    error.res = res;
+                    throw error ;
+                }
+            },
+            error=> { 
+                throw error;
+            }
+            )
             .then(res => res.json())
            
-            .then(data=> console.log(data))
-            .then(()=> alert(" AccountHolder Contact Details registered successfully!" ))
-           
-            .catch(err => console.log(err.message));
+            .catch((error) => {
+                if(error.res.status == "400"){
+                    alert('Contact Details could not be added\nError: Excceds the maximum limit of accounts')
+                } 
+                if(error.res.status == "404"){
+                    alert('Contact Details could not be added\nError: AccountHolder not found')
+                }
+                if(error.res.status == "406"){
+                    alert('Contact Details could not be added\nError: Invalid details provided')
+                }
+    
+            });
     }
 
 

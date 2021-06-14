@@ -36,12 +36,35 @@ function CreateAccountHolder() {
             },
             credentials: 'same-origin'
         })
-            .then(res => res.json())
-           
-            .then(data=> console.log(data))
-            .then(()=> alert("New AccountHolder registered successfully!" ))
-           
-            .catch(err => console.log(err.message));
+        .then(res=> {
+            if(res.ok){
+                //console.log(res.json());
+                alert(`Successfully registered a new Account Holder.\nPlease add the contact details`);
+                return res;
+            } else {
+                const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                error.res = res;
+                throw error ;
+            }
+        },
+        error=> { 
+            throw error;
+        }
+        )
+        .then(res => res.json())
+       
+        .catch((error) => {
+            if(error.res.status === "400"){
+                alert('\nError: Excceds the maximum limit of accounts')
+            } 
+            if(error.res.status === "404"){
+                alert('Account Holder could not be registered\nError: User not found')
+            }
+            if(error.res.status ==="406"){
+                alert('Account Holder could not be registered\nError: Invalid details provided')
+            }
+
+        });
     }
 
     
