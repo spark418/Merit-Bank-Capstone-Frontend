@@ -12,6 +12,8 @@ import AccountHoldersList from './AccountHoldersList';
 import CreateUser from './CreateUser';
 import CreateAccountHolder from './CreateAccountHolder';
 import AccountHolderContactDetails from './AccountHolderContactDetails';
+import {GetAccountHolder} from './GetAccountHolder';
+
 import {AddPersonalCheckingAccount} from './PersonalCheckingAccount';
 import {GetPersonalCheckingAccount} from './PersonalCheckingAccount';
 import {AddDBACheckingAccount} from './DBACheckingAccount';
@@ -29,6 +31,19 @@ import {GetCDAccount} from './CDAccount';
 
 import {UserAddDBACheckingAccount} from './UserDBACheckingAccount';
 import {UserGetDBACheckingAccount} from './UserDBACheckingAccount';
+import {UserAddPersonalCheckingAccount} from './UserPersonalCheckingAccount';
+import {UserGetPersonalCheckingAccount} from './UserPersonalCheckingAccount';
+import {UserAddSavingsAccount} from './UserSavingsAccount';
+import {UserGetSavingsAccount} from './UserSavingsAccount';
+import {UserAddCDAccount} from './UserCDAccount';
+import {UserGetCDAccount} from './UserCDAccount';
+import {UserAddRothIRAAccount} from './UserRothIRAAccount';
+import {UserGetRothIRAAccount} from './UserRothIRAAccount';
+import {UserAddRegularIRAAccount} from './UserRegularIRAAccount';
+import {UserGetRegularIRAAccount} from './UserRegularIRAAccount';
+import {UserAddRolloverIRAAccount} from './UserRolloverIRAAccount';
+import {UserGetRolloverIRAAccount} from './UserRolloverIRAAccount';
+
 import {AddAccount} from './AccountsComponent';
 import {GetAccount} from './AccountsComponent';
 
@@ -57,6 +72,8 @@ class Main extends Component {
                     <Route path="/getaccountholders" component={AccountHoldersList} />
                     <Route path="/createaccountholder" component={CreateAccountHolder} />
                     <Route path="/addaccountholdercontacts" component={AccountHolderContactDetails} />
+                    <Route path="/getaccountholder" component={GetAccountHolder}/>
+
                     <Route path="/addPersonalCheckingAccount" component={AddPersonalCheckingAccount} />
                     <Route path="/getPersonalCheckingAccount" component={GetPersonalCheckingAccount} />
                     <Route path="/addDBACheckingAccount" component={AddDBACheckingAccount} />
@@ -74,6 +91,8 @@ class Main extends Component {
                     
                     <Route path="/userAddDBACheckingAccount" component={UserAddDBACheckingAccount} />
                     <Route path="/userGetDBACheckingAccount" component={UserGetDBACheckingAccount} />
+                    <Route path="/userAddPersonalCheckingAccount" component={UserAddPersonalCheckingAccount} />
+                    <Route path="/userGetPersonalCheckingAccount" component={UserGetPersonalCheckingAccount} />
 
                     <Route path="/addAccount" component={AddAccount}/>
                     <Route path="/getAccount" component={GetAccount}/>  

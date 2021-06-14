@@ -102,32 +102,35 @@ export function UserGetPersonalCheckingAccount() {
                 'Authorization': bearer
             },
         })
-            .then(res => res.json())
-            .then(res => {
-                setAccount(res)
-            })
-           .then((account)=>console.log(account))
-         
-            .catch(err => console.log(err.message));
+       
+        .then(res => res.json())
+        .then(res => {
+            setAccount(res)
+        })
+       .then((account)=>console.log(account))
+     
+        .catch(err => console.log(err.message));
     }
     return (
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-7">
-                    <Card>
-                        <h2 className="text-center">Personal Checking Account List</h2>
-                        <Form onSubmit={handleSubmit} className="mt-3">
-                            
-                                <Button type="submit" value="submit" color="primary" className="mt-3">Click here</Button>
+                 
+                        
+                       <Form onSubmit={handleSubmit} className="mr-3">
+                           
+                                    <h2 className="text-center">Personal Checking Account List</h2>
+                                <Button  type="submit" value="submit" color="primary" className="">Submit</Button>
                             
                         </Form>
-                    </Card>
-                    <div>
+                        </div> 
+                        </div>  
+                        <div className="row">
+                <div >
                          <AccountsTable account={account} /> 
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
 
@@ -140,8 +143,8 @@ function AccountsTable({ account }) {
     } 
      if (account != null) {
         return (
-            <table className="table table-striped">
-                <thead>
+            <table className="table table-bordered table-responsive table-hover mt-3">
+                <thead style={{fontWeight:600}}>
                     <tr>
                         <td>Account Num</td>
                         <td>Balance</td>

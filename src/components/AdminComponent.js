@@ -85,67 +85,8 @@ function Admin({ authorized }) {
                 </div>
             </Navbar>
 
-                    {/* <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/cdoffering">
-                                <span className="fa fa-money fa-lg text-white"> CDOffering</span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/createaccountholder">
-                                <span className="fa fa-user fa-lg text-white" >Create AccountHolder</span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/addaccountholdercontacts">
-                                <span className="fa fa-address-card-o fa-lg text-white" >Add AccountHolder Contacts</span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/getaccountholders">
-
-                                <span className="fa fa-user fa-lg text-white"> Account Holders</span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/user">
-                                <span className="fa fa-money fa-lg text-white" >Accounts/AH-id/Access</span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/home">
-                                <span className="fa fa-money fa-lg text-white" >Transactions</span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/login">
-                                <span className="fa fa-sign-out fa-lg text-white" ><Logout /></span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-
-
-                </div>
-            </Navbar> */}
-
-            {/* </div> */}
+                   
+           
             <div className="container ">
                 <div className="row row-content">
                     <div className="col-md-4">
@@ -206,7 +147,7 @@ function Admin({ authorized }) {
                         </Card>
                     </div>
                 </div>
-                <div row row-content> 
+                <div className="row row-content"> 
                     <div className="col-md-4 ">
                         <Card>
                             <div
@@ -246,14 +187,14 @@ function Admin({ authorized }) {
                         </Card>
                     </div>
                    </div>
-                    <div row row-content> 
+                    <div className="row row-content"> 
                     <div className="col-md-4">
                         <Card>
                             <div
                                 className="bg-image card shadow-1-strong"
                                 style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
-                                <div class="card-body text-white">
+                                <div className="card-body text-white">
                                     <h5 className="card-title">Roth IRA Account</h5>
                                     <p className="card-text">
 
@@ -270,7 +211,7 @@ function Admin({ authorized }) {
                                 className="bg-image card shadow-1-strong"
                                 style={{ backgroundImage: `url('https://av.sc.com/hk/content/images/hotpromotion-900x490-882x480.jpg')` }}
                             >
-                                <div class="card-body text-white">
+                                <div className="card-body text-white">
                                     <h5 className="card-title">Rollover IRA Account</h5>
                                     <p className="card-text">
 

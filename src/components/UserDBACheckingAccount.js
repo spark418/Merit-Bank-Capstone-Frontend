@@ -25,12 +25,35 @@ export function UserAddDBACheckingAccount() {
             },
             credentials: 'same-origin'
         })
-            .then(res => res.json())
+        .then(res=> {
+            if(res.ok){
+                //console.log(res.json());
+                alert(`Successfully opened a new DBA Checking Account for you!`);
+                return res;
+            } else {
+                const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                error.res = res;
+                throw error ;
+            }
+        },
+        error=> { 
+            throw error;
+        }
+        )
+        .then(res => res.json())
+       
+        .catch((error) => {
+            if(error.res.status == "400"){
+                alert('Account cannot be opened\nError: Exceeds the maximum limit of accounts')
+            } 
+            if(error.res.status == "404"){
+                alert('Account cannot be opened\nError: AccountHolder not found')
+            }
+            if(error.res.status == "406"){
+                alert('Account cannot be opened\nError: Invalid details provided')
+            }
 
-            .then(data => console.log(data))
-            .then((data) => alert(data))
-
-            .catch(err => console.log(err.message));
+        });
     }
 
     return (
@@ -48,12 +71,7 @@ export function UserAddDBACheckingAccount() {
                                     onChange={ev => setBalance(ev.target.value)}></Input>
                             </FormGroup>
 
-                            {/* <FormGroup className="col-md-6" >
-                                <Label for="accHolderid">AccountHolder-Id</Label>
-                                <Input type="accHolderid" name="accHolderid"
-                                    id="accHolderid" placeholder=" AccountHolder-Id" value={accHolderid}
-                                    onChange={ev => setAccHolderid(ev.target.value)}></Input>
-                            </FormGroup> */}
+                            
 
                             <FormGroup className="col-md-6" >
                                 <Button type="submit" value="submit" color="primary">Submit</Button>
@@ -96,24 +114,23 @@ export function UserGetDBACheckingAccount() {
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-7">
-                    <Card>
-                        <h2 className="text-center">DBA Checking Account List</h2>
-                        <Form onSubmit={handleSubmit} className="mt-3">
-                            {/* <FormGroup className="col-md-6" >
-                                <Label for="accHolderid">Enter the AccountHolder-Id</Label>
-                                <Input type="accHolderid" name="accHolderid"
-                                    id="accHolderid" placeholder=" AccountHolder-Id" value={accHolderid}
-                                    onChange={ev => setAccHolderid(ev.target.value)}></Input> */}
-                                <Button type="submit" value="submit" color="primary" className="mt-3">Submit</Button>
-                            {/* </FormGroup> */}
+                 
+                        
+                       <Form onSubmit={handleSubmit} className="mr-3">
+                           
+                                    <h2 className="text-center">DBA Checking Account List</h2>
+                                <Button  type="submit" value="submit" color="primary" className="">Submit</Button>
+                            
                         </Form>
-                    </Card>
-                    <div>
+                        </div> 
+                        </div>  
+                        <div className="row">
+                <div >
                          <AccountsTable account={account} /> 
                     </div>
                 </div>
             </div>
-        </div>
+        
     );
 }
 
@@ -126,8 +143,8 @@ function AccountsTable({ account }) {
     } 
      if (account != null) {
         return (
-            <table className="table table-striped">
-                <thead>
+            <table className="table table-bordered table-responsive table-hover mt-3">
+                <thead style={{fontWeight:600}}>
                     <tr>
                         <td>Account Num</td>
                         <td>Balance</td>

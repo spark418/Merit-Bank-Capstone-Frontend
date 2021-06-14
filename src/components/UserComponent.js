@@ -5,73 +5,139 @@ import {
     Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label
 } from 'reactstrap';
 import { NavLink, Redirect } from 'react-router-dom';
+import {Dropdown} from 'react-bootstrap';
 
-function User({authorized}) {
-     
-    if(authorized==null) {
+function User({ authorized }) {
+
+    if (authorized == null) {
         return <Redirect to="/login" />
     }
-    const user=localStorage.getItem('username');
+    const user = localStorage.getItem('username');
     return (
         <div className="container-fluid title">
-           <h2>Welcome {user} !</h2>
+            {/* <h2>Welcome {user} !</h2> */}
             <Navbar dark sticky="top" >
-              
+
                 <div className="container-fluid" style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}>
                     
-                   
-
-                   
 
                     <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/userCdoffering">
-                                <span className="fa fa-money fa-lg text-white"> CDOffering</span>
-                            </NavLink>
+                        <NavItem className="mr-4 mt-3">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                    DBA Checking Account
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/userAddDBACheckingAccount">Add Account</Dropdown.Item>
+                                    <Dropdown.Item href="/userGetDBACheckingAccount">List of Accounts</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </NavItem>
                     </Nav>
 
                     <Nav navbar>
-                     <NavItem className="mr-4">
-                         <NavLink className="nav-link" to="/userGetAccounts">
+                        <NavItem className="mr-4 mt-3">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                    Personal Checking Account
+                                </Dropdown.Toggle>
 
-                             <span className="fa fa-user fa-lg text-white"> Account List</span>
-                         </NavLink>
-                     </NavItem>
-                 </Nav>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/userAddPersonalCheckingAccount">Add Account</Dropdown.Item>
+                                    <Dropdown.Item href="/userGetPersonalCheckingAccount">List of Accounts</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </NavItem>
+                    </Nav>
 
                     <Nav navbar>
-                     <NavItem className="mr-4">
-                         <NavLink className="nav-link" to="/userAddAccounts">
-                             <span className="fa fa-address-card-o fa-lg text-white" >Add Account</span>
-                         </NavLink>
-                     </NavItem>
-                 </Nav>
+                        <NavItem className="mr-4 mt-3">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                    Savings Account
+                                </Dropdown.Toggle>
 
-                    {/* <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/addaccountholdercontacts">
-                                <span className="fa fa-address-card-o fa-lg text-white" >Add AccountHolder Contacts</span>
-                            </NavLink>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/userAddSavingsAccount">Add Account</Dropdown.Item>
+                                    <Dropdown.Item href="/userGetSavingsAccount">List of Accounts</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </NavItem>
-                    </Nav> */}
+                    </Nav>
 
-                    {/* <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/getaccountholders">
+                    <Nav navbar>
+                        <NavItem className="mr-4 mt-3">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                    CD Account
+                                </Dropdown.Toggle>
 
-                                <span className="fa fa-user fa-lg text-white"> Account Holders</span>
-                            </NavLink>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/userAddCDAccount">Add Account</Dropdown.Item>
+                                    <Dropdown.Item href="/userGetCDAccount">List of Accounts</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </NavItem>
-                    </Nav> */}
+                    </Nav>
 
-                    {/* <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/user">
-                                <span className="fa fa-money fa-lg text-white" >Accounts/AH-id/Access</span>
-                            </NavLink>
+                    <Nav navbar>
+                        <NavItem className="mr-4 mt-3">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                    Roth IRA Account
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/userAddRothIRAAccount">Add Account</Dropdown.Item>
+                                    <Dropdown.Item href="/userGetRothIRAAccount">List of Accounts</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </NavItem>
-                    </Nav> */}
+                    </Nav>
+
+                    <Nav navbar>
+                        <NavItem className="mr-4 mt-3">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                   Regular IRA Account
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/userAddRegularIRAAccount">Add Account</Dropdown.Item>
+                                    <Dropdown.Item href="/userGetRegularIRAAccount">List of Accounts</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </NavItem>
+                    </Nav>
+
+                    <Nav navbar>
+                        <NavItem className="mr-4 mt-3">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                   Rollover IRA Account
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="/userAddRolloverIRAAccount">Add Account</Dropdown.Item>
+                                    <Dropdown.Item href="/userGetRolloverIRAAccount">List of Accounts</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </NavItem>
+                    </Nav>
+
+                    
+
+
+
+
 
                     <Nav navbar>
                         <NavItem className="mr-4">
@@ -82,8 +148,15 @@ function User({authorized}) {
                     </Nav>
                     <Nav navbar>
                         <NavItem className="mr-4">
+                            <NavLink className="nav-link" to="/userCdoffering">
+                                <span className="fa fa-money fa-lg text-white"> CDOffering</span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <Nav navbar>
+                        <NavItem className="mr-4">
                             <NavLink className="nav-link" to="/login">
-                                <span className="fa fa-sign-out fa-lg text-white" ><Logout /></span>
+                                <span className="fa fa-sign-out fa-lg text-white " ><Logout /></span>
                             </NavLink>
                         </NavItem>
                     </Nav>
@@ -91,142 +164,12 @@ function User({authorized}) {
 
                 </div>
             </Navbar>
+            <h2>Welcome {user} !</h2>
 
-            
             <div className="container ">
                 <div className="row row-content">
                     <div className="col-md-4">
-                        {/* <Card>
-                            <div
-                                className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
-                            >
-                                <div className="card-body text-white">
-                                    <h5 className="card-title">DBA Checking Account</h5>
-                                    <p className="card-text">
-
-                                    </p>
-                                    <div className="col">
-                                        <a href="/userAddDBACheckingAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/userGetDBACheckingAccount" className="btn btn-outline-light">Get Accounts</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-                    <div className="col-md-4">
-                        <Card>
-                            <div
-                                className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
-                            >
-                                <div className="card-body text-white">
-                                    <h5 className="card-title">Personal Checking Account</h5>
-                                    <p className="card-text">
-
-                                    </p>
-                                    <div className="col">
-                                        <a href="/userAddPersonalCheckingAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/userGetPersonalCheckingAccount" className="btn btn-outline-light">Get Accounts</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-                    <div className="col-md-4">
-                        <Card>
-                            <div
-                                className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
-                            >
-                                <div className="card-body text-white">
-                                    <h5 className="card-title">Savings Account</h5>
-                                    <p className="card-text">
-
-                                    </p>
-                                    <div className="col">
-                                        <a href="/userAddSavingsAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/userGetSavingsAccount" className="btn btn-outline-light">Get Accounts</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-                </div>
-                <div className="row row-content"> 
-                    <div className="col-md-4 ">
-                        <Card>
-                            <div
-                                className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
-                            >
-                                <div className="card-body text-white">
-                                    <h5 className="card-title">CD Account</h5>
-                                    <p className="card-text">
-
-                                    </p>
-                                    <div className="col">
-                                        <a href="/userAddCDAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/userGetCDAccount" className="btn btn-outline-light">Get Accounts</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-                    <div className="col-md-4">
-                        <Card>
-                            <div
-                                className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
-                            >
-                                <div className="card-body text-white">
-                                    <h5 className="card-title">Regular IRA Account</h5>
-                                    <p className="card-text">
-
-                                    </p>
-                                    <div className="col">
-                                        <a href="/userAddRegularIRAAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/userGetRegularIRAAccount" className="btn btn-outline-light">Get Accounts</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-                   </div>
-                    <div className="row row-content"> 
-                    <div className="col-md-4">
-                        <Card>
-                            <div
-                                className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
-                            >
-                                <div class="card-body text-white">
-                                    <h5 className="card-title">Roth IRA Account</h5>
-                                    <p className="card-text">
-
-                                    </p>
-                                    <a href="/userAddRothIRAAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                    <a href="/userGetRothIRAAccount" className="btn btn-outline-light">Get Accounts</a>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-                    <div className="col-md-4">
-                        <Card>
-                            <div
-                                className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
-                            >
-                                <div class="card-body text-white">
-                                    <h5 className="card-title">Rollover IRA Account</h5>
-                                    <p className="card-text">
-
-                                    </p>
-                                    <a href="/userAddRolloverIRAAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                    <a href="/userGetRolloverIRAAccount" className="btn btn-outline-light">Get Accounts</a>
-                                </div>
-                            </div>
-                        </Card> */}
+                        
                     </div>
                 </div>
             </div>

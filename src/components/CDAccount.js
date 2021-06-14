@@ -48,7 +48,7 @@ export function AddCDAccount() {
        
         .catch((error) => {
             if(error.res.status == "400"){
-                alert('Account cannot be opened\nError: Excceds the maximum limit of accounts')
+                alert('Account cannot be opened\nError: Exceeds the maximum limit of accounts')
             } 
             if(error.res.status == "404"){
                 alert('Account cannot be opened\nError: AccountHolder not found')
@@ -117,13 +117,34 @@ export function GetCDAccount() {
                 'Authorization': bearer
             },
         })
-            .then(res => res.json())
-            .then(res => {
-                setAccount(res)
-            })
-           .then((account)=>console.log(account))
-         
-            .catch(err => console.log(err.message));
+        .then(res=> {
+            if(res.ok){
+                
+                return res;
+            } else {
+                const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                error.res = res;
+                throw error ;
+            }
+        },
+        error=> { 
+            throw error;
+        }
+        )
+        .then(res => res.json())
+        .then(res => {
+            setAccount(res)
+        })
+        .then((account)=>console.log(account))
+       
+        .catch((error) => {
+            
+            if(error.res.status == "404"){
+                alert('Error: AccountHolder not found')
+            }
+            
+
+        });
     }
     return (
         <div className="container mt-5">
@@ -159,7 +180,7 @@ function AccountsTable({ account }) {
     } 
      if (account != null) {
         return (
-            <table className="table table-striped">
+            <table className="table table-bordered table-hover table-responsive">
                 <thead style={{fontWeight:600}}>
                     <tr>
                         <td>Account Num</td>

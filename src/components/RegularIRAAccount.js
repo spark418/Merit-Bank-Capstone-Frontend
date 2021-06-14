@@ -44,7 +44,7 @@ export function AddRegularIRAAccount() {
        
         .catch((error) => {
             if(error.res.status == "400"){
-                alert('Account cannot be opened\nError: Excceds the maximum limit of accounts')
+                alert('Account cannot be opened\nError: Exceeds the maximum limit of accounts')
             } 
             if(error.res.status == "404"){
                 alert('Account cannot be opened\nError: AccountHolder not found')
@@ -128,15 +128,11 @@ export function GetRegularIRAAccount() {
         .then((account)=>console.log(account))
        
         .catch((error) => {
-            if(error.res.status == "400"){
-                alert('Account cannot be opened\nError: Excceds the maximum limit of accounts')
-            } 
+             
             if(error.res.status == "404"){
                 alert('Error: AccountHolder not found')
             }
-            if(error.res.status == "406"){
-                alert('Error: Invalid details provided')
-            }
+            
 
         });
             

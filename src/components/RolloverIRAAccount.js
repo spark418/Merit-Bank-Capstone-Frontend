@@ -25,12 +25,35 @@ export function AddRolloverIRAAccount() {
             },
             credentials: 'same-origin'
         })
-            .then(res => res.json())
+        .then(res=> {
+            if(res.ok){
+                //console.log(res.json());
+                alert(`Successfully opened a new Rollover IRA Account for account holder: ${accHolderid}`);
+                return res;
+            } else {
+                const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                error.res = res;
+                throw error ;
+            }
+        },
+        error=> { 
+            throw error;
+        }
+        )
+        .then(res => res.json())
+       
+        .catch((error) => {
+            if(error.res.status == "400"){
+                alert('Account cannot be opened\nError: Exceeds the maximum limit of accounts')
+            } 
+            if(error.res.status == "404"){
+                alert('Account cannot be opened\nError: AccountHolder not found')
+            }
+            if(error.res.status == "406"){
+                alert('Account cannot be opened\nError: Invalid details provided')
+            }
 
-            .then(data => console.log(data))
-            .then(() => alert(" Opened a new Regular IRA Account successfully!"))
-
-            .catch(err => console.log(err.message));
+        });
     }
 
     return (
@@ -86,8 +109,7 @@ export function GetRolloverIRAAccount() {
         })
         .then(res=> {
             if(res.ok){
-                //console.log(res.json());
-                alert(`Successfully opened a new Rollover IRA Account for account holder: ${accHolderid}`);
+                
                 return res;
             } else {
                 const error = new Error(`Error ${res.status}: ${res.statusText}`);
@@ -100,17 +122,17 @@ export function GetRolloverIRAAccount() {
         }
         )
         .then(res => res.json())
+        .then(res => {
+            setAccount(res)
+        })
+        .then((account)=>console.log(account))
        
         .catch((error) => {
-            if(error.res.status == "400"){
-                alert('Account cannot be opened\nError: Excceds the maximum limit of accounts')
-            } 
+             
             if(error.res.status == "404"){
-                alert('Account cannot be opened\nError: AccountHolder not found')
+                alert('Error: AccountHolder not found')
             }
-            if(error.res.status == "406"){
-                alert('Account cannot be opened\nError: Invalid details provided')
-            }
+            
 
         });
     }
