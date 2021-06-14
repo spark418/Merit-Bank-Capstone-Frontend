@@ -3,7 +3,7 @@ import { Jumbotron,  Button } from 'reactstrap';
 
 function Header() {
     return (
-        <Jumbotron className="header" >
+        <Jumbotron  className="header" >
             <div className="row">
                 <div className="col-sm-collapse col-md-3">
                 <a href="/">   <img src="../images/logo2.png" height="100" width="150" alt="MeritBankLogo" href="/" /></a>
