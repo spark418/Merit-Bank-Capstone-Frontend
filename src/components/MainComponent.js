@@ -93,6 +93,16 @@ class Main extends Component {
                     <Route path="/userGetDBACheckingAccount" component={UserGetDBACheckingAccount} />
                     <Route path="/userAddPersonalCheckingAccount" component={UserAddPersonalCheckingAccount} />
                     <Route path="/userGetPersonalCheckingAccount" component={UserGetPersonalCheckingAccount} />
+                    <Route path="/userAddSavingsAccount" component={UserAddSavingsAccount} />
+                    <Route path="/userGetSavingsAccount" component={UserGetSavingsAccount} />
+                    <Route path="/userAddCDAccount" component={UserAddCDAccount} />
+                    <Route path="/userGetCDAccount" component={UserGetCDAccount} />
+                    <Route path="/userAddRegularIRAAccount" component={UserAddRegularIRAAccount} />
+                    <Route path="/userGetRegularIRAAccount" component={UserGetRegularIRAAccount} />
+                    <Route path="/userAddRolloverIRAAccount" component={UserAddRolloverIRAAccount} />
+                    <Route path="/userGetRolloverIRAAccount" component={UserGetRolloverIRAAccount} />
+                    <Route path="/userAddRothIRAAccount" component={UserAddRothIRAAccount} />
+                    <Route path="/userGetRothIRAAccount" component={UserGetRothIRAAccount} />
 
                     <Route path="/addAccount" component={AddAccount}/>
                     <Route path="/getAccount" component={GetAccount}/>  

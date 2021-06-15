@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
 
 
@@ -11,6 +11,11 @@ function AccountHoldersList() {
 
     const ALL_ACCOUNTHOLDERS_URL = `http://localhost:8080/accountholders`;
     const bearer = 'Bearer ' + localStorage.getItem('token');
+
+    useEffect(() => {
+        handleClick()
+      })
+         
 
     const handleClick = async () => {
 
@@ -38,9 +43,7 @@ function AccountHoldersList() {
 
                     <h3 className="text-center">To Get Account Holders List</h3>
                 </div>
-                <div className="col-md-5">
-                    <span> <Button onClick={handleClick} className="btn btn-info">Click here</Button> </span>
-                </div>
+                
                 <div className="row mt-3">
                     <AccountsTable account={account} />
                 </div>

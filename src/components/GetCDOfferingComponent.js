@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
-import axios from 'axios';
+
 import {Redirect} from'react-router-dom';
 import { baseUrl } from '../utils/constants';
 
@@ -92,8 +92,8 @@ class CDOffering extends Component {
                 <div className="col-md-4">
                     <Card>
                 <h2 className="text-center mt-5">CDOfferings List</h2>
-                <table className="table table-striped">
-                    <thead>
+                <table className="table table-hover"  >
+                    <thead style={{fontWeight:600}}>
                         <tr>
                             <td>Id</td>
                             <td>Interest Rate</td>

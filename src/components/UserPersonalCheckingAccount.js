@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
 
 export function UserAddPersonalCheckingAccount() {
@@ -92,8 +92,12 @@ export function UserGetPersonalCheckingAccount() {
     const USER_PERSONAL_CHECKINGACCOUNT_URL = `http://localhost:8080/Me/checkingaccounts`;
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    useEffect(() => {
+        handleSubmit()
+      })
+
+    const handleSubmit = async () => {
+        
    
         await fetch(USER_PERSONAL_CHECKINGACCOUNT_URL, {
             method: 'GET',
@@ -115,22 +119,17 @@ export function UserGetPersonalCheckingAccount() {
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-7">
-                 
-                        
-                       <Form onSubmit={handleSubmit} className="mr-3">
-                           
-                                    <h2 className="text-center">Personal Checking Account List</h2>
-                                <Button  type="submit" value="submit" color="primary" className="">Submit</Button>
-                            
-                        </Form>
-                        </div> 
-                        </div>  
-                        <div className="row">
-                <div >
-                         <AccountsTable account={account} /> 
-                    </div>
+
+                    <h2 className="text-align-center">Personal Checking Account List</h2>
+
                 </div>
             </div>
+            <div className="row">
+                <div className="center">
+                    <AccountsTable account={account} />
+                </div>
+            </div>
+        </div>
     );
 }
 
