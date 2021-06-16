@@ -8,8 +8,8 @@ function App() {
   return (
    
       <BrowserRouter>
-        <div style={{
-          backgroundImage: `url("")`,
+        <div   style={{
+          backgroundImage: `url("")`, 
         }}>
           <Main />
         </div>

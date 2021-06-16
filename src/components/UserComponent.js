@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import { NavLink, Redirect } from 'react-router-dom';
 import {Dropdown} from 'react-bootstrap';
-
+import {UserDetails} from './UserDetails';
 function User({ authorized }) {
 
     if (authorized == null) {
@@ -169,7 +169,7 @@ function User({ authorized }) {
             <div className="container ">
                 <div className="row row-content">
                     <div className="col-md-4">
-                        
+                    <UserDetails/> 
                     </div>
                 </div>
             </div>

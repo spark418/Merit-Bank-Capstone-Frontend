@@ -143,7 +143,7 @@ class AdminCDOffering extends Component {
                     <thead style={{fontWeight:600}}>
                         <tr>
                             <td>Id</td>
-                            <td>Interest Rate</td>
+                            <td>Interest Rate %</td>
                             <td>Term</td>
                         </tr>
                     </thead>
@@ -153,7 +153,7 @@ class AdminCDOffering extends Component {
                                 cd => 
                                 <tr key={cd.id}>
                                     <td>{cd.id}</td>
-                                    <td>{cd.interestRate}</td>
+                                    <td>{(Math.round(cd.interestRate * 100) / 100).toFixed(2)}</td> 
                                     <td>{cd.term}</td>
                                 </tr>
                             )

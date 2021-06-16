@@ -1,7 +1,10 @@
 .jumbotron {
   margin: 0;
+  
   background-image: linear-gradient(to right, #37bcdd, #f3f4fc, #78c8d6);
-  color: white; }
+  color: white;
+  max-height:200px; 
+}
 
   .login{
     align-content: center;
@@ -23,8 +26,8 @@
    text-align: center;
  }
 
-.headerLogin.button:hover{
-  background-color:rgb(255, 0, 13);
+.headerLogIn:hover{
+  background-color:rgb(29, 110, 15);
 }
 
 #warn{
@@ -62,7 +65,7 @@
    text-align: center;
  }
 
-.headerLogin.button:hover{
+.headerLogin:hover{
   background-color:rgb(255, 0, 13);
 }
 
@@ -70,12 +73,14 @@
   font-weight: 500;
 }
 .nav-link:hover {
-  color:gray;
+  color:rgb(28, 38, 179);
+  font-weight: bolder;
 }
 
 .site-footer {
   background-image: linear-gradient(#CEC8FF, white);
   padding: 20px 0;
+  max-height: 20px;
 }
 
 .row-content {
@@ -89,3 +94,35 @@
   margin-right: auto;
 }
 
+.navbar-light {
+  background-color: rgb(35, 156, 187);
+  width:100%;
+}
+
+.navstyle {
+  font-weight: 600;
+  font-size:large; 
+ height: 50px;
+ margin-bottom: 0%;
+}
+.nav-link{
+  display: inline-block;
+  height:20px;
+  color:rgb(21, 21, 22)
+}
+
+.title{
+  font-size:small;
+  font-weight: 10px;
+  margin: auto;
+}
+
+.transact:hover{
+  color:rgb(22, 16, 102);
+  font-weight: bolder;
+}
+.admindash{
+  /* background-color:  rgb(21, 116, 139); */
+  background-image:linear-gradient(rgb(35, 156, 187),rgb(31, 82, 75));
+  
+}

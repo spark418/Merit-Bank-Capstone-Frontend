@@ -5,7 +5,7 @@ import {Redirect} from'react-router-dom';
 import { baseUrl } from '../utils/constants';
 
 const CDOFFERING_URL = "http://localhost:8080/cdofferings";
-const BEST_CDOFFERING_URL="http://localhost:8080/bestcdofferings/{balance}/";
+const BEST_CDOFFERING_URL="http://localhost:8080/bestcdofferings/{balance}";
 const bearer = 'Bearer ' + localStorage.getItem('token');
 
 class CDOffering extends Component {
@@ -96,7 +96,7 @@ class CDOffering extends Component {
                     <thead style={{fontWeight:600}}>
                         <tr>
                             <td>Id</td>
-                            <td>Interest Rate</td>
+                            <td>Interest Rate %</td>
                             <td>Term</td>
                         </tr>
                     </thead>
@@ -106,7 +106,7 @@ class CDOffering extends Component {
                                 cd => 
                                 <tr key={cd.id}>
                                     <td>{cd.id}</td>
-                                    <td>{cd.interestRate}</td>
+                                    <td>{(Math.round(cd.interestRate * 100) / 100).toFixed(2)}</td>
                                     <td>{cd.term}</td>
                                 </tr>
                             )
@@ -135,7 +135,7 @@ class CDOffering extends Component {
                     </Card>
                 </div>
                 <div>
-                    {this.state.getBestCDOffering}
+                    {this.state.cdoffer}
                 </div>
             </div>
             </div>

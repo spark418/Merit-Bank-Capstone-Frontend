@@ -31,12 +31,7 @@ function AccountHolderContactDetails() {
             },
             credentials: 'same-origin'
         })
-            // .then(res => res.json())
-           
-            // .then(data=> console.log(data))
-            // .then(()=> alert(" AccountHolder Contact Details registered successfully!" ))
-           
-            // .catch(err => console.log(err.message));
+            
             .then(res=> {
                 if(res.ok){
                     //console.log(res.json());

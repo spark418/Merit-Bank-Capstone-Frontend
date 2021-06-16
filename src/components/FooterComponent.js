@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 function Footer() {
     return (
         <div className="site-footer">
-            <div className="row justify-content-center">
+            <div className="row footer-height justify-content-center">
                 <div className="col-12 col-sm-4 align-self-center">
                     <div className="text-center">
                         <hr/>

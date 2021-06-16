@@ -50,6 +50,11 @@ import {GetAccount} from './AccountsComponent';
 import {UserAddAccount} from './UserAccountsComponent';
 import {UserGetAccount} from './UserAccountsComponent';
 
+import {AdminTransferTransaction} from './AdminTransferTransaction';
+ import {DBACheckingDepositTransaction} from './AdminDBACheckingTransaction';
+ import {DBACheckingWithdrawTransaction} from './AdminDBACheckingTransaction';
+ import {DBACheckingGetTransaction} from './AdminDBACheckingTransaction'
+ 
 
 import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
 
@@ -108,6 +113,14 @@ class Main extends Component {
                     <Route path="/getAccount" component={GetAccount}/>  
                     <Route path= "/userAddAccounts" component={UserAddAccount}/>
                     <Route path="/userGetAccounts" component={UserGetAccount}/>
+                    
+                    <Route path="/adminTransferTransaction" component={AdminTransferTransaction}/> 
+
+                    <Route path="/adminDBACheckingDepositTransaction" component={DBACheckingDepositTransaction}/>
+                    <Route path="/adminDBACheckingWithdrawTransaction" component={DBACheckingWithdrawTransaction}/>
+                    <Route path="/adminDBACheckingGetTransaction" component={DBACheckingGetTransaction} />
+                   
+
                     
                     <Redirect to="/login" />
                 </Switch>

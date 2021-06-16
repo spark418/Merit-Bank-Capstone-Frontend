@@ -186,7 +186,7 @@ function AccountsTable({ account }) {
                                 <tr key={ac.id}>
                                     <td> {ac.accountNumber}</td>
                                     <td> {ac.balance}</td>
-                                    <td> {ac.openingDate}</td>
+                                    <td> {ac.openingDate.substring(0,10)} at {ac.openingDate.substring(11)}</td>
                                 </tr>
                         )
                     }

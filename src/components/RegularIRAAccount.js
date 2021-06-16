@@ -164,7 +164,7 @@ export function GetRegularIRAAccount() {
 
 function AccountsTable({ account }) {
     console.log("account:"+account)
-    if (account == null) {
+    if (account == undefined) {
         return (
             <h3>No accounts to be displayed!</h3>
         )
@@ -188,7 +188,7 @@ function AccountsTable({ account }) {
 
                                     <td> {ac.accountNumber}</td>
                                     <td> {ac.balance}</td>
-                                    <td> {ac.openingDate}</td>
+                                    <td> {ac.openingDate.substring(0,10)} at {ac.openingDate.substring(11)}</td>
                                 </tr>
                         )
                     }

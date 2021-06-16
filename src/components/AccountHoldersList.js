@@ -19,7 +19,7 @@ function AccountHoldersList() {
 
     const handleClick = async () => {
 
-        console.log("entered function componentDidMount");
+        //console.log("entered function componentDidMount");
         await fetch(ALL_ACCOUNTHOLDERS_URL, {
             method: 'GET',
             headers: {
@@ -31,7 +31,7 @@ function AccountHoldersList() {
             .then(res => {
                 setAccount(res)
             })
-            .then((account) => console.log(account))
+           // .then((account) => console.log(account))
 
             .catch(err => console.log(err.message));
     }
@@ -41,7 +41,7 @@ function AccountHoldersList() {
             <div className="row">
                 <div className="col-md-6">
 
-                    <h3 className="text-center">To Get Account Holders List</h3>
+                    <h3 className="text-center"> Account Holders List</h3>
                 </div>
                 
                 <div className="row mt-3">
