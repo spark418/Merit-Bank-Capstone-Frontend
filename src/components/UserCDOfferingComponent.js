@@ -107,7 +107,7 @@ class UserCDOffering extends Component {
                                 <tr key={cd.id}>
                                     <td>{cd.id}</td>
                                     <td>{cd.interestRate}</td>
-                                    <td>{cd.term}</td>
+                                    <td>{(Math.round(cd.interestRate * 100) / 100).toFixed(2)}</td>
                                 </tr>
                             )
                         }

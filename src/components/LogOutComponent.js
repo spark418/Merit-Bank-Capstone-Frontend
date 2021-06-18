@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Button} from 'reactstrap';
 
 function Logout(props) {
     
@@ -7,7 +8,7 @@ function Logout(props) {
         window.location.href = "/login";
     }
     return (
-        <button onClick={logout}>Logout</button>
+        <Button className="btn  btn-basic" onClick={logout}>Logout</Button>
     )
 
 }

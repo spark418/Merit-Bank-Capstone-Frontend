@@ -69,11 +69,11 @@ function AccountsTable({ account }) {
                         <td>First Name</td>
                         <td>Middle Name</td>
                         <td>Last Name</td>
-
                         <td>SSN</td>
-                        <td>Phone Number</td>
+                        
                         <td>Email</td>
                         <td>Address</td>
+                        <td>Phone Number</td>
 
                         <td>Add New Account</td>
                         <td>Accounts List</td>
@@ -90,9 +90,10 @@ function AccountsTable({ account }) {
                                     <td> {ac.lastName}</td>
                                     <td>{ac.ssn}</td>
 
-                                    <td>{ac.accountHolderContactDetails.phoneNum}</td>
-                                    <td>{ac.accountHolderContactDetails.email}</td>
-                                    <td>{ac.accountHolderContactDetails.address}</td>
+                                   
+                                  <td><Email account={ac}/></td>
+                                  <td><Address account={ac}/></td>
+                                  <td><Phonenum account={ac}/></td>
                                     
                                     <td><a href="/addAccount" className="btn btn-dark fa fa-plus"></a></td>
                                     <td><a href="/getAccount" className="btn btn-dark fa fa-list"></a></td>
@@ -108,3 +109,24 @@ function AccountsTable({ account }) {
 
 
 export default AccountHoldersList;
+
+function Phonenum({ account }) {
+    if (account.accountHolderContactDetails != null) {
+        return (<div>{account.accountHolderContactDetails.phoneNum}</div>)
+    }
+    return <div />
+}
+
+function Email({ account }) {
+    if (account.accountHolderContactDetails != null) {
+        return ( <div>{account.accountHolderContactDetails.email}</div>)
+    }
+    return <div />
+}
+
+function Address({ account }) {
+    if (account.accountHolderContactDetails != null) {
+        return ( <div>{account.accountHolderContactDetails.address}</div>)
+    }
+    return <div />
+}

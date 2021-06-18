@@ -36,7 +36,7 @@ class AdminCDOffering extends Component {
             "interestRate": this.state.interestRate,
             "term": this.state.term
         }
-        if(localStorage.getItem('roles')==["ROLE_ADMIN"]){
+        if(localStorage.getItem('role')=="[ROLE_ADMIN]"){
             await fetch(CDOFFERING_URL, {
                     method: 'POST',
                     body: JSON.stringify(payload),

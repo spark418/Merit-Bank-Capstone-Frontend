@@ -95,7 +95,11 @@
 }
 
 .navbar-light {
-  background-color: rgb(35, 156, 187);
+  background-image:linear-gradient(rgb(13, 140, 160),white);
+  width:100%;
+}
+.usernavbar{
+  background-image:linear-gradient(white,rgb(13, 140, 160));
   width:100%;
 }
 
@@ -123,6 +127,6 @@
 }
 .admindash{
   /* background-color:  rgb(21, 116, 139); */
-  background-image:linear-gradient(rgb(35, 156, 187),rgb(31, 82, 75));
+  background-image:linear-gradient(rgb(63, 140, 160),rgb(49, 138, 126));
   
 }

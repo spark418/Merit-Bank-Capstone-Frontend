@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import Logout from "./LogoutComponent";
 import {
     Navbar, Row, Col, Jumbotron, NavbarBrand, Nav, NavItem, Button, Card,
-    Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label
+    Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label,NavbarToggler, Collapse
 } from 'reactstrap';
 import { NavLink, Redirect } from 'react-router-dom';
 import {Dropdown} from 'react-bootstrap';
 import {UserDetails} from './UserDetails';
 function User({ authorized }) {
-
+    const [isNavOpen, setIsNavOpen] = useState(false);
+    const toggleNav = () => {
+        setIsNavOpen(!isNavOpen)
+    }
     if (authorized == null) {
         return <Redirect to="/login" />
     }
@@ -16,14 +19,56 @@ function User({ authorized }) {
     return (
         <div className="container-fluid title">
             {/* <h2>Welcome {user} !</h2> */}
-            <Navbar dark sticky="top" >
 
-                <div className="container-fluid" style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}>
+            
+            
+            <Navbar light expand="lg" sticky="top" className="usernavbar">
+
+                <div className="container" >
+
+                    <NavbarToggler onClick={toggleNav} />
+                    <Collapse isOpen={isNavOpen} navbar>
+            
                     
 
+
+
+
+
                     <Nav navbar>
-                        <NavItem className="mr-4 mt-3">
-                            <Dropdown>
+                        <NavItem className="mr-4 mb-2">
+                            <NavLink className="nav-link" to="/home">
+                            <Button className="btn btn-info">       <span className="fa fa-money  text-white" >Transactions</span></Button>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <Nav navbar>
+                        <NavItem className="mr-4 mb-2">
+                            <NavLink className="nav-link" to="/userCdoffering">
+                          <Button className="btn btn-info">      <span className="fa fa-money  text-white"> CDOffering</span></Button>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <Nav navbar>
+                        <NavItem className="ml-10 mb-2">
+                            <NavLink className="nav-link" to="/login">
+                                <span className="fa fa-sign-out fa-lg text-white " ><Logout /></span>
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    </Collapse>
+                    </div>
+                </Navbar>
+                <Navbar light expand="lg" sticky="top">
+
+                <div className="container" >
+
+                    <NavbarToggler onClick={toggleNav} />
+                    <Collapse isOpen={isNavOpen} navbar>
+                        <Nav navbar>
+                            <NavItem  >
+                         
+                            <Dropdown className="mr-2">
                                 <Dropdown.Toggle variant="info" id="dropdown-basic">
                                     DBA Checking Account
                                 </Dropdown.Toggle>
@@ -31,14 +76,20 @@ function User({ authorized }) {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/userAddDBACheckingAccount">Add Account</Dropdown.Item>
                                     <Dropdown.Item href="/userGetDBACheckingAccount">List of Accounts</Dropdown.Item>
+                                    <Dropdown.Item href="/userDBACheckingDepositTransaction">Deposit</Dropdown.Item>
+                                    <Dropdown.Item href="/userDBACheckingWithdrawTransaction">Withdraw</Dropdown.Item>
+                                    <Dropdown.Item href="/userDBACheckingTransferTransaction">Transfer</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </NavItem>
-                    </Nav>
+                            
+                 
+                            </NavItem>
 
-                    <Nav navbar>
-                        <NavItem className="mr-4 mt-3">
+                        </Nav>
+                        
+                      <Nav navbar>
+                            <NavItem className="mr-2">
                             <Dropdown>
                                 <Dropdown.Toggle variant="info" id="dropdown-basic">
                                     Personal Checking Account
@@ -50,11 +101,14 @@ function User({ authorized }) {
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </NavItem>
-                    </Nav>
+                            </NavItem>
 
-                    <Nav navbar>
-                        <NavItem className="mr-4 mt-3">
+                        </Nav> 
+
+
+
+                        <Nav navbar>
+                            <NavItem className="mr-2">
                             <Dropdown>
                                 <Dropdown.Toggle variant="info" id="dropdown-basic">
                                     Savings Account
@@ -66,11 +120,11 @@ function User({ authorized }) {
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </NavItem>
-                    </Nav>
+                            </NavItem>
+                        </Nav>
 
-                    <Nav navbar>
-                        <NavItem className="mr-4 mt-3">
+                        <Nav navbar>
+                            <NavItem className="mr-2">
                             <Dropdown>
                                 <Dropdown.Toggle variant="info" id="dropdown-basic">
                                     CD Account
@@ -82,11 +136,11 @@ function User({ authorized }) {
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </NavItem>
-                    </Nav>
+                            </NavItem>
+                        </Nav>
 
-                    <Nav navbar>
-                        <NavItem className="mr-4 mt-3">
+                        <Nav navbar>
+                            <NavItem className="mr-2">
                             <Dropdown>
                                 <Dropdown.Toggle variant="info" id="dropdown-basic">
                                     Roth IRA Account
@@ -98,11 +152,11 @@ function User({ authorized }) {
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </NavItem>
-                    </Nav>
+                            </NavItem>
+                        </Nav>
 
-                    <Nav navbar>
-                        <NavItem className="mr-4 mt-3">
+                        <Nav navbar>
+                            <NavItem className="mr-2">
                             <Dropdown>
                                 <Dropdown.Toggle variant="info" id="dropdown-basic">
                                    Regular IRA Account
@@ -114,11 +168,10 @@ function User({ authorized }) {
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </NavItem>
-                    </Nav>
-
-                    <Nav navbar>
-                        <NavItem className="mr-4 mt-3">
+                            </NavItem>
+                        </Nav>
+                        <Nav navbar>
+                            <NavItem className="mr-2">
                             <Dropdown>
                                 <Dropdown.Toggle variant="info" id="dropdown-basic">
                                    Rollover IRA Account
@@ -130,45 +183,21 @@ function User({ authorized }) {
 
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </NavItem>
-                    </Nav>
+                            </NavItem>
+                        </Nav>
+                        
 
-                    
-
-
-
-
-
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/home">
-                                <span className="fa fa-money fa-lg text-white" >Transactions</span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/userCdoffering">
-                                <span className="fa fa-money fa-lg text-white"> CDOffering</span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-                    <Nav navbar>
-                        <NavItem className="mr-4">
-                            <NavLink className="nav-link" to="/login">
-                                <span className="fa fa-sign-out fa-lg text-white " ><Logout /></span>
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
-
-
+                    </Collapse>
                 </div>
             </Navbar>
+
+
+               
             <h2>Welcome {user} !</h2>
 
             <div className="container ">
                 <div className="row row-content">
-                    <div className="col-md-4">
+                    <div className="col-md-5">
                     <UserDetails/> 
                     </div>
                 </div>

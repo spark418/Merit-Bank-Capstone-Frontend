@@ -184,7 +184,7 @@ function AccountsTable({ account }) {
                 <thead style={{fontWeight:600}}>
                     <tr>
                         <td>Account Num</td>
-                        <td>Balance</td>
+                        <td>Balance $</td>
                         <td>Opening Date</td>
 
                     </tr>
@@ -197,7 +197,7 @@ function AccountsTable({ account }) {
 
                                     <td> {ac.accountNumber}</td>
                                     <td> {ac.balance}</td>
-                                    <td> {ac.openingDate}</td>
+                                    <td> {ac.openingDate.substring(0, 10)} at {ac.openingDate.substring(11, 19)}</td>
                                 </tr>
                         )
                     }

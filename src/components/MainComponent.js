@@ -9,10 +9,13 @@ import User from './UserComponent';
 import AdminCDOffering from './AdminCDOfferingComponent';
 import UserCDOffering from './UserCDOfferingComponent';
 import AccountHoldersList from './AccountHoldersList';
-import CreateUser from './CreateUser';
-import CreateAccountHolder from './CreateAccountHolder';
-import AccountHolderContactDetails from './AccountHolderContactDetails';
-import {GetAccountHolder} from './GetAccountHolder';
+import {CreateUser} from './CreateUpdateUser';
+import {UpdateUser} from './CreateUpdateUser';
+import {CreateAccountHolder} from './CreateUpdateAccountHolder';
+import {UpdateAccountHolder} from './CreateUpdateAccountHolder';
+import {CreateAccountHolderContactDetails} from './CreateUpdateAccountHoderContactDetails';
+import {UpdateAccountHolderContactDetails} from './CreateUpdateAccountHoderContactDetails';
+import {GetAccountHolder} from './AccountHolderInfo';
 
 import {AddPersonalCheckingAccount} from './PersonalCheckingAccount';
 import {GetPersonalCheckingAccount} from './PersonalCheckingAccount';
@@ -53,7 +56,36 @@ import {UserGetAccount} from './UserAccountsComponent';
 import {AdminTransferTransaction} from './AdminTransferTransaction';
  import {DBACheckingDepositTransaction} from './AdminDBACheckingTransaction';
  import {DBACheckingWithdrawTransaction} from './AdminDBACheckingTransaction';
- import {DBACheckingGetTransaction} from './AdminDBACheckingTransaction'
+ import {DBACheckingGetTransaction} from './AdminDBACheckingTransaction';
+
+//  import {PersonalCheckingDepositTransaction} from './AdminPersonalCheckingTransaction';
+//  import {PersonalCheckingWithdrawTransaction} from './AdminPersonalCheckingTransaction';
+//  import {PersonalCheckingGetTransaction} from './AdminPersonalCheckingTransaction';
+
+//  import {CDDepositTransaction} from './AdminCDTransaction';
+//  import {CDWithdrawTransaction} from './AdminCDTransaction';
+//  import {CDGetTransaction} from './AdminCDTransaction';
+
+//  import {SavingsDepositTransaction} from './AdminSavingsTransaction';
+//  import {SavingsWithdrawTransaction} from './AdminSavingsTransaction';
+//  import {SavingsGetTransaction} from './AdminSavingsTransaction';
+
+//  import {RolloverIRADepositTransaction} from './AdminRolloverIRATransaction';
+//  import {RolloverIRAWithdrawTransaction} from './AdminRolloverIRATransaction';
+//  import {RolloverIRAGetTransaction} from './AdminRolloverIRATransaction';
+
+//  import {RegularIRADepositTransaction} from './AdminRegularIRATransaction';
+//  import {RegularIRAWithdrawTransaction} from './AdminRegularIRATransaction';
+//  import {RegularIRAGetTransaction} from './AdminRegularIRATransaction';
+
+//  import {RothIRADepositTransaction} from './AdminRothIRATransaction';
+//  import {RothIRAWithdrawTransaction} from './AdminRothIRATransaction';
+//  import {RothIRAGetTransaction} from './AdminRothIRATransaction';
+
+ import {UserDBACheckingDepositTransaction} from './UserDBACheckingTransaction';
+ import {UserDBACheckingWithdrawTransaction} from './UserDBACheckingTransaction';
+ import {UserDBACheckingTransferTransaction} from './UserDBACheckingTransaction'
+  
  
 
 import { Switch, Route, Redirect, withRouter, Link } from 'react-router-dom';
@@ -72,11 +104,14 @@ class Main extends Component {
                     <Route path="/admin" component={()=><Admin authorized={localStorage.getItem('role')} />}/>
                     <Route path="/user" component={()=><User authorized={localStorage.getItem('token')} />}/>
                     <Route path="/createuser" component={CreateUser} />
+                    <Route path="/updateuser" component={UpdateUser} />
                     <Route path="/cdoffering" component={AdminCDOffering} />
                     <Route path="/userCdoffering" component={UserCDOffering} />
                     <Route path="/getaccountholders" component={AccountHoldersList} />
                     <Route path="/createaccountholder" component={CreateAccountHolder} />
-                    <Route path="/addaccountholdercontacts" component={AccountHolderContactDetails} />
+                    <Route path="/updateaccountholder" component={UpdateAccountHolder} />
+                    <Route path="/addaccountholdercontacts" component={CreateAccountHolderContactDetails} />
+                    <Route path="/updateaccountholdercontacts" component={UpdateAccountHolderContactDetails} />
                     <Route path="/getaccountholder" component={GetAccountHolder}/>
 
                     <Route path="/addPersonalCheckingAccount" component={AddPersonalCheckingAccount} />
@@ -119,7 +154,29 @@ class Main extends Component {
                     <Route path="/adminDBACheckingDepositTransaction" component={DBACheckingDepositTransaction}/>
                     <Route path="/adminDBACheckingWithdrawTransaction" component={DBACheckingWithdrawTransaction}/>
                     <Route path="/adminDBACheckingGetTransaction" component={DBACheckingGetTransaction} />
-                   
+                    {/* <Route path="/adminPersonalCheckingDepositTransaction" component={PersonalCheckingDepositTransaction}/>
+                    <Route path="/adminPersonalCheckingWithdrawTransaction" component={PersonalCheckingWithdrawTransaction}/>
+                    <Route path="/adminPersonalCheckingGetTransaction" component={PersonalCheckingGetTransaction} />
+                    <Route path="/adminCDDepositTransaction" component={CDDepositTransaction}/>
+                    <Route path="/adminCDWithdrawTransaction" component={CDWithdrawTransaction}/>
+                    <Route path="/adminCDGetTransaction" component={CDGetTransaction} />
+                    <Route path="/adminSavingsDepositTransaction" component={SavingsDepositTransaction}/>
+                    <Route path="/adminSavingsWithdrawTransaction" component={SavingsWithdrawTransaction}/>
+                    <Route path="/adminSavingsGetTransaction" component={SavingsGetTransaction} />
+                    <Route path="/adminRolloverDepositTransaction" component={RolloverIRADepositTransaction}/>
+                    <Route path="/adminRolloverWithdrawTransaction" component={RolloverIRAWithdrawTransaction}/>
+                    <Route path="/adminRolloverGetTransaction" component={RolloverIRAGetTransaction} />
+                    <Route path="/adminRothDepositTransaction" component={RothIRADepositTransaction}/>
+                    <Route path="/adminRothWithdrawTransaction" component={RothIRAWithdrawTransaction}/>
+                    <Route path="/adminRothGetTransaction" component={RothIRAGetTransaction} />
+                    <Route path="/adminRegularDepositTransaction" component={RegularIRADepositTransaction}/>
+                    <Route path="/adminRegularWithdrawTransaction" component={RegularIRAWithdrawTransaction}/>
+                    <Route path="/adminRegularGetTransaction" component={RegularIRAGetTransaction} /> */}
+
+
+                    <Route path="/userDBACheckingDepositTransaction" component={UserDBACheckingDepositTransaction}/>
+                    <Route path ="/userDBACheckingWithdrawTransaction" component={UserDBACheckingWithdrawTransaction}/>
+                   <Route path="/userDBACheckingTransferTransaction" component={UserDBACheckingTransferTransaction}/>
 
                     
                     <Redirect to="/login" />

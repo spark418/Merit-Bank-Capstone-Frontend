@@ -28,7 +28,7 @@ export function AddSavingsAccount() {
         .then(res=> {
             if(res.ok){
                 //console.log(res.json());
-                alert(`Successfully opened a new Rollover IRA Account for account holder: ${accHolderid}`);
+                alert(`Successfully opened a new Savings Account for account holder: ${accHolderid}`);
                 return res;
             } else {
                 const error = new Error(`Error ${res.status}: ${res.statusText}`);
@@ -174,7 +174,7 @@ function AccountsTable({ account }) {
                 <thead style={{fontWeight:600}}>
                     <tr>
                         <td>Account Num</td>
-                        <td>Balance</td>
+                        <td>Balance $</td>
                         <td>Opening Date</td>
 
                     </tr>

@@ -174,7 +174,7 @@ function AccountsTable({ account }) {
                 <thead style={{fontWeight:600}}>
                     <tr>
                         <td>Account Num</td>
-                        <td>Balance</td>
+                        <td>Balance $</td>
                         <td>Opening Date</td>
 
                     </tr>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+import DepositTransactionTypes from './DepositTransactionTypes';
+import WithdrawTransactionTypes from './WithdrawTransactionTypes';
 
 export function DBACheckingDepositTransaction() {
     const [amount, setAmount] = useState("");
@@ -33,8 +35,7 @@ export function DBACheckingDepositTransaction() {
         })
             .then(res => {
                 if (res.ok) {
-                    //console.log(res.json());
-
+        
                     return res;
                 } else {
                     const error = new Error(`Error ${res.status}: ${res.statusText}`);
@@ -50,14 +51,12 @@ export function DBACheckingDepositTransaction() {
             .then((res) => alert(`Successfully deposited!\n Your current balance is ${res.postedBalance}`))
 
             .catch((error) => {
-                if (error.res.status == "400") {
-                    alert('Error: 400')
-                }
+                
                 if (error.res.status == "404") {
                     alert('\nError: AccountHolder not found')
                 }
                 if (error.res.status == "406") {
-                    alert('\nError: Invalid details provided')
+                    alert('\nError: Invalid amount')
                 }
 
             });
@@ -66,6 +65,8 @@ export function DBACheckingDepositTransaction() {
 
     return (
         <div className="container mt-5">
+            <div className="row ">
+            <div className="col-md-7">
             <h3>Please make your Deposit </h3>
             <Form onSubmit={handleSubmit} className="mt-3">
 
@@ -101,6 +102,11 @@ export function DBACheckingDepositTransaction() {
                     <Button type="submit" value="submit" color="primary">Submit</Button>
                 </FormGroup>
             </Form>
+            </div>
+            <div className="col-md-5">
+                <DepositTransactionTypes/>
+            </div>
+            </div>
         </div>
     );
 }
@@ -138,8 +144,7 @@ export function DBACheckingWithdrawTransaction() {
         })
             .then(res => {
                 if (res.ok) {
-                    //console.log(res.json());
-
+                 
                     return res;
                 } else {
                     const error = new Error(`Error ${res.status}: ${res.statusText}`);
@@ -155,14 +160,14 @@ export function DBACheckingWithdrawTransaction() {
             .then((res) => alert(`Successfully withdrawn!\n Your current balance is ${res.postedBalance}`))
 
             .catch((error) => {
-                if (error.res.status == "400") {
-                    alert('Error: 400')
+                if (error.res.status == "409") {
+                    alert('\nError: Insufficient balance')
                 }
                 if (error.res.status == "404") {
                     alert('\nError: AccountHolder not found')
                 }
                 if (error.res.status == "406") {
-                    alert('\nError: Invalid details provided')
+                    alert('\nError: Invalid amount')
                 }
 
             });
@@ -171,6 +176,8 @@ export function DBACheckingWithdrawTransaction() {
 
     return (
         <div className="container mt-5">
+            <div className="row ">
+            <div className="col-md-7">
             <h3>Please make your Withdrawal </h3>
             <Form onSubmit={handleSubmit} className="mt-3">
 
@@ -178,7 +185,7 @@ export function DBACheckingWithdrawTransaction() {
                     <Label for="amount">Amount</Label>
                     <Input type="amount" name="amount"
                         id="amount" placeholder="amount" value={amount}
-                        onChange={ev => setAmount(-(ev.target.value))}></Input>
+                        onChange={ev => setAmount((ev.target.value))}></Input>
                 </FormGroup>
 
                 <FormGroup className="col-sm-5">
@@ -206,6 +213,12 @@ export function DBACheckingWithdrawTransaction() {
                     <Button type="submit" value="submit" color="primary">Submit</Button>
                 </FormGroup>
             </Form>
+            </div>
+            <div className="col-md-5">
+                <WithdrawTransactionTypes/>
+            </div>
+            </div>
+
         </div>
     );
 }
@@ -239,8 +252,7 @@ export function DBACheckingGetTransaction() {
         })
             .then(res => {
                 if (res.ok) {
-                    //console.log(res.json());
-
+                   
                     return res;
                 } else {
                     const error = new Error(`Error ${res.status}: ${res.statusText}`);
@@ -253,7 +265,6 @@ export function DBACheckingGetTransaction() {
                 }
             )
             .then(res => res.json())
-            //.then((res) => console.log(res))
             .then(res => {
                 setTransact(res)
             })
@@ -334,7 +345,7 @@ function TransactionTable({ transact }) {
                                     <td>{t.type}</td>
                                     <td> {t.amount}</td>
                                     <td> {t.postedBalance}</td>
-                                    <td> {(t.date.substring(0,10))} at {t.date.substring(11,19)}</td>
+                                    <td> {(t.date.substring(0, 10))} at {t.date.substring(11, 19)}</td>
 
                                 </tr>
                         )
@@ -346,5 +357,4 @@ function TransactionTable({ transact }) {
     }
     return <div />
 }
-
 

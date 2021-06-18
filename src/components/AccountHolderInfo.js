@@ -6,7 +6,6 @@ import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
 
 export function GetAccountHolder() {
 
-
     const [account, setAccount] = useState(null);
     const [accountHolderId, setAccountHolderId] = useState('');
 
@@ -87,7 +86,7 @@ function AccountsTable({ account }) {
                             <td>Phone Number</td>
                             <td>Email</td>
                             <td>Address</td>
-                            <td>AccountHolder Id</td>
+                            
                             <td>Add New Account</td>
                             <td>Accounts List</td>
                         </tr>
@@ -103,10 +102,10 @@ function AccountsTable({ account }) {
                                 <td>{account.ssn}</td>
 
 
-                                <td>{account.accountHolderContactDetails.phoneNum}</td>
-                                <td>{account.accountHolderContactDetails.email}</td>
-                                <td>{account.accountHolderContactDetails.address}</td>
-                                <td>{account.id}</td>
+                                <td><Email account={account}/></td>
+                                  <td><Address account={account}/></td>
+                                  <td><Phonenum account={account}/></td>
+                                
                                 <td><a href="/addAccount" className="btn btn-dark fa fa-plus"></a></td>
                                 <td><a href="/getAccount" className="btn btn-dark fa fa-list"></a></td>
 
@@ -115,14 +114,14 @@ function AccountsTable({ account }) {
                     </tbody>
                     <thead style={{fontWeight:600}}>
                         <tr>
-                            <td>Savings Accounts </td>
-                            <td>Personal Checking Accounts</td>
-                            <td>DBA Checking Accounts</td>
-                            <td>CD Accounts</td>
+                            <td>Savings a/c </td>
+                            <td>Personal Checking a/c</td>
+                            <td>DBA Checking a/c</td>
+                            <td>CD a/c</td>
 
-                            <td>Regular IRA Accounts</td>
-                            <td>Roth IRA Accounts</td>
-                            <td>Rollover IRA Accounts</td>
+                            <td>Regular IRA a/c</td>
+                            <td>Roth IRA a/c</td>
+                            <td>Rollover IRA a/c</td>
                             <td>Total Accounts</td>
 
                         </tr>
@@ -143,15 +142,15 @@ function AccountsTable({ account }) {
                     </tbody>
                     <thead style={{fontWeight:600}}>
                         <tr>
-                            <td>Savings Balance </td>
-                            <td>Personal Checking Balance</td>
-                            <td>DBA Checking Balance</td>
-                            <td>CD Balance</td>
+                            <td>Savings Balance $</td>
+                            <td>Personal Checking Balance $</td>
+                            <td>DBA Checking Balance $</td>
+                            <td>CD Balance $</td>
 
-                            <td>Regular IRA Balance</td>
-                            <td>Roth IRA Balance</td>
-                            <td>Rollover IRA Balance</td>
-                            <td>Combined Balance</td>
+                            <td>Regular IRA Balance $</td>
+                            <td>Roth IRA Balance $</td>
+                            <td>Rollover IRA Balance $</td>
+                            <td>Combined Balance $</td>
 
                         </tr>
                     </thead>
@@ -176,6 +175,27 @@ function AccountsTable({ account }) {
             </div >
 
         );
+    }
+    return <div />
+}
+
+function Phonenum({ account }) {
+    if (account.accountHolderContactDetails != null) {
+        return (<div>{account.accountHolderContactDetails.phoneNum}</div>)
+    }
+    return <div />
+}
+
+function Email({ account }) {
+    if (account.accountHolderContactDetails != null) {
+        return ( <div>{account.accountHolderContactDetails.email}</div>)
+    }
+    return <div />
+}
+
+function Address({ account }) {
+    if (account.accountHolderContactDetails != null) {
+        return ( <div>{account.accountHolderContactDetails.address}</div>)
     }
     return <div />
 }

@@ -51,14 +51,14 @@ export function AdminTransferTransaction() {
             .then((res) => alert(`Amount successfully transferred!\n Balance in a/c ${targetAccNum} is ${res.targetBalance}`))
 
             .catch((error) => {
-                if (error.res.status == "400") {
-                    alert('Error: 400')
+                if (error.res.status == "409") {
+                    alert('\nError: Insufficient balance')
                 }
                 if (error.res.status == "404") {
                     alert('\nError: AccountHolder not found')
                 }
                 if (error.res.status == "406") {
-                    alert('\nError: Invalid details provided')
+                    alert('\nError: Invalid amount')
                 }
 
             });
@@ -73,7 +73,7 @@ export function AdminTransferTransaction() {
                 <FormGroup className="col-sm-5" >
                     <Label for="amount">Amount</Label>
                     <Input type="amount" name="amount"
-                        id="amount" placeholder="amount" value={amount}
+                        id="amount" placeholder="Amount" value={amount}
                         onChange={ev => setAmount(ev.target.value)}></Input>
                 </FormGroup>
 

@@ -37,15 +37,11 @@ export function UserDetails() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-3">
             <div className="row">
-                <div className="col-md-6">
-
-
-                </div>
-                <div className="row mt-3">
+                
                     <AccountsTable account={account} />
-                </div>
+               
             </div>
         </div>
 
@@ -64,7 +60,7 @@ function AccountsTable({ account }) {
         return (
             <div>
                 <div className="row">
-                    
+                <h3 className="col-md-12 align-text-center"> Your Account Details</h3>
                     <table className="table table-striped table-bordered table-responsive">
                         <thead style={{ fontWeight: 600 }}>
                             <tr>
@@ -96,6 +92,12 @@ function AccountsTable({ account }) {
 
                 <PersonalCheckingAccountsTable account={account} />
                 <DBACheckingAccountsTable account={account} />
+                <SavingsAccountsTable account={account}/>
+                <CDAccountsTable account={account} />
+                <RolloverIRAAccountsTable account={account} />
+                <RegularIRAAccountsTable account={account}/>
+                <RothIRAAccountsTable account={account}/>
+
             </div >
         );
     }
@@ -144,7 +146,7 @@ function AccountsTable({ account }) {
                                         <td>{ch.accountNumber}</td>
                                         <td> {ch.balance}</td>
                                         <td> {ch.interestRate}</td>
-                                        <td> {ch.openingDate}</td>
+                                        <td> {ch.openingDate.substring(0, 10)} at {ch.openingDate.substring(11, 19)}</td>
                                     </tr>
 
                                 )}
@@ -184,7 +186,7 @@ function AccountsTable({ account }) {
                                         <td>{ch.accountNumber}</td>
                                         <td> {ch.balance}</td>
                                         <td> {ch.interestRate}</td>
-                                        <td> {ch.openingDate}</td>
+                                        <td> {ch.openingDate.substring(0, 10)} at {ch.openingDate.substring(11, 19)}</td>
                                     </tr>
                                 )}
                         </tbody>
@@ -200,7 +202,209 @@ function AccountsTable({ account }) {
         }
         return <div />
     }
-}
+
+    function SavingsAccountsTable({ account }) {
+        if (account.savingsAccountList != "") {
+            return (
+                <div>
+                    <h5 className="col-md-12">{account.numberOfSavingsAccounts} Savings Account</h5>
+                    <table className="table table-striped table-bordered table-responsive">
+
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Account Num #</td>
+                                <td>Balance $</td>
+                                <td>Interest Rate</td>
+                                <td>Opening Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                (account.savingsAccountList).map(ch =>
+                                    <tr key={ch.accountNumber} >
+                                        <td>{ch.accountNumber}</td>
+                                        <td> {ch.balance}</td>
+                                        <td> {ch.interestRate}</td>
+                                        <td> {ch.openingDate.substring(0, 10)} at {ch.openingDate.substring(11, 19)}</td>
+                                    </tr>
+
+                                )}
+                        </tbody>
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Total Balance</td>
+                                <td>{account.savingsBalance}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div >
+            );
+        }
+        return <div />
+    }
+
+    function CDAccountsTable({ account }) {
+        if (account.cdAccList != "") {
+            return (
+                <div>
+                    <h5 className="col-md-9"> {account.numberOfCDAccounts} CD Account</h5>
+                    <table className="table table-striped table-bordered table-responsive">
+
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Account Num #</td>
+                                <td>Balance $</td>
+                                <td>Interest Rate</td>
+                                <td>Opening Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                (account.cdAccList).map(ch =>
+                                    <tr key={ch.accountNumber} >
+                                        <td>{ch.accountNumber}</td>
+                                        <td> {ch.balance}</td>
+                                        <td> {ch.interestRate}</td>
+                                        <td> {ch.openingDate.substring(0, 10)} at {ch.openingDate.substring(11, 19)}</td>
+                                    </tr>
+                                )}
+                        </tbody>
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Total Balance</td>
+                                <td>{account.cdbalance}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div >
+            );
+        }
+        return <div />
+    }
+
+    function RolloverIRAAccountsTable({ account }) {
+        if (account.rolloverIRAAccountList != "") {
+            return (
+                <div>
+                    <h5 className="col-md-12">{account.numberOfRolloverIRAAccounts} Rollover IRA Account</h5>
+                    <table className="table table-striped table-bordered table-responsive">
+
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Account Num #</td>
+                                <td>Balance $</td>
+                                <td>Interest Rate</td>
+                                <td>Opening Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                (account.rolloverIRAAccountList).map(ch =>
+                                    <tr key={ch.accountNumber} >
+                                        <td>{ch.accountNumber}</td>
+                                        <td> {ch.balance}</td>
+                                        <td> {ch.interestRate}</td>
+                                        <td> {ch.openingDate.substring(0, 10)} at {ch.openingDate.substring(11, 19)}</td>
+                                    </tr>
+
+                                )}
+                        </tbody>
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Total Balance</td>
+                                <td>{account.rolloverIRABalance}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div >
+            );
+        }
+        return <div />
+    }
+
+    function RegularIRAAccountsTable({ account }) {
+        if (account.regularIRAAccountList != "") {
+            return (
+                <div>
+                    <h5 className="col-md-12">{account.numberOfRegularIRAAccounts} Regular IRA Account</h5>
+                    <table className="table table-striped table-bordered table-responsive">
+
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Account Num #</td>
+                                <td>Balance $</td>
+                                <td>Interest Rate</td>
+                                <td>Opening Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                (account.regularIRAAccountList).map(ch =>
+                                    <tr key={ch.accountNumber} >
+                                        <td>{ch.accountNumber}</td>
+                                        <td> {ch.balance}</td>
+                                        <td> {ch.interestRate}</td>
+                                        <td> {ch.openingDate.substring(0, 10)} at {ch.openingDate.substring(11, 19)}</td>
+                                    </tr>
+
+                                )}
+                        </tbody>
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Total Balance</td>
+                                <td>{account.regularIRABalance}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div >
+            );
+        }
+        return <div />
+    }
+
+    function RothIRAAccountsTable ({ account }) {
+        if (account.rothIRAAccountList != "") {
+            return (
+                <div>
+                    <h5 className="col-md-12">{account.numberOfRothIRAAccounts} Roth IRA Account</h5>
+                    <table className="table table-striped table-bordered table-responsive">
+
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Account Num #</td>
+                                <td>Balance $</td>
+                                <td>Interest Rate</td>
+                                <td>Opening Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                (account.rothIRAAccountList).map(ch =>
+                                    <tr key={ch.accountNumber} >
+                                        <td>{ch.accountNumber}</td>
+                                        <td> {ch.balance}</td>
+                                        <td> {ch.interestRate}</td>
+                                        <td> {ch.openingDate.substring(0, 10)} at {ch.openingDate.substring(11, 19)}</td>
+                                    </tr>
+
+                                )}
+                        </tbody>
+                        <thead style={{ fontWeight: 600 }}>
+                            <tr>
+                                <td>Total Balance</td>
+                                <td>{account.rothIRABalance}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div >
+            );
+        }
+        return <div />
+    }
+
+}  
+
+
 {/*  <table className="table table-striped table-bordered table-responsive">
                    
                     <thead style={{ fontWeight: 600 }}>
