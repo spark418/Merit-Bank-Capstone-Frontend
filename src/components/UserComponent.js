@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Logout from "./LogoutComponent";
-import {
-    Navbar, Row, Col, Jumbotron, NavbarBrand, Nav, NavItem, Button, Card,
-    Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label,NavbarToggler, Collapse
-} from 'reactstrap';
+import { Navbar,  Nav, NavItem, Button,NavbarToggler, Collapse } from 'reactstrap';
 import { NavLink, Redirect } from 'react-router-dom';
 import {Dropdown} from 'react-bootstrap';
 import {UserDetails} from './UserDetails';
+//import {baseUrl} from "../utils/constants";
+
 function User({ authorized }) {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const toggleNav = () => {
@@ -29,19 +28,33 @@ function User({ authorized }) {
                     <NavbarToggler onClick={toggleNav} />
                     <Collapse isOpen={isNavOpen} navbar>
             
-                    
 
 
-
-
-
-                    <Nav navbar>
+                    {/* <Nav navbar>
                         <NavItem className="mr-4 mb-2">
                             <NavLink className="nav-link" to="/home">
                             <Button className="btn btn-info">       <span className="fa fa-money  text-white" >Transactions</span></Button>
                             </NavLink>
                         </NavItem>
-                    </Nav>
+                    </Nav> */}
+                    <Nav navbar>
+                    <NavItem className="mr-4 mb-2">
+                                <NavLink className="nav-link" to="/updateuser">
+                                <Button className="btn btn-info">     <span className="fa fa-user text-white">UpdateUser</span></Button>
+                                </NavLink>
+                            </NavItem>
+
+                        </Nav>
+
+
+
+                        <Nav navbar>
+                            <NavItem className="mr-2 mb-2">
+                                <NavLink className="nav-link" to="/updateaccountholder">
+                                <Button className="btn btn-info">   <span className="fa fa-user  text-white" >Update AccountHolder</span></Button>
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
                     <Nav navbar>
                         <NavItem className="mr-4 mb-2">
                             <NavLink className="nav-link" to="/userCdoffering">
@@ -73,13 +86,13 @@ function User({ authorized }) {
                                     DBA Checking Account
                                 </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
+                                <Dropdown.Menu className="dropdown">
                                     <Dropdown.Item href="/userAddDBACheckingAccount">Add Account</Dropdown.Item>
                                     <Dropdown.Item href="/userGetDBACheckingAccount">List of Accounts</Dropdown.Item>
                                     <Dropdown.Item href="/userDBACheckingDepositTransaction">Deposit</Dropdown.Item>
                                     <Dropdown.Item href="/userDBACheckingWithdrawTransaction">Withdraw</Dropdown.Item>
                                     <Dropdown.Item href="/userDBACheckingTransferTransaction">Transfer</Dropdown.Item>
-
+                                    <Dropdown.Item href="/userDBACheckingGetTransaction">Transactions</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                             
@@ -117,6 +130,10 @@ function User({ authorized }) {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/userAddSavingsAccount">Add Account</Dropdown.Item>
                                     <Dropdown.Item href="/userGetSavingsAccount">List of Accounts</Dropdown.Item>
+                                    <Dropdown.Item href="/userSavingsDepositTransaction">Deposit</Dropdown.Item>
+                                    <Dropdown.Item href="/userSavingsWithdrawTransaction">Withdraw</Dropdown.Item>
+                                    <Dropdown.Item href="/userSavingsTransferTransaction">Transfer</Dropdown.Item>
+                                    <Dropdown.Item href="/userSavingsGetTransaction">Transactions</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -190,6 +207,7 @@ function User({ authorized }) {
                     </Collapse>
                 </div>
             </Navbar>
+            
 
 
                

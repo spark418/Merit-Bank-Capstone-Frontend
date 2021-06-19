@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button,Form, FormGroup, Input, Label } from 'reactstrap';
-import {baseUrl} from "../utils/constants";
+//import {baseUrl} from "../utils/constants";
 
 export function CreateUser() {
     const [username, setUsername] = useState('');
@@ -8,7 +8,7 @@ export function CreateUser() {
     const [active, setActive] = useState('true');
     const [role, setRole] = useState('');
 
-    const REGISTER_URL="http://localhost:8080/authenticate/createuser";
+    const REGISTER_URL=process.env.REACT_APP_API_ENDPOINT+"authenticate/createuser";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     
@@ -115,7 +115,7 @@ export function UpdateUser() {
     const [role, setRole] = useState('');
     const [userid, setUserid] = useState('');
 
-    const UPDATE_USER_URL="http://localhost:8080/authenticate/{id}/updateuser";
+    const UPDATE_USER_URL=process.env.REACT_APP_API_ENDPOINT+"authenticate/{id}/updateuser";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     

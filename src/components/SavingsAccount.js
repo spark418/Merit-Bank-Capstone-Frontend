@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 export function AddSavingsAccount() {
     const [balance, setBalance] = useState('');
     const [accHolderid, setAccHolderid] = useState('');
 
-    const SAVINGSACCOUNT_URL = `http://localhost:8080/accountholder/{accHolderid}/savingsaccounts`;
+    const SAVINGSACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderid}/savingsaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -94,7 +95,7 @@ export function GetSavingsAccount() {
     const [accHolderid, setAccHolderid] = useState('');
     const [account, setAccount] = useState([]);
 
-    const SAVINGSACCOUNT_URL = `http://localhost:8080/accountholder/{accHolderid}/savingsaccounts`;
+    const SAVINGSACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderid}/savingsaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {

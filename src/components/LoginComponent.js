@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Input, Label, Card, CardBody } from 'reactstrap';
+import {  Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import { baseUrl } from '../utils/constants';
 
 class Login extends Component {
@@ -22,12 +22,13 @@ class Login extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        alert("Username: " + this.state.username + " Password: " + this.state.password);
+        //alert("Username: " + this.state.username + " Password: " + this.state.password);
         var payload = {
             "username": this.state.username,
             "password": this.state.password
         }
-        fetch(baseUrl + 'authenticate', {
+        console.log(process.env.REACT_APP_API_ENDPOINT+"authenticate")
+        fetch(process.env.REACT_APP_API_ENDPOINT+"authenticate", {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Input, Label } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
+// import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Input, Label } from 'reactstrap';
+// import { NavLink } from 'react-router-dom';
 
 function Footer() {
     return (
@@ -21,6 +21,7 @@ function Footer() {
             <div className="row justify-content-center">
                 <div className="col-auto">
                     <p>©2021 The Merit Bank Services. All rights reserved.</p>
+                    <p className="text-center" > Powered By MESH Technologies</p>
                 </div>
             </div>
 

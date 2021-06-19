@@ -9,54 +9,35 @@ import User from './UserComponent';
 import AdminCDOffering from './AdminCDOfferingComponent';
 import UserCDOffering from './UserCDOfferingComponent';
 import AccountHoldersList from './AccountHoldersList';
-import {CreateUser} from './CreateUpdateUser';
-import {UpdateUser} from './CreateUpdateUser';
-import {CreateAccountHolder} from './CreateUpdateAccountHolder';
-import {UpdateAccountHolder} from './CreateUpdateAccountHolder';
-import {CreateAccountHolderContactDetails} from './CreateUpdateAccountHoderContactDetails';
-import {UpdateAccountHolderContactDetails} from './CreateUpdateAccountHoderContactDetails';
+
+import {CreateUser,UpdateUser} from './CreateUpdateUser';
+import {CreateAccountHolder,UpdateAccountHolder} from './CreateUpdateAccountHolder';
+import {CreateAccountHolderContactDetails,UpdateAccountHolderContactDetails} from './CreateUpdateAccountHoderContactDetails';
+
 import {GetAccountHolder} from './AccountHolderInfo';
 
-import {AddPersonalCheckingAccount} from './PersonalCheckingAccount';
-import {GetPersonalCheckingAccount} from './PersonalCheckingAccount';
-import {AddDBACheckingAccount} from './DBACheckingAccount';
-import {GetDBACheckingAccount} from './DBACheckingAccount';
-import {AddSavingsAccount} from './SavingsAccount';
-import {GetSavingsAccount} from './SavingsAccount';
-import {AddRegularIRAAccount} from './RegularIRAAccount';
-import {GetRegularIRAAccount} from './RegularIRAAccount';
-import {AddRolloverIRAAccount} from './RolloverIRAAccount';
-import {GetRolloverIRAAccount} from './RolloverIRAAccount';
-import {AddRothIRAAccount} from './RothIRAAccount';
-import {GetRothIRAAccount} from './RothIRAAccount';
-import {AddCDAccount} from './CDAccount';
-import {GetCDAccount} from './CDAccount';
+import {AddPersonalCheckingAccount,GetPersonalCheckingAccount} from './PersonalCheckingAccount';
+import {AddDBACheckingAccount,GetDBACheckingAccount} from './DBACheckingAccount';
+import {AddSavingsAccount,GetSavingsAccount} from './SavingsAccount';
+import {AddRegularIRAAccount,GetRegularIRAAccount} from './RegularIRAAccount';
+import {AddRolloverIRAAccount,GetRolloverIRAAccount} from './RolloverIRAAccount';
+import {AddRothIRAAccount,GetRothIRAAccount} from './RothIRAAccount';
+import {AddCDAccount,GetCDAccount} from './CDAccount';
 
-import {UserAddDBACheckingAccount} from './UserDBACheckingAccount';
-import {UserGetDBACheckingAccount} from './UserDBACheckingAccount';
-import {UserAddPersonalCheckingAccount} from './UserPersonalCheckingAccount';
-import {UserGetPersonalCheckingAccount} from './UserPersonalCheckingAccount';
-import {UserAddSavingsAccount} from './UserSavingsAccount';
-import {UserGetSavingsAccount} from './UserSavingsAccount';
-import {UserAddCDAccount} from './UserCDAccount';
-import {UserGetCDAccount} from './UserCDAccount';
-import {UserAddRothIRAAccount} from './UserRothIRAAccount';
-import {UserGetRothIRAAccount} from './UserRothIRAAccount';
-import {UserAddRegularIRAAccount} from './UserRegularIRAAccount';
-import {UserGetRegularIRAAccount} from './UserRegularIRAAccount';
-import {UserAddRolloverIRAAccount} from './UserRolloverIRAAccount';
-import {UserGetRolloverIRAAccount} from './UserRolloverIRAAccount';
+import {UserAddDBACheckingAccount,UserGetDBACheckingAccount} from './UserDBACheckingAccount';
+import {UserAddPersonalCheckingAccount,UserGetPersonalCheckingAccount} from './UserPersonalCheckingAccount';
+import {UserAddSavingsAccount,UserGetSavingsAccount} from './UserSavingsAccount';
+import {UserAddCDAccount,UserGetCDAccount} from './UserCDAccount';
+import {UserAddRothIRAAccount,UserGetRothIRAAccount} from './UserRothIRAAccount';
+import {UserAddRegularIRAAccount,UserGetRegularIRAAccount} from './UserRegularIRAAccount';
+import {UserAddRolloverIRAAccount,UserGetRolloverIRAAccount} from './UserRolloverIRAAccount';
 
-import {AddAccount} from './AccountsComponent';
-import {GetAccount} from './AccountsComponent';
-
-import {UserAddAccount} from './UserAccountsComponent';
-import {UserGetAccount} from './UserAccountsComponent';
+import {AddAccount,GetAccount} from './AccountsComponent';
+import {UserAddAccount,UserGetAccount} from './UserAccountsComponent';
 
 import {AdminTransferTransaction} from './AdminTransferTransaction';
- import {DBACheckingDepositTransaction} from './AdminDBACheckingTransaction';
- import {DBACheckingWithdrawTransaction} from './AdminDBACheckingTransaction';
- import {DBACheckingGetTransaction} from './AdminDBACheckingTransaction';
+ import {DBACheckingDepositTransaction,DBACheckingWithdrawTransaction,DBACheckingGetTransaction} from './AdminDBACheckingTransaction';
+
 
 //  import {PersonalCheckingDepositTransaction} from './AdminPersonalCheckingTransaction';
 //  import {PersonalCheckingWithdrawTransaction} from './AdminPersonalCheckingTransaction';
@@ -82,9 +63,9 @@ import {AdminTransferTransaction} from './AdminTransferTransaction';
 //  import {RothIRAWithdrawTransaction} from './AdminRothIRATransaction';
 //  import {RothIRAGetTransaction} from './AdminRothIRATransaction';
 
- import {UserDBACheckingDepositTransaction} from './UserDBACheckingTransaction';
- import {UserDBACheckingWithdrawTransaction} from './UserDBACheckingTransaction';
- import {UserDBACheckingTransferTransaction} from './UserDBACheckingTransaction'
+ import {UserDBACheckingDepositTransaction,UserDBACheckingWithdrawTransaction,UserDBACheckingTransferTransaction,UserDBACheckingGetTransaction} from './UserDBACheckingTransaction';
+ import {UserSavingsDepositTransaction,UserSavingsWithdrawTransaction,UserSavingsTransferTransaction,UserSavingsGetTransaction} from './UserSavingsTransaction';
+
   
  
 
@@ -177,7 +158,12 @@ class Main extends Component {
                     <Route path="/userDBACheckingDepositTransaction" component={UserDBACheckingDepositTransaction}/>
                     <Route path ="/userDBACheckingWithdrawTransaction" component={UserDBACheckingWithdrawTransaction}/>
                    <Route path="/userDBACheckingTransferTransaction" component={UserDBACheckingTransferTransaction}/>
+                    <Route path="/userDBACheckingGetTransaction" component={UserDBACheckingGetTransaction}/>
 
+                    <Route path="/userSavingsDepositTransaction" component={UserSavingsDepositTransaction}/>
+                    <Route path ="/userSavingsWithdrawTransaction" component={UserSavingsWithdrawTransaction}/>
+                   <Route path="/userSavingsTransferTransaction" component={UserSavingsTransferTransaction}/>
+                    <Route path="/userSavingsGetTransaction" component={UserSavingsGetTransaction}/>
                     
                     <Redirect to="/login" />
                 </Switch>

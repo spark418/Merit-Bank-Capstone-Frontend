@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button,Form, FormGroup, Input, Label } from 'reactstrap';
-import {baseUrl} from "../utils/constants";
+//import {baseUrl} from "../utils/constants";
 
 export function CreateAccountHolder() {
     const [firstname, setFirstname] = useState('');
@@ -9,7 +9,7 @@ export function CreateAccountHolder() {
     const [ssn, setSsn] = useState('');
     const [userid,setUserid] = useState('');
 
-    const REGISTER_AH_URL="http://localhost:8080/accountholder";
+    const REGISTER_AH_URL=process.env.REACT_APP_API_ENDPOINT+"accountholder";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -125,10 +125,10 @@ export function UpdateAccountHolder() {
     const [middlename, setMiddlename] = useState('');
     const [lastname, setLastname] = useState('');
     const [ssn, setSsn] = useState('');
-    const [userid,setUserid] = useState('');
+    //const [userid,setUserid] = useState('');
     const [accHolderId,setAccHolderId] = useState('');
 
-    const UPDATE_AH_URL="http://localhost:8080/accountholder/{id}/update";
+    const UPDATE_AH_URL= process.env.REACT_APP_API_ENDPOINT+"accountholder/{id}/update";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -139,9 +139,9 @@ export function UpdateAccountHolder() {
             "middleName": middlename,
             "lastName": lastname,
             "ssn":ssn,
-            "user" : {
-                "id": userid
-            }
+            // "user" : {
+            //     "id": userid
+            // }
             
         }
         await fetch(UPDATE_AH_URL.replace('{id}',accHolderId),{
@@ -228,12 +228,12 @@ export function UpdateAccountHolder() {
                         id="ssn" placeholder="ssn" value={ssn}
                         onChange={ev => setSsn(ev.target.value)}></Input>
                 </FormGroup>
-                <FormGroup className="col-sm-5" >
+                {/* <FormGroup className="col-sm-5" >
                     <Label for="userid">User-id</Label>
                     <Input type="userid" name="userid"
                         id="userid" placeholder="user-id" value={userid}
                         onChange={ev => setUserid(ev.target.value)}></Input>
-                </FormGroup>
+                </FormGroup> */}
 
                 
                

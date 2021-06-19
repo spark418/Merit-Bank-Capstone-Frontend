@@ -1,8 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
-
-
+//import { Button, Form, FormGroup, Input, Label, Card,table } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 export function UserDetails() {
 
@@ -10,7 +9,7 @@ export function UserDetails() {
     const [account, setAccount] = useState(null);
     //const [accountHolderId, setAccountHolderId] = useState('');
 
-    const GET_ACCOUNTHOLDER_URL = "http://localhost:8080/Me";
+    const GET_ACCOUNTHOLDER_URL = process.env.REACT_APP_API_ENDPOINT+"Me";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     useEffect(() => {
@@ -37,7 +36,7 @@ export function UserDetails() {
     }
 
     return (
-        <div className="container mt-3">
+        <div className="container mt-2">
             <div className="row">
                 
                     <AccountsTable account={account} />
@@ -53,17 +52,18 @@ function AccountsTable({ account }) {
     console.log("account:" + account)
     if (account == null) {
         return (
-            <h3>No accounts to be displayed!</h3>
+            <h3>Accounts to be displayed!</h3>
         )
     }
     if (account != null) {
         return (
             <div>
                 <div className="row">
-                <h3 className="col-md-12 align-text-center"> Your Account Details</h3>
-                    <table className="table table-striped table-bordered table-responsive">
+                <h3 className="col-md-12 text-center mb-3"> Your Account Details</h3>
+                    <table className="table table-striped table-bordered table-responsive table-hover">
                         <thead style={{ fontWeight: 600 }}>
                             <tr>
+                                <td>User Id</td>
                                 <td>AccountHolder Id</td>
                                 <td>First Name</td>
                                 <td>Middle Name</td>
@@ -75,6 +75,8 @@ function AccountsTable({ account }) {
                         <tbody>
                             {
                                 <tr >
+                                    <td>{account.user.id}</td>
+                                    
                                     <td>{account.id}</td>
                                     <td> {account.firstName}</td>
                                     <td> {account.middleName}</td>
@@ -91,7 +93,7 @@ function AccountsTable({ account }) {
                 
 
                 <PersonalCheckingAccountsTable account={account} />
-                <DBACheckingAccountsTable account={account} />
+                <DBACheckingAccountsTable account={account} />    
                 <SavingsAccountsTable account={account}/>
                 <CDAccountsTable account={account} />
                 <RolloverIRAAccountsTable account={account} />
@@ -128,7 +130,7 @@ function AccountsTable({ account }) {
         if (account.checkingAccountList != "") {
             return (
                 <div>
-                    <h5 className="col-md-12">{account.numberOfCheckingAccounts} Personal Checking Account</h5>
+                    <a href="/userPersonalCheckingGetTransaction"> <h5 className="col-md-12">{account.numberOfCheckingAccounts} Personal Checking Account</h5></a>
                     <table className="table table-striped table-bordered table-responsive">
 
                         <thead style={{ fontWeight: 600 }}>
@@ -168,7 +170,7 @@ function AccountsTable({ account }) {
         if (account.dbaCheckingAccountList != "") {
             return (
                 <div>
-                    <h5 className="col-md-9"> {account.numberOfDBACheckingAccounts} DBA Checking Account</h5>
+                   <a href="/userDBACheckingGetTransaction"> <h5 className="col-md-9"> {account.numberOfDBACheckingAccounts} DBA Checking Account</h5></a>
                     <table className="table table-striped table-bordered table-responsive">
 
                         <thead style={{ fontWeight: 600 }}>
@@ -207,7 +209,7 @@ function AccountsTable({ account }) {
         if (account.savingsAccountList != "") {
             return (
                 <div>
-                    <h5 className="col-md-12">{account.numberOfSavingsAccounts} Savings Account</h5>
+                   <a href="/userSavingsGetTransaction">  <h5 className="col-md-12">{account.numberOfSavingsAccounts} Savings Account</h5></a>
                     <table className="table table-striped table-bordered table-responsive">
 
                         <thead style={{ fontWeight: 600 }}>
@@ -247,7 +249,7 @@ function AccountsTable({ account }) {
         if (account.cdAccList != "") {
             return (
                 <div>
-                    <h5 className="col-md-9"> {account.numberOfCDAccounts} CD Account</h5>
+            <a href="/userCDGetTransaction"> <h5 className="col-md-9"> {account.numberOfCDAccounts} CD Account</h5></a>       
                     <table className="table table-striped table-bordered table-responsive">
 
                         <thead style={{ fontWeight: 600 }}>
@@ -286,7 +288,7 @@ function AccountsTable({ account }) {
         if (account.rolloverIRAAccountList != "") {
             return (
                 <div>
-                    <h5 className="col-md-12">{account.numberOfRolloverIRAAccounts} Rollover IRA Account</h5>
+                   <a href="/userRolloverIRAGetTransaction"> <h5 className="col-md-12">{account.numberOfRolloverIRAAccounts} Rollover IRA Account</h5></a>
                     <table className="table table-striped table-bordered table-responsive">
 
                         <thead style={{ fontWeight: 600 }}>
@@ -326,7 +328,7 @@ function AccountsTable({ account }) {
         if (account.regularIRAAccountList != "") {
             return (
                 <div>
-                    <h5 className="col-md-12">{account.numberOfRegularIRAAccounts} Regular IRA Account</h5>
+                <a href="/userRegularIRAGetTransaction">    <h5 className="col-md-12">{account.numberOfRegularIRAAccounts} Regular IRA Account</h5></a>
                     <table className="table table-striped table-bordered table-responsive">
 
                         <thead style={{ fontWeight: 600 }}>
@@ -366,7 +368,7 @@ function AccountsTable({ account }) {
         if (account.rothIRAAccountList != "") {
             return (
                 <div>
-                    <h5 className="col-md-12">{account.numberOfRothIRAAccounts} Roth IRA Account</h5>
+               <a href="/userRothIRAGetTransaction">    <h5 className="col-md-12">{account.numberOfRothIRAAccounts} Roth IRA Account</h5></a> 
                     <table className="table table-striped table-bordered table-responsive">
 
                         <thead style={{ fontWeight: 600 }}>

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Logout from "./LogoutComponent";
 import {
-    Navbar, Row, Col, Jumbotron, NavbarBrand, Nav, NavItem, Button, Card,
-    NavbarToggler, Collapse
-} from 'reactstrap';
+    Navbar,Nav, NavItem, Card,NavbarToggler, Collapse } from 'reactstrap';
 import { NavLink, Redirect } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
+//import {baseUrl} from "../utils/constants";
 
 function Admin({ authorized }) {
     const [isNavOpen, setIsNavOpen] = useState(false);

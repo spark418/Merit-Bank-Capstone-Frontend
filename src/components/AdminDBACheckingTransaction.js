@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
 import DepositTransactionTypes from './DepositTransactionTypes';
 import WithdrawTransactionTypes from './WithdrawTransactionTypes';
+//import {baseUrl} from "../utils/constants";
 
 export function DBACheckingDepositTransaction() {
     const [amount, setAmount] = useState("");
     const [accHolderId, setAccHolderId] = useState("");
     const [accNum, setAccNum] = useState("");
     const [type, setType] = useState("");
-    const DBA_DEPOSIT_URL = "http://localhost:8080/accountholder/{accHolderId}/dbaaccounts/{accNum}/deposittransaction";
+    const DBA_DEPOSIT_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderId}/dbaaccounts/{accNum}/deposittransaction";
 
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
@@ -117,7 +118,7 @@ export function DBACheckingWithdrawTransaction() {
     const [accHolderId, setAccHolderId] = useState("");
     const [accNum, setAccNum] = useState("");
     const [type, setType] = useState("");
-    const DBA_WITHDRAW_URL = "http://localhost:8080/accountholder/{accHolderId}/dbaaccounts/{accNum}/withdrawtransaction";
+    const DBA_WITHDRAW_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderId}/dbaaccounts/{accNum}/withdrawtransaction";
 
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
@@ -229,7 +230,7 @@ export function DBACheckingGetTransaction() {
     const [accNum, setAccNum] = useState("");
     const [transact, setTransact] = useState([]);
 
-    const DBA_TRANSACTION_URL = "http://localhost:8080/accountholder/{accHolderId}/dbaaccounts/{accNum}/transactions";
+    const DBA_TRANSACTION_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderId}/dbaaccounts/{accNum}/transactions";
 
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
@@ -279,6 +280,10 @@ export function DBACheckingGetTransaction() {
                 if (error.res.status == "406") {
                     alert('\nError: Invalid details provided')
                 }
+                if(error.res.status == "500"){
+                    alert('\nError: Invalid details provided')
+                }
+                
 
             });
 
@@ -322,7 +327,7 @@ function TransactionTable({ transact }) {
     console.log("transact:" + transact)
     if (transact == []) {
         return (
-            <h3>Transactions to be displayed!</h3>
+            <h3>No Transactions to be displayed!</h3>
         )
     }
     if (transact != []) {

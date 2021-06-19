@@ -2,27 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
 import DepositTransactionTypes from './DepositTransactionTypes';
 import WithdrawTransactionTypes from './WithdrawTransactionTypes';
+//import {baseUrl} from "../utils/constants";
 
 export function UserSavingsDepositTransaction() {
     const [amount, setAmount] = useState("");
     //const [accHolderId, setAccHolderId] = useState("");
-    const [accNum, setAccNum] = useState("");
+    //const [accNum, setAccNum] = useState("");
     const [type, setType] = useState("");
-    const USER_SAVINGS_DEPOSIT_URL = "http://localhost:8080/Me/dbaccount/{accountNum}/deposittransaction";
+    const USER_SAVINGS_DEPOSIT_URL = process.env.REACT_APP_API_ENDPOINT+"Me/savingsaccount/deposittransaction";
 
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async(event) => {
         event.preventDefault();
-        alert("amount:" + amount + " accNum: " + accNum + "type: " + type);
+        alert("amount:" + amount  + "type: " + type);
         var payload = {
             "amount": amount,
 
             "transactionType": type
 
         }
-        await fetch(USER_SAVINGS_DEPOSIT_URL.replace('{accountNum}', `${accNum}`), {
+        await fetch(USER_SAVINGS_DEPOSIT_URL, {
 
             method: 'POST',
             body: JSON.stringify(payload),
@@ -82,12 +83,7 @@ console.log(error)
 
                 
 
-                <FormGroup className="col-sm-5">
-                    <Label for="accNum">Account Number</Label>
-                    <Input type="accNum" name="accNum"
-                        id="accNum" placeholder="Account Number" value={accNum}
-                        onChange={ev => setAccNum(ev.target.value)}></Input>
-                </FormGroup>
+                
 
                 <FormGroup className="col-sm-5">
                     <Label for="type">Transaction Type</Label>
@@ -110,26 +106,26 @@ console.log(error)
 }
 
 
-export function UserDBACheckingWithdrawTransaction() {
+export function UserSavingsWithdrawTransaction() {
     const [amount, setAmount] = useState("");
     //const [accHolderId, setAccHolderId] = useState("");
-    const [accNum, setAccNum] = useState("");
+    //const [accNum, setAccNum] = useState("");
     const [type, setType] = useState("");
-    const USER_DBA_WITHDRAW_URL = "http://localhost:8080/Me/dbaccount/{accountNum}/withdrawtransaction";
+    const USER_SAVINGS_WITHDRAW_URL = process.env.REACT_APP_API_ENDPOINT+"Me/savingsaccount/withdrawtransaction";
 
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert("amount:" + amount + " accNum: " + accNum + "type: " + type);
+        alert("amount:" + amount  + "type: " + type);
         var payload = {
             "amount": amount,
 
             "transactionType": type
 
         }
-        fetch(USER_DBA_WITHDRAW_URL.replace('{accountNum}', `${accNum}`), {
+        fetch(USER_SAVINGS_WITHDRAW_URL, {
 
             method: 'POST',
             body: JSON.stringify(payload),
@@ -158,14 +154,14 @@ export function UserDBACheckingWithdrawTransaction() {
             .then((res) => alert(`Successfully withdrawn!\n Your current balance is ${res.postedBalance}`))
 
             .catch((error) => {
-                if (error.res.status == "400") {
-                    alert('Error: 400')
+                if (error.res.status == "409") {
+                    alert('\nError: Insufficient balance')
                 }
                 if (error.res.status == "404") {
                     alert('\nError: AccountHolder not found')
                 }
                 if (error.res.status == "406") {
-                    alert('\nError: Invalid details provided')
+                    alert('\nError: Invalid amount')
                 }
 console.log(error)
             });
@@ -188,12 +184,12 @@ console.log(error)
 
                 
 
-                <FormGroup className="col-sm-5">
+                {/* <FormGroup className="col-sm-5">
                     <Label for="accNum">Account Number</Label>
                     <Input type="accNum" name="accNum"
                         id="accNum" placeholder="Account Number" value={accNum}
                         onChange={ev => setAccNum(ev.target.value)}></Input>
-                </FormGroup>
+                </FormGroup> */}
 
                 <FormGroup className="col-sm-5">
                     <Label for="type">Transaction Type</Label>
@@ -216,13 +212,13 @@ console.log(error)
     );
 }
 
-export function UserDBACheckingTransferTransaction() {
+export function UserSavingsTransferTransaction() {
     const [amount, setAmount] = useState("");
     const [accHolderId, setAccHolderId] = useState("");
     const [sourceAccNum, setSourceAccNum] = useState("");
     const [targetAccNum, setTargetAccNum] = useState("");
     const [type, setType] = useState("");
-    const DBA_TRANSFER_URL = "http://localhost:8080/Me/dbaccount/{accountNum}/transfer";
+    const SAVINGS_TRANSFER_URL = process.env.REACT_APP_API_ENDPOINT+"Me/savingsaccount/transfer";
 
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
@@ -240,7 +236,7 @@ export function UserDBACheckingTransferTransaction() {
                 
 
         }
-        fetch(DBA_TRANSFER_URL.replace('{accountNum}', sourceAccNum), {
+        fetch(SAVINGS_TRANSFER_URL, {
 
             method: 'POST',
             body: JSON.stringify(payload),
@@ -270,14 +266,14 @@ export function UserDBACheckingTransferTransaction() {
             .then((res) => alert(`Amount successfully transferred!\n Balance in a/c ${targetAccNum} is ${res.targetBalance}`))
 
             .catch((error) => {
-                if (error.res.status == "400") {
-                    alert('Error: 400')
+                if (error.res.status == "409") {
+                    alert('\nError: Insufficient balance')
                 }
                 if (error.res.status == "404") {
                     alert('\nError: AccountHolder not found')
                 }
                 if (error.res.status == "406") {
-                    alert('\nError: Invalid details provided')
+                    alert('\nError: Invalid amount')
                 }
 
             });
@@ -333,142 +329,115 @@ export function UserDBACheckingTransferTransaction() {
     );
  }
 
+ export function UserSavingsGetTransaction() {
+
+    //const [accHolderId, setAccHolderId] = useState("");
+    //const [accNum, setAccNum] = useState("");
+    const [transact, setTransact] = useState([]);
+
+    const USER_SAVINGS_TRANSACTION_URL = process.env.REACT_APP_API_ENDPOINT+"Me/savingsaccount/transactions";
 
 
-// export function UserDBACheckingGetTransaction() {
+    const bearer = 'Bearer ' + localStorage.getItem('token');
 
-//     const [accHolderId, setAccHolderId] = useState("");
-//     const [accNum, setAccNum] = useState("");
-//     const [transact, setTransact] = useState([]);
-
-//     const DBA_TRANSACTION_URL = "http://localhost:8080/Me/dbaaccounts/{accNum}/transactions";
+    useEffect(() => {
+        handleSubmit()
+      })
 
 
-//     const bearer = 'Bearer ' + localStorage.getItem('token');
+    const handleSubmit = async () => {
+        //event.preventDefault();
+        //alert("accNum: " + accNum);
 
-//     // useEffect(() => {
-//     //     handleSubmit()
-//     //   })
+        await fetch(USER_SAVINGS_TRANSACTION_URL, {
 
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         alert(" accHolderId: " + accHolderId + " accNum: " + accNum);
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': bearer
+            },
+        })
+            .then(res => {
+                if (res.ok) {
+                    //console.log(res.json());
 
-//         await fetch(DBA_TRANSACTION_URL.replace('{accHolderId}/dbaaccounts/{accNum}', `${accHolderId}/dbaaccounts/${accNum}`), {
+                    return res;
+                } else {
+                    const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                    error.res = res;
+                    throw error;
+                }
+            },
+                error => {
+                    throw error;
+                }
+            )
+            .then(res => res.json())
+            //.then((res) => console.log(res))
+            .then(res => {
+                setTransact(res)
+            })
 
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'Authorization': bearer
-//             },
-//         })
-//             .then(res => {
-//                 if (res.ok) {
-//                     //console.log(res.json());
+            .catch((error) => {
+                
+                if (error.res.status == "404") {
+                    alert('Error: Invalid a/c number or Vacant Account')
+                }
+                
 
-//                     return res;
-//                 } else {
-//                     const error = new Error(`Error ${res.status}: ${res.statusText}`);
-//                     error.res = res;
-//                     throw error;
-//                 }
-//             },
-//                 error => {
-//                     throw error;
-//                 }
-//             )
-//             .then(res => res.json())
-//             //.then((res) => console.log(res))
-//             .then(res => {
-//                 setTransact(res)
-//             })
+            });
 
-//             .catch((error) => {
-//                 if (error.res.status == "400") {
-//                     alert('Error: 400')
-//                 }
-//                 if (error.res.status == "404") {
-//                     alert('\nError: AccountHolder not found')
-//                 }
-//                 if (error.res.status == "406") {
-//                     alert('\nError: Invalid details provided')
-//                 }
+    }
 
-//             });
+    return (
+        <div className=" container">
+                <TransactionTable transact={transact} />
+            {/* </div> */}
+        </div>
+    );
+}
 
-//     }
+function TransactionTable({ transact }) {
+    console.log("transact:" + transact)
+    if (transact == []) {
+        return (
+            <h3>No Transactions to be displayed!</h3>
+        )
+    }
+    if (transact != []) {
+        return (
+            <table className="table table-hover table-responsive table-bordered">
+                <thead style={{ fontWeight: 600 }}>
+                    <tr>
+                        <td>Transaction Type</td>
+                        <td>Transaction Amount $</td>
+                        <td>a/c Balance $</td>
+                        <td>Transaction Date</td>
 
-//     return (
-//         <div className=" container">
-//             <div className="col-md-7">
-//                 <h3>Get the Transactions Here</h3>
-//                 <Form onSubmit={handleSubmit} className="mt-3">
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        transact.map(
+                            t =>
+                                <tr key={t.id}>
+                                    <td>{t.type}</td>
+                                    <td> {t.amount}</td>
+                                    <td> {t.postedBalance}</td>
+                                    <td> {(t.date.substring(0, 10))} at {t.date.substring(11, 19)}</td>
 
-//                     <FormGroup className="col-sm-5">
-//                         <Label for="accHolderId">Account Holder Id</Label>
-//                         <Input type="accHolderId" name="accHolderId"
-//                             id="accHolderId" placeholder="Account Holder Id" value={accHolderId}
-//                             onChange={ev => setAccHolderId(ev.target.value)}></Input>
-//                     </FormGroup>
+                                </tr>
+                        )
+                    }
+                </tbody>
+            </table>
 
-//                     <FormGroup className="col-sm-5">
-//                         <Label for="accNum">Account Number</Label>
-//                         <Input type="accNum" name="accNum"
-//                             id="accNum" placeholder="Account Number" value={accNum}
-//                             onChange={ev => setAccNum(ev.target.value)}></Input>
-//                     </FormGroup>
+        );
+    }
+    return <div />
+}
 
 
-//                     <FormGroup className="col-sm-5" >
-//                         <Button type="submit" value="submit" color="primary">Submit</Button>
-//                     </FormGroup>
-//                 </Form>
-//             </div>
-//             <div className="row mt-3">
 
-//                 <TransactionTable transact={transact} />
-//             </div>
-//         </div>
-//     );
-// }
 
-// function TransactionTable({ transact }) {
-//     console.log("transact:" + transact)
-//     if (transact == []) {
-//         return (
-//             <h3>Transactions to be displayed!</h3>
-//         )
-//     }
-//     if (transact != []) {
-//         return (
-//             <table className="table table-hover table-responsive table-bordered">
-//                 <thead style={{ fontWeight: 600 }}>
-//                     <tr>
-//                         <td>Transaction Type</td>
-//                         <td>Transaction Amount $</td>
-//                         <td>a/c Balance $</td>
-//                         <td>Transaction Date</td>
-
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {
-//                         transact.map(
-//                             t =>
-//                                 <tr key={t.id}>
-//                                     <td>{t.type}</td>
-//                                     <td> {t.amount}</td>
-//                                     <td> {t.postedBalance}</td>
-//                                     <td> {(t.date.substring(0, 10))} at {t.date.substring(11, 19)}</td>
-
-//                                 </tr>
-//                         )
-//                     }
-//                 </tbody>
-//             </table>
-
-//         );
-//     }
-//     return <div />
-// }
 

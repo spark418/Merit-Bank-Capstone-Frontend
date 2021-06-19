@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 export function AddDBACheckingAccount() {
     const [balance, setBalance] = useState('');
     const [accHolderid, setAccHolderid] = useState('');
 
-    const DBA_CHECKINGACCOUNT_URL = `http://localhost:8080/accountholder/{accHolderid}/dbacheckingaccounts`;
+    const DBA_CHECKINGACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderid}/dbacheckingaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -94,7 +95,7 @@ export function GetDBACheckingAccount() {
     const [accHolderid, setAccHolderid] = useState('');
     const [account, setAccount] = useState([]);
 
-    const DBA_CHECKINGACCOUNT_URL = `http://localhost:8080/accountholder/{accHolderid}/dbacheckingaccounts`;
+    const DBA_CHECKINGACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderid}/dbacheckingaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {

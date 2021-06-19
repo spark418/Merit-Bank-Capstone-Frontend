@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
-
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 
 export function GetAccountHolder() {
@@ -9,7 +9,7 @@ export function GetAccountHolder() {
     const [account, setAccount] = useState(null);
     const [accountHolderId, setAccountHolderId] = useState('');
 
-    const GET_ACCOUNTHOLDER_URL = "http://localhost:8080/accountholder/{id}";
+    const GET_ACCOUNTHOLDER_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{id}";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {

@@ -4,8 +4,8 @@ import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
 import {Redirect} from'react-router-dom';
 import { baseUrl } from '../utils/constants';
 
-const CDOFFERING_URL = "http://localhost:8080/cdofferings";
-const BEST_CDOFFERING_URL="http://localhost:8080/bestcdofferings/{balance}/";
+const CDOFFERING_URL = process.env.REACT_APP_API_ENDPOINT+"cdofferings";
+const BEST_CDOFFERING_URL=process.env.REACT_APP_API_ENDPOINT+"bestcdofferings/{balance}/";
 const bearer = 'Bearer ' + localStorage.getItem('token');
 
 class UserCDOffering extends Component {

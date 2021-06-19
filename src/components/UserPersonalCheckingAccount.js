@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 export function UserAddPersonalCheckingAccount() {
     const [balance, setBalance] = useState('');
     
 
-    const USER_PERSONAL_CHECKINGACCOUNT_URL = `http://localhost:8080/Me/checkingaccounts`;
+    const USER_PERSONAL_CHECKINGACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"Me/checkingaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -89,7 +90,7 @@ export function UserGetPersonalCheckingAccount() {
    
     const [account, setAccount] = useState([]);
 
-    const USER_PERSONAL_CHECKINGACCOUNT_URL = `http://localhost:8080/Me/checkingaccounts`;
+    const USER_PERSONAL_CHECKINGACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"Me/checkingaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     useEffect(() => {

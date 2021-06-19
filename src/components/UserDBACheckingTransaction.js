@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import DepositTransactionTypes from './DepositTransactionTypes';
 import WithdrawTransactionTypes from './WithdrawTransactionTypes';
+//import {baseUrl} from "../utils/constants";
 
 export function UserDBACheckingDepositTransaction() {
     const [amount, setAmount] = useState("");
     //const [accHolderId, setAccHolderId] = useState("");
     const [accNum, setAccNum] = useState("");
     const [type, setType] = useState("");
-    const USER_DBA_DEPOSIT_URL = "http://localhost:8080/Me/dbaccount/{accountNum}/deposittransaction";
+    const USER_DBA_DEPOSIT_URL =process.env.REACT_APP_API_ENDPOINT+"Me/dbaccount/{accountNum}/deposittransaction";
 
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
@@ -113,9 +114,8 @@ export function UserDBACheckingWithdrawTransaction() {
     //const [accHolderId, setAccHolderId] = useState("");
     const [accNum, setAccNum] = useState("");
     const [type, setType] = useState("");
-    const USER_DBA_WITHDRAW_URL = "http://localhost:8080/Me/dbaccount/{accountNum}/withdrawtransaction";
 
-
+    const USER_DBA_WITHDRAW_URL = process.env.REACT_APP_API_ENDPOINT+"Me/dbaccount/{accountNum}/withdrawtransaction";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = (event) => {
@@ -193,6 +193,8 @@ console.log(error)
                         onChange={ev => setAccNum(ev.target.value)}></Input>
                 </FormGroup>
 
+                
+
                 <FormGroup className="col-sm-5">
                     <Label for="type">Transaction Type</Label>
                     <Input type="type" name="type"
@@ -200,13 +202,23 @@ console.log(error)
                         onChange={ev => setType(ev.target.value)}></Input>
                 </FormGroup>
 
+                {/* <FormGroup className="col-sm-5">
+                    <Label for="Select">Select Role</Label>
+                    <Input type="select" name="select" id="role" onChange={ev => setRole(ev.target.value)}>
+                        <option>ROLE_ADMIN</option>
+                        <option>ROLE_USER</option>
+                    </Input>
+                </FormGroup> */}
+
+                
+
                 <FormGroup className="col-sm-5" >
                     <Button type="submit" value="submit" color="primary">Submit</Button>
                 </FormGroup>
             </Form>
             </div>
             <div className="col-md-5">
-                <WithdrawTransactionTypes/>
+                 <WithdrawTransactionTypes/> 
             </div>
             </div>
 
@@ -220,9 +232,8 @@ export function UserDBACheckingTransferTransaction() {
     const [sourceAccNum, setSourceAccNum] = useState("");
     const [targetAccNum, setTargetAccNum] = useState("");
     const [type, setType] = useState("");
-    const DBA_TRANSFER_URL = "http://localhost:8080/Me/dbaccount/{accountNum}/transfer";
 
-
+    const DBA_TRANSFER_URL = process.env.REACT_APP_API_ENDPOINT+"Me/dbaccount/{accountNum}/transfer";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = (event) => {
@@ -333,140 +344,130 @@ export function UserDBACheckingTransferTransaction() {
 
 
 
-// export function UserDBACheckingGetTransaction() {
+export function UserDBACheckingGetTransaction() {
 
-//     const [accHolderId, setAccHolderId] = useState("");
-//     const [accNum, setAccNum] = useState("");
-//     const [transact, setTransact] = useState([]);
+    //const [accHolderId, setAccHolderId] = useState("");
+    const [accNum, setAccNum] = useState("");
+    const [transact, setTransact] = useState([]);
 
-//     const DBA_TRANSACTION_URL = "http://localhost:8080/Me/dbaaccounts/{accNum}/transactions";
-
-
-//     const bearer = 'Bearer ' + localStorage.getItem('token');
-
-//     // useEffect(() => {
-//     //     handleSubmit()
-//     //   })
-
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         alert(" accHolderId: " + accHolderId + " accNum: " + accNum);
-
-//         await fetch(DBA_TRANSACTION_URL.replace('{accHolderId}/dbaaccounts/{accNum}', `${accHolderId}/dbaaccounts/${accNum}`), {
-
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'Authorization': bearer
-//             },
-//         })
-//             .then(res => {
-//                 if (res.ok) {
-//                     //console.log(res.json());
-
-//                     return res;
-//                 } else {
-//                     const error = new Error(`Error ${res.status}: ${res.statusText}`);
-//                     error.res = res;
-//                     throw error;
-//                 }
-//             },
-//                 error => {
-//                     throw error;
-//                 }
-//             )
-//             .then(res => res.json())
-//             //.then((res) => console.log(res))
-//             .then(res => {
-//                 setTransact(res)
-//             })
-
-//             .catch((error) => {
-//                 if (error.res.status == "400") {
-//                     alert('Error: 400')
-//                 }
-//                 if (error.res.status == "404") {
-//                     alert('\nError: AccountHolder not found')
-//                 }
-//                 if (error.res.status == "406") {
-//                     alert('\nError: Invalid details provided')
-//                 }
-
-//             });
-
-//     }
-
-//     return (
-//         <div className=" container">
-//             <div className="col-md-7">
-//                 <h3>Get the Transactions Here</h3>
-//                 <Form onSubmit={handleSubmit} className="mt-3">
-
-//                     <FormGroup className="col-sm-5">
-//                         <Label for="accHolderId">Account Holder Id</Label>
-//                         <Input type="accHolderId" name="accHolderId"
-//                             id="accHolderId" placeholder="Account Holder Id" value={accHolderId}
-//                             onChange={ev => setAccHolderId(ev.target.value)}></Input>
-//                     </FormGroup>
-
-//                     <FormGroup className="col-sm-5">
-//                         <Label for="accNum">Account Number</Label>
-//                         <Input type="accNum" name="accNum"
-//                             id="accNum" placeholder="Account Number" value={accNum}
-//                             onChange={ev => setAccNum(ev.target.value)}></Input>
-//                     </FormGroup>
+    const USER_DBA_TRANSACTION_URL = process.env.REACT_APP_API_ENDPOINT+"Me/dbaaccount/{accountNum}/transactions";
 
 
-//                     <FormGroup className="col-sm-5" >
-//                         <Button type="submit" value="submit" color="primary">Submit</Button>
-//                     </FormGroup>
-//                 </Form>
-//             </div>
-//             <div className="row mt-3">
+    const bearer = 'Bearer ' + localStorage.getItem('token');
 
-//                 <TransactionTable transact={transact} />
-//             </div>
-//         </div>
-//     );
-// }
+    // useEffect(() => {
+    //     handleSubmit()
+    //   })
 
-// function TransactionTable({ transact }) {
-//     console.log("transact:" + transact)
-//     if (transact == []) {
-//         return (
-//             <h3>Transactions to be displayed!</h3>
-//         )
-//     }
-//     if (transact != []) {
-//         return (
-//             <table className="table table-hover table-responsive table-bordered">
-//                 <thead style={{ fontWeight: 600 }}>
-//                     <tr>
-//                         <td>Transaction Type</td>
-//                         <td>Transaction Amount $</td>
-//                         <td>a/c Balance $</td>
-//                         <td>Transaction Date</td>
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        alert("accNum: " + accNum);
 
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {
-//                         transact.map(
-//                             t =>
-//                                 <tr key={t.id}>
-//                                     <td>{t.type}</td>
-//                                     <td> {t.amount}</td>
-//                                     <td> {t.postedBalance}</td>
-//                                     <td> {(t.date.substring(0, 10))} at {t.date.substring(11, 19)}</td>
+        await fetch(USER_DBA_TRANSACTION_URL.replace('{accountNum}', accNum), {
 
-//                                 </tr>
-//                         )
-//                     }
-//                 </tbody>
-//             </table>
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': bearer
+            },
+        })
+            .then(res => {
+                if (res.ok) {
+                    //console.log(res.json());
 
-//         );
-//     }
-//     return <div />
-// }
+                    return res;
+                } else {
+                    const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                    error.res = res;
+                    throw error;
+                }
+            },
+                error => {
+                    throw error;
+                }
+            )
+            .then(res => res.json())
+            //.then((res) => console.log(res))
+            .then(res => {
+                setTransact(res)
+            })
+
+            .catch((error) => {
+                
+                if (error.res.status == "404") {
+                    alert('Error: Invalid a/c number or Vacant Account')
+                }
+                
+
+            });
+
+    }
+
+    return (
+        <div className=" container">
+            <div className="col-md-7">
+                <h3>Get the Transactions Here</h3>
+                <Form onSubmit={handleSubmit} className="mt-3">
+
+                    
+                    <FormGroup className="col-sm-5">
+                        <Label for="accNum">Account Number</Label>
+                        <Input type="accNum" name="accNum"
+                            id="accNum" placeholder="Account Number" value={accNum}
+                            onChange={ev => setAccNum(ev.target.value)}></Input>
+                    </FormGroup>
+
+
+                    <FormGroup className="col-sm-5" >
+                        <Button type="submit" value="submit" color="primary">Submit</Button>
+                    </FormGroup>
+                </Form>
+            </div>
+            <div className="row mt-3">
+
+                <TransactionTable transact={transact} />
+            </div>
+        </div>
+    );
+}
+
+function TransactionTable({ transact }) {
+    console.log("transact:" + transact)
+    if (transact == []) {
+        return (
+            <h3>No Transactions to be displayed!</h3>
+        )
+    }
+    if (transact != []) {
+        return (
+            <table className="table table-hover table-responsive table-bordered">
+                <thead style={{ fontWeight: 600 }}>
+                    <tr>
+                        <td>Transaction Type</td>
+                        <td>Transaction Amount $</td>
+                        <td>a/c Balance $</td>
+                        <td>Transaction Date</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        transact.map(
+                            t =>
+                                <tr key={t.id}>
+                                    <td>{t.type}</td>
+                                    <td> {t.amount}</td>
+                                    <td> {t.postedBalance}</td>
+                                    <td> {(t.date.substring(0, 10))} at {t.date.substring(11, 19)}</td>
+
+                                </tr>
+                        )
+                    }
+                </tbody>
+            </table>
+
+        );
+    }
+    return <div />
+}
 

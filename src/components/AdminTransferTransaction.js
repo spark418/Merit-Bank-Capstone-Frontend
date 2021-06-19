@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 export function AdminTransferTransaction() {
     const [amount, setAmount] = useState("");
@@ -7,7 +8,7 @@ export function AdminTransferTransaction() {
     const [sourceAccNum, setSourceAccNum] = useState("");
     const [targetAccNum, setTargetAccNum] = useState("");
     const [type, setType] = useState("");
-    const TRANSFER_URL = "http://localhost:8080/accountholder/{id}/accounts/{sourceNum}/transfer/{targetNum}";
+    const TRANSFER_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{id}/accounts/{sourceNum}/transfer/{targetNum}";
 
 
     const bearer = 'Bearer ' + localStorage.getItem('token');

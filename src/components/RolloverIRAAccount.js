@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 export function AddRolloverIRAAccount() {
     const [balance, setBalance] = useState('');
     const [accHolderid, setAccHolderid] = useState('');
 
-    const ROLLOVER_IRA__URL = `http://localhost:8080/accountholder/{accHolderid}/rolloveriraaccounts`;
+    const ROLLOVER_IRA__URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderid}/rolloveriraaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -94,7 +95,7 @@ export function GetRolloverIRAAccount() {
     const [accHolderid, setAccHolderid] = useState('');
     const [account, setAccount] = useState([]);
 
-    const ROLLOVER_IRA__URL = `http://localhost:8080/accountholder/{accHolderid}/rolloveriraaccounts`;
+    const ROLLOVER_IRA__URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderid}/rolloveriraaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {

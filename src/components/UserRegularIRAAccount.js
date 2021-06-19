@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 export function UserAddRegularIRAAccount() {
     const [balance, setBalance] = useState('');
     
 
-    const USER_REGULAR_IRAACCOUNT_URL = `http://localhost:8080/Me/regulariraaccounts`;
+    const USER_REGULAR_IRAACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"Me/regulariraaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -89,7 +90,7 @@ export function UserGetRegularIRAAccount() {
    
     const [account, setAccount] = useState([]);
 
-    const USER_REGULAR_IRAACCOUNT_URL = `http://localhost:8080/Me/regulariraaccounts`;
+    const USER_REGULAR_IRAACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"Me/regulariraaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     useEffect(() => {

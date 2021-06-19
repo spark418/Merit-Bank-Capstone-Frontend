@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
-
+//import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 
 function AccountHoldersList() {
@@ -9,7 +9,7 @@ function AccountHoldersList() {
 
     const [account, setAccount] = useState([]);
 
-    const ALL_ACCOUNTHOLDERS_URL = `http://localhost:8080/accountholders`;
+    const ALL_ACCOUNTHOLDERS_URL = process.env.REACT_APP_API_ENDPOINT+"accountholders";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     useEffect(() => {
@@ -65,6 +65,10 @@ function AccountsTable({ account }) {
             <table className="table table-hover table-responsive table-bordered">
                 <thead style={{fontWeight:600}}>
                     <tr>
+                        <td>User Id</td>
+                        <td>Username</td>
+                        {/* <td>Middle Name</td>
+                        <td>Last Name</td> */}
                         <td>AccountHolder Id</td>
                         <td>First Name</td>
                         <td>Middle Name</td>
@@ -84,6 +88,8 @@ function AccountsTable({ account }) {
                         account.map(
                             ac =>
                                 <tr key={ac.id}>
+                                    <td>{ac.user.id}</td>
+                                    <td>{ac.user.userName}</td>
                                     <td>{ac.id}</td>
                                     <td> {ac.firstName}</td>
                                     <td> {ac.middleName}</td>

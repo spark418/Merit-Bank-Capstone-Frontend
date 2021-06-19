@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
-import CDOffering from './GetCDOfferingComponent';
-
+//import CDOffering from './GetCDOfferingComponent';
+//import {baseUrl} from "../utils/constants";
 
 
 export function UserAddCDAccount() {
     const [balance, setBalance] = useState('');
     const [cdOffer, setCdOffer] = useState('');
 
-    const USER_CDACCOUNT_URL = `http://localhost:8080/Me/cdaccounts`;
+    const USER_CDACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"Me/cdaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -105,7 +105,7 @@ export function UserGetCDAccount() {
    
     const [account, setAccount] = useState([]);
 
-    const USER_CDACCOUNT_URL = `http://localhost:8080/Me/cdaccounts`;
+    const USER_CDACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"Me/cdaccounts";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     useEffect(() => {

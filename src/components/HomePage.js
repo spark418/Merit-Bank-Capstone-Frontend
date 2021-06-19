@@ -18,23 +18,23 @@ function Welcome() {
                 <div className="col-md-12">
             <Carousel >
                 <Carousel.Item>
-                    <img width={900} height={500} alt="900x500" src="https://images.pexels.com/photos/1602726/pexels-photo-1602726.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                    <img width={900} height={600} alt="900x600" src="images/coin-plants.jpg" />
                     <Carousel.Caption>
-                        <h3>First slide label</h3>
+                        <h3 style={{ color:"white",fontSize:"30px",fontWeight:"bolder"}}> Grow your Investment</h3>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img width={900} height={500} alt="900x500" src="https://images.unsplash.com/photo-1589666564459-93cdd3ab856a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Njl8fDkwMHg1MDAlMjBiYW5raW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+                    <img width={900} height={600} alt="900x600" src="images/atm.jpg" />
                     <Carousel.Caption>
-                        <h3>Second slide label</h3>
+                        <h3 style={{ color:"white",fontSize:"30px",fontWeight:"bolder"}}>Any Time Money</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img width={900} height={500} alt="900x500" src="https://images.unsplash.com/photo-1541410702738-f87a5449e456?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80" />
+                    <img width={900} height={600} alt="900x600" src="images/personal-banking.jpg" />
                     <Carousel.Caption>
-                        <h3>Third slide label</h3>
+                        <h3 style={{ color:"white",fontSize:"30px",fontWeight:"bolder"}}>Checking, Credit Card, Investments</h3>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -48,13 +48,30 @@ function Welcome() {
                                 className="bg-image card shadow-1-strong"
                                 style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
                             >
-                                <div class="card-body text-white">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">
+                                <div className="card-body text-white">
+                                    <h5 className="card-title">Checking</h5>
+                                    <p className="card-text">
                                         Some quick example text to build on the card title and make up the bulk of the
                                         card's content.
                                     </p>
-                                    <a href="#!" class="btn btn-outline-light">Button</a>
+                                    <a href="#!" className="btn btn-outline-light">Button</a>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="col-md-3">
+                        <Card>
+                            <div
+                                className="bg-image card shadow-1-strong"
+                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
+                            >
+                                <div className="card-body text-white">
+                                    <h5 className="card-title">Savings</h5>
+                                    <p className="card-text">
+                                        Some quick example text to build on the card title and make up the bulk of the
+                                        card's content.
+                                    </p>
+                                    <a href="#!" className="btn btn-outline-light">Button</a>
                                 </div>
                             </div>
                         </Card>
@@ -66,12 +83,12 @@ function Welcome() {
                                 style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
                             >
                                 <div class="card-body text-white">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">
+                                    <h5 className="card-title">CD</h5>
+                                    <p className="card-text">
                                         Some quick example text to build on the card title and make up the bulk of the
                                         card's content.
                                     </p>
-                                    <a href="#!" class="btn btn-outline-light">Button</a>
+                                    <a href="#!" className="btn btn-outline-light">Button</a>
                                 </div>
                             </div>
                         </Card>
@@ -82,30 +99,13 @@ function Welcome() {
                                 className="bg-image card shadow-1-strong"
                                 style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
                             >
-                                <div class="card-body text-white">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">
+                                <div className="card-body text-white">
+                                    <h5 className="card-title">IRA</h5>
+                                    <p className="card-text">
                                         Some quick example text to build on the card title and make up the bulk of the
                                         card's content.
                                     </p>
-                                    <a href="#!" class="btn btn-outline-light">Button</a>
-                                </div>
-                            </div>
-                        </Card>
-                    </div>
-                    <div className="col-md-3">
-                        <Card>
-                            <div
-                                className="bg-image card shadow-1-strong"
-                                style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/new/slides/003.jpg')` }}
-                            >
-                                <div class="card-body text-white">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the
-                                        card's content.
-                                    </p>
-                                    <a href="#!" class="btn btn-outline-light">Button</a>
+                                    <a href="#!" className="btn btn-outline-light">Button</a>
                                 </div>
                             </div>
                         </Card>

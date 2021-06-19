@@ -1,7 +1,8 @@
 import React from 'react';
-import Logout from "./LogoutComponent";
-import { Navbar,  Nav, NavItem,  Card } from 'reactstrap';
-import { NavLink, Redirect } from 'react-router-dom';
+// import Logout from "./LogoutComponent";
+// import { Navbar,  Nav, NavItem,  Card } from 'reactstrap';
+// import { NavLink, Redirect } from 'react-router-dom';
+//import {baseUrl} from "../utils/constants";
 
 export function UserAddAccount() {
     return (

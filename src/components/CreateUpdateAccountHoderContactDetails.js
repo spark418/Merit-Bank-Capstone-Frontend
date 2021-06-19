@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button,Form, FormGroup, Input, Label } from 'reactstrap';
+//import {baseUrl} from "../utils/constants";
 
 export function CreateAccountHolderContactDetails() {
     const [address, setAddress] = useState('');
@@ -8,7 +9,7 @@ export function CreateAccountHolderContactDetails() {
     const [accHolderid, setAccHolderid] = useState('');
 
 
-    const REGISTER_AH_CONTACTS_URL=`http://localhost:8080/accountholder/{accHolderid}/contactdetails`;
+    const REGISTER_AH_CONTACTS_URL= process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderid}/contactdetails";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = (event) => {
@@ -113,7 +114,7 @@ export function UpdateAccountHolderContactDetails() {
     const [accHolderContactid, setAccHolderContactid] = useState('');
 
 
-    const UPDATE_AH_CONTACTS_URL=`http://localhost:8080/accountholder/{id}/contactdetails/update`;
+    const UPDATE_AH_CONTACTS_URL=process.env.REACT_APP_API_ENDPOINT+"accountholder/{id}/contactdetails/update";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = (event) => {
