@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-//import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+import { Breadcrumb,BreadcrumbItem } from 'reactstrap';
 //import {baseUrl} from "../utils/constants";
+import {Link} from 'react-router-dom';
 
 
 function AccountHoldersList() {
@@ -37,7 +38,15 @@ function AccountHoldersList() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container ">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>AccountHolders</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row">
                 <div className="col-md-6">
 
@@ -54,7 +63,7 @@ function AccountHoldersList() {
 }
 
 function AccountsTable({ account }) {
-    console.log("account:" + account)
+   // console.log("account:" + account)
     if (account == null) {
         return (
             <h3>No accounts to be displayed!</h3>
@@ -75,6 +84,7 @@ function AccountsTable({ account }) {
                         <td>Last Name</td>
                         <td>SSN</td>
                         
+                        <td>Contact Id</td>
                         <td>Email</td>
                         <td>Address</td>
                         <td>Phone Number</td>
@@ -96,7 +106,7 @@ function AccountsTable({ account }) {
                                     <td> {ac.lastName}</td>
                                     <td>{ac.ssn}</td>
 
-                                   
+                                  <td><ContactId account={ac}/></td>
                                   <td><Email account={ac}/></td>
                                   <td><Address account={ac}/></td>
                                   <td><Phonenum account={ac}/></td>
@@ -115,6 +125,13 @@ function AccountsTable({ account }) {
 
 
 export default AccountHoldersList;
+
+function ContactId({ account }) {
+    if (account.accountHolderContactDetails != null) {
+        return (<div>{account.accountHolderContactDetails.id}</div>)
+    }
+    return <div />
+}
 
 function Phonenum({ account }) {
     if (account.accountHolderContactDetails != null) {

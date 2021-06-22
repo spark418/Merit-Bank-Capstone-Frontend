@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button,Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button,Form, FormGroup, Input, Label, Breadcrumb,BreadcrumbItem } from 'reactstrap';
 //import {baseUrl} from "../utils/constants";
+import { Link } from 'react-router-dom';
 
 export function CreateAccountHolderContactDetails() {
     const [address, setAddress] = useState('');
@@ -12,7 +13,7 @@ export function CreateAccountHolderContactDetails() {
     const REGISTER_AH_CONTACTS_URL= process.env.REACT_APP_API_ENDPOINT+"accountholder/{accHolderid}/contactdetails";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         alert("address:" + address + " email: " + email + " phonenum:" + phonenum);
         var payload={
@@ -21,7 +22,7 @@ export function CreateAccountHolderContactDetails() {
             "phoneNum": phonenum,
            
         }
-        fetch(REGISTER_AH_CONTACTS_URL.replace('{accHolderid}', accHolderid),{
+        await fetch(REGISTER_AH_CONTACTS_URL.replace('{accHolderid}', accHolderid),{
 
             method: 'POST',
             body: JSON.stringify(payload),
@@ -66,7 +67,15 @@ export function CreateAccountHolderContactDetails() {
 
 
     return (
-        <div className="container mt-5">
+        <div className="container ">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Add Contact</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
              <h3>Add the Account Holder Contacts</h3> 
             <Form onSubmit={handleSubmit} className="mt-4">
                 <FormGroup className="col-sm-5" >
@@ -117,7 +126,7 @@ export function UpdateAccountHolderContactDetails() {
     const UPDATE_AH_CONTACTS_URL=process.env.REACT_APP_API_ENDPOINT+"accountholder/{id}/contactdetails/update";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
-    const handleSubmit = (event) => {
+    const handleSubmit =async (event) => {
         event.preventDefault();
         alert("address:" + address + " email: " + email + " phonenum:" + phonenum);
         var payload={
@@ -126,7 +135,7 @@ export function UpdateAccountHolderContactDetails() {
             "phoneNum": phonenum,
            
         }
-        fetch(UPDATE_AH_CONTACTS_URL.replace('{id}', accHolderContactid),{
+        await fetch(UPDATE_AH_CONTACTS_URL.replace('{id}', accHolderContactid),{
 
             method: 'PUT',
             body: JSON.stringify(payload),
@@ -157,13 +166,13 @@ export function UpdateAccountHolderContactDetails() {
            
             .catch((error) => {
                 if(error.res.status == "400"){
-                    alert('Contact Details could not be added\nError:')
+                    alert('Contact Details could not be updated\nError:')
                 } 
                 if(error.res.status == "404"){
-                    alert('Contact Details could not be added\nError: AccountHolder not found')
+                    alert('Contact Details could not be updated\nError: AccountHolder not found')
                 }
                 if(error.res.status == "406"){
-                    alert('Contact Details could not be added\nError: Invalid details provided')
+                    alert('Contact Details could not be updated\nError: Invalid details provided')
                 }
     
             });
@@ -171,13 +180,21 @@ export function UpdateAccountHolderContactDetails() {
 
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-4">
+            {/* <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Update Contact</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div> */}
              <h3>Update the Account Holder Contacts</h3> 
             <Form onSubmit={handleSubmit} className="mt-4">
 
             <FormGroup className="col-sm-5" >
                     <Label for="accHolderContactid">Enter the Contact Id to update</Label>
-                    <Input type="accHolderContactid" name="accHolderContactid"
+                    <Input type="accHolderContactid" name="accHolderContactid" required
                         id="accHolderContactid" placeholder="Contacts Id" value={accHolderContactid}
                         onChange={ev => setAccHolderContactid(ev.target.value)}></Input>
                 </FormGroup>

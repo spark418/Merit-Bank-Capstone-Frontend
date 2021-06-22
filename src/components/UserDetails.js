@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 //import { Button, Form, FormGroup, Input, Label, Card,table } from 'reactstrap';
 //import {baseUrl} from "../utils/constants";
+import { Link } from 'react-router-dom';
 
 export function UserDetails() {
 
@@ -17,7 +18,7 @@ export function UserDetails() {
     })
     const handleSubmit = async () => {
 
-        console.log("entered function componentDidMount");
+      //  console.log("entered function componentDidMount");
 
         await fetch(GET_ACCOUNTHOLDER_URL, {
             method: 'GET',
@@ -49,8 +50,8 @@ export function UserDetails() {
 
 function AccountsTable({ account }) {
 
-    console.log("account:" + account)
-    if (account == null) {
+   // console.log("account:" + account)
+    if (account === null) {
         return (
             <h3>Accounts to be displayed!</h3>
         )
@@ -110,12 +111,14 @@ function AccountsTable({ account }) {
                 <table className="table table-striped table-bordered table-responsive">
                     <thead style={{ fontWeight: 600 }}>
                         <tr>
+                            <td>Contact Id</td>
                             <td>Phone Number</td>
                             <td>Email</td>
                             <td>Address</td>
                         </tr>
                     </thead>
                     <tbody>
+                        <td>{account.accountHolderContactDetails.id}</td>
                         <td>{account.accountHolderContactDetails.phoneNum}</td>
                         <td>{account.accountHolderContactDetails.email}</td>
                         <td>{account.accountHolderContactDetails.address}</td>
@@ -127,7 +130,7 @@ function AccountsTable({ account }) {
     }
 
     function PersonalCheckingAccountsTable({ account }) {
-        if (account.checkingAccountList != "") {
+        if (account.checkingAccountList !== "" ) {
             return (
                 <div>
                     <a href="/userPersonalCheckingGetTransaction"> <h5 className="col-md-12">{account.numberOfCheckingAccounts} Personal Checking Account</h5></a>

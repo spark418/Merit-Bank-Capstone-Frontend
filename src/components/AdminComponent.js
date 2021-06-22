@@ -135,6 +135,14 @@ function Admin({ authorized }) {
                             </NavItem>
                         </Nav>
 
+                        <Nav navbar>
+                            <NavItem className="mr-2">
+                                <NavLink className="nav-link" to="/getusers">
+                                    <span className="fa fa-user  text-black navstyle" >Users List</span>
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+
                       
                        
 
@@ -162,7 +170,9 @@ function Admin({ authorized }) {
                                     </p>
                                     <div className="col">
                                         <a href="/addDBACheckingAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/getDBACheckingAccount" className="btn btn-outline-light">Get Accounts</a>
+                                        <a href="/getDBACheckingAccount" className="btn btn-outline-light">Get Accounts</a><p></p>
+                                        <a href="/closeDBACheckingAccount" className="btn btn-outline-light">Close Account</a>
+                                       
                                     </div>
                                     <div className="col">
                                         <Dropdown>
@@ -196,7 +206,8 @@ function Admin({ authorized }) {
                                     </p>
                                     <div className="col">
                                         <a href="/addPersonalCheckingAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/getPersonalCheckingAccount" className="btn btn-outline-light">Get Accounts</a>
+                                        <a href="/getPersonalCheckingAccount" className="btn btn-outline-light">Get Accounts</a><p></p>
+                                        <a href="/closePersonalCheckingAccount" className="btn btn-outline-light">Close Account</a>
                                     </div>
                                     <div className="col">
                                         <Dropdown>
@@ -229,7 +240,8 @@ function Admin({ authorized }) {
                                     </p>
                                     <div className="col">
                                         <a href="/addSavingsAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/getSavingsAccount" className="btn btn-outline-light">Get Accounts</a>
+                                        <a href="/getSavingsAccount" className="btn btn-outline-light">Get Accounts</a><p></p>
+                                        <a href="/closeSavingsAccount" className="btn btn-outline-light">Close Account</a>
                                     </div>
                                     <div className="col">
                                         <Dropdown>
@@ -264,7 +276,8 @@ function Admin({ authorized }) {
                                     </p>
                                     <div className="col">
                                         <a href="/addCDAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/getCDAccount" className="btn btn-outline-light">Get Accounts</a>
+                                        <a href="/getCDAccount" className="btn btn-outline-light">Get Accounts</a><p></p>
+                                        <a href="/closeCDAccount" className="btn btn-outline-light">Close Account</a>
                                     </div>
                                     <div className="col">
                                         <Dropdown>
@@ -275,7 +288,7 @@ function Admin({ authorized }) {
                                             <Dropdown.Menu>
                                                 <Dropdown.Item href="/adminCDDepositTransaction" className="transact">Deposit Transaction</Dropdown.Item>
                                                 <Dropdown.Item href="/adminCDWithdrawTransaction" className="transact">Withdraw Transaction</Dropdown.Item>
-                                                <Dropdown.Item href="/adminCDAccountTransaction" className="transact">Account Transactions</Dropdown.Item>
+                                                <Dropdown.Item href="/adminCDGetTransaction" className="transact">Account Transactions</Dropdown.Item>
 
                                             </Dropdown.Menu>
                                         </Dropdown>
@@ -300,7 +313,8 @@ function Admin({ authorized }) {
                                     </p>
                                     <div className="col">
                                         <a href="/addRegularIRAAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/getRegularIRAAccount" className="btn btn-outline-light">Get Accounts</a>
+                                        <a href="/getRegularIRAAccount" className="btn btn-outline-light">Get Accounts</a><p></p>
+                                        <a href="/closeRegularIRAAccount" className="btn btn-outline-light">Close Account</a>
                                     </div>
                                     <div className="col">
                                         <Dropdown>
@@ -335,7 +349,8 @@ function Admin({ authorized }) {
                                     </p>
                                     <div className="col">
                                         <a href="/addRothIRAAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/getRothIRAAccount" className="btn btn-outline-light">Get Accounts</a>
+                                        <a href="/getRothIRAAccount" className="btn btn-outline-light">Get Accounts</a><p></p>
+                                        <a href="/closeRothIRAAccount" className="btn btn-outline-light">Close Account</a>
                                     </div>
                                     <div className="col">
                                         <Dropdown>
@@ -368,7 +383,8 @@ function Admin({ authorized }) {
                                     </p>
                                     <div className="col">
                                         <a href="/addRolloverIRAAccount" className="btn btn-outline-light ">Add Account</a><p></p>
-                                        <a href="/getRolloverIRAAccount" className="btn btn-outline-light">Get Accounts</a>
+                                        <a href="/getRolloverIRAAccount" className="btn btn-outline-light">Get Accounts</a><p></p>
+                                        <a href="/closeRolloverIRAAccount" className="btn btn-outline-light">Close Account</a>
                                     </div>
                                     <div className="col">
                                         <Dropdown>

@@ -20,7 +20,7 @@ class Login extends Component {
         })
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
         //alert("Username: " + this.state.username + " Password: " + this.state.password);
         var payload = {
@@ -28,7 +28,7 @@ class Login extends Component {
             "password": this.state.password
         }
         console.log(process.env.REACT_APP_API_ENDPOINT+"authenticate")
-        fetch(process.env.REACT_APP_API_ENDPOINT+"authenticate", {
+       await  fetch(process.env.REACT_APP_API_ENDPOINT+"authenticate", {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {
@@ -69,20 +69,20 @@ class Login extends Component {
                 <Form className="login" onSubmit={this.handleSubmit}>
                     <FormGroup className="col-sm-5">
                         <Label htmlFor="username">Username</Label>
-                        <Input type="text" id="username" name="username" placeholder="Enter username"
+                        <Input type="text" id="username" name="username" required placeholder="Enter username"
                             innerRef={(input) => this.username = input}
                             onChange={this.handleChange}
                         />
                     </FormGroup>
                     <FormGroup className="col-sm-5">
                         <Label htmlFor="password">Password</Label>
-                        <Input type="password" id="password" name="password" placeholder="Enter password"
+                        <Input type="password" id="password" name="password" required placeholder="Enter password"
                             innerRef={(input) => this.password = input}
                             onChange={this.handleChange}
                         />
                     </FormGroup>
                     <FormGroup className="col-sm-5" >
-                        <Button type="submit" value="submit" color="primary" className="left">LogIn</Button>
+                        <Button type="submit" value="submit" color="primary"  className="left">LogIn</Button>
     
                     </FormGroup>
                 </Form>

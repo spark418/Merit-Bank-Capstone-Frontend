@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, Card,Breadcrumb,BreadcrumbItem } from 'reactstrap';
 
-import {Redirect} from'react-router-dom';
+import {Redirect,Link} from'react-router-dom';
 import { baseUrl } from '../utils/constants';
 
 const CDOFFERING_URL = process.env.REACT_APP_API_ENDPOINT+"cdofferings";
@@ -66,16 +66,13 @@ class UserCDOffering extends Component {
              },
          })
          
-         //.then(res => console.log(res.json()))
-         .then (res=> {this.setState({
-            bestCDOffer: res.json()
-         });
-        })
-       // .then(()=> alert(this.state.bestCDOffer))
-        .then(()=>console.log(this.state.bestCDOffer))
+         .then(res => res.json())
+         .then ((Object)=>{alert("Best CD Offering:\n Id:"+Object.id+"\n Term:"+ Object.term+"\n Interest Rate:"+Object.interestRate)})
+         
+        //   .then((res)=> alert(res.json))
              
               
-         .catch(err => console.log(err.message));
+         .catch(err => alert(err.message));
                   
      }
     render(){
@@ -85,6 +82,14 @@ class UserCDOffering extends Component {
        
         return (
             <div className="container margin-auto">
+                <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>CDOffering</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
                 <div className="row">
                 
                 
@@ -107,7 +112,7 @@ class UserCDOffering extends Component {
                                 <tr key={cd.id}>
                                     <td>{cd.id}</td>
                                     <td>{cd.interestRate}</td>
-                                    <td>{(Math.round(cd.interestRate * 100) / 100).toFixed(2)}</td>
+                                    <td>{cd.term}</td>
                                 </tr>
                             )
                         }
@@ -122,7 +127,7 @@ class UserCDOffering extends Component {
                     <h2>Get Best CDOffering</h2>
                     <FormGroup className="col-md-6">
                         <Label htmlFor="amount">Enter Amount</Label>
-                        <Input type="text" id="amount" name="amount" placeholder="Amount"
+                        <Input type="text" id="amount" name="amount" required placeholder="Amount"
                             innerRef={(input) => this.amount = input}
                            
                             onChange={this.handleChange}

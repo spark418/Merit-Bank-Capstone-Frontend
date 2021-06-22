@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
-import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 //import {baseUrl} from "../utils/constants";
+import { Link } from 'react-router-dom';
 
 
 export function GetAccountHolder() {
@@ -9,7 +10,7 @@ export function GetAccountHolder() {
     const [account, setAccount] = useState(null);
     const [accountHolderId, setAccountHolderId] = useState('');
 
-    const GET_ACCOUNTHOLDER_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{id}";
+    const GET_ACCOUNTHOLDER_URL = process.env.REACT_APP_API_ENDPOINT + "accountholder/{id}";
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
     const handleSubmit = async (event) => {
@@ -27,13 +28,21 @@ export function GetAccountHolder() {
             .then(res => {
                 setAccount(res)
             })
-            .then((account) => console.log(account))
+            //.then((account) => console.log(account))
 
             .catch(err => console.log(err.message));
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container ">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>AccountHolders</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row">
                 <div className="col-md-6">
                     <Form onSubmit={handleSubmit}>
@@ -65,7 +74,7 @@ export function GetAccountHolder() {
 
 function AccountsTable({ account }) {
 
-    console.log("account:" + account)
+    //console.log("account:" + account)
     if (account == null) {
         return (
             <h3>No accounts to be displayed!</h3>
@@ -74,8 +83,17 @@ function AccountsTable({ account }) {
     if (account != null) {
         return (
             <div>
+                {/* <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>AccountHolders</BreadcrumbItem>
+                    </Breadcrumb>
+                    
+                        <hr />
+                   
+                </div> */}
                 <table className="table table-striped table-bordered table-responsive">
-                    <thead style={{fontWeight:600}}>
+                    <thead style={{ fontWeight: 600 }}>
                         <tr>
                             <td>AccountHolder Id</td>
                             <td>First Name</td>
@@ -86,9 +104,8 @@ function AccountsTable({ account }) {
                             <td>Phone Number</td>
                             <td>Email</td>
                             <td>Address</td>
-                            
-                            <td>Add New Account</td>
-                            <td>Accounts List</td>
+
+
                         </tr>
                     </thead>
                     <tbody>
@@ -102,17 +119,17 @@ function AccountsTable({ account }) {
                                 <td>{account.ssn}</td>
 
 
-                                <td><Email account={account}/></td>
-                                  <td><Address account={account}/></td>
-                                  <td><Phonenum account={account}/></td>
-                                
-                                <td><a href="/addAccount" className="btn btn-dark fa fa-plus"></a></td>
-                                <td><a href="/getAccount" className="btn btn-dark fa fa-list"></a></td>
+                                <td><Email account={account} /></td>
+                                <td><Address account={account} /></td>
+                                <td><Phonenum account={account} /></td>
+
+                                {/* <td><a href="/addAccount" className="btn btn-dark fa fa-plus"></a></td>
+                                <td><a href="/getAccount" className="btn btn-dark fa fa-list"></a></td> */}
 
                             </tr>
                         }
                     </tbody>
-                    <thead style={{fontWeight:600}}>
+                    <thead style={{ fontWeight: 600 }}>
                         <tr>
                             <td>Savings a/c </td>
                             <td>Personal Checking a/c</td>
@@ -140,7 +157,7 @@ function AccountsTable({ account }) {
                             </tr>
                         }
                     </tbody>
-                    <thead style={{fontWeight:600}}>
+                    <thead style={{ fontWeight: 600 }}>
                         <tr>
                             <td>Savings Balance $</td>
                             <td>Personal Checking Balance $</td>
@@ -170,8 +187,8 @@ function AccountsTable({ account }) {
                     </tbody>
 
                 </table>
-                
-            
+
+
             </div >
 
         );
@@ -188,14 +205,14 @@ function Phonenum({ account }) {
 
 function Email({ account }) {
     if (account.accountHolderContactDetails != null) {
-        return ( <div>{account.accountHolderContactDetails.email}</div>)
+        return (<div>{account.accountHolderContactDetails.email}</div>)
     }
     return <div />
 }
 
 function Address({ account }) {
     if (account.accountHolderContactDetails != null) {
-        return ( <div>{account.accountHolderContactDetails.address}</div>)
+        return (<div>{account.accountHolderContactDetails.address}</div>)
     }
     return <div />
 }

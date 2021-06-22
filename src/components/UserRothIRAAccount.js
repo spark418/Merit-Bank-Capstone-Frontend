@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, Card,BreadcrumbItem,Breadcrumb } from 'reactstrap';
 //import {baseUrl} from "../utils/constants";
+import { Link } from 'react-router-dom';
 
 export function UserAddRothIRAAccount() {
     const [balance, setBalance] = useState('');
@@ -58,7 +59,15 @@ export function UserAddRothIRAAccount() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container ">
+             <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active> Add Account </BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row">
                 <div className="col-md-6">
                     <Card>
@@ -67,7 +76,7 @@ export function UserAddRothIRAAccount() {
                         <Form onSubmit={handleSubmit} className="mt-3">
                             <FormGroup className="col-md-6" >
                                 <Label for="balance">Enter Opening Balance</Label>
-                                <Input type="balance" name="balance"
+                                <Input type="balance" name="balance" required
                                     id="balance" placeholder=" Opening Balance" value={balance}
                                     onChange={ev => setBalance(ev.target.value)}></Input>
                             </FormGroup>
@@ -112,12 +121,20 @@ export function UserGetRothIRAAccount() {
         .then(res => {
             setAccount(res)
         })
-       .then((account)=>console.log(account))
+       //.then((account)=>console.log(account))
      
         .catch(err => console.log(err.message));
     }
     return (
-        <div className="container mt-5">
+        <div className="container ">
+             <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active> Account List</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row">
                 <div className="col-md-7">
 
@@ -135,7 +152,7 @@ export function UserGetRothIRAAccount() {
 }
 
 function AccountsTable({ account }) {
-    console.log("account:"+account)
+   // console.log("account:"+account)
     if (account == null) {
         return (
             <h3>No accounts to be displayed!</h3>

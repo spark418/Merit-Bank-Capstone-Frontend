@@ -40,7 +40,7 @@ function User({ authorized }) {
                     <Nav navbar>
                     <NavItem className="mr-4 mb-2">
                                 <NavLink className="nav-link" to="/updateuser">
-                                <Button className="btn btn-info">     <span className="fa fa-user text-white">UpdateUser</span></Button>
+                                <Button className="btn btn-info"> <span className="fa fa-user text-white">UpdateUser</span></Button>
                                 </NavLink>
                             </NavItem>
 
@@ -49,9 +49,17 @@ function User({ authorized }) {
 
 
                         <Nav navbar>
-                            <NavItem className="mr-2 mb-2">
+                            <NavItem className="mr-4 mb-2">
                                 <NavLink className="nav-link" to="/updateaccountholder">
                                 <Button className="btn btn-info">   <span className="fa fa-user  text-white" >Update AccountHolder</span></Button>
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+
+                        <Nav navbar>
+                            <NavItem className="mr-4 mb-2">
+                                <NavLink className="nav-link" to="/updateaccountholdercontacts">
+                                <Button className="btn btn-info">   <span className="fa fa-user  text-white" >Update Contacts</span></Button>
                                 </NavLink>
                             </NavItem>
                         </Nav>
@@ -111,6 +119,10 @@ function User({ authorized }) {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/userAddPersonalCheckingAccount">Add Account</Dropdown.Item>
                                     <Dropdown.Item href="/userGetPersonalCheckingAccount">List of Accounts</Dropdown.Item>
+                                    <Dropdown.Item href="/userPersonalCheckingDepositTransaction">Deposit</Dropdown.Item>
+                                    <Dropdown.Item href="/userPersonalCheckingWithdrawTransaction">Withdraw</Dropdown.Item>
+                                    <Dropdown.Item href="/userPersonalCheckingTransferTransaction">Transfer</Dropdown.Item>
+                                    <Dropdown.Item href="/userPersonalCheckingGetTransaction">Transactions</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -150,6 +162,10 @@ function User({ authorized }) {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/userAddCDAccount">Add Account</Dropdown.Item>
                                     <Dropdown.Item href="/userGetCDAccount">List of Accounts</Dropdown.Item>
+                                    <Dropdown.Item href="/userCDDepositTransaction">Deposit</Dropdown.Item>
+                                    <Dropdown.Item href="/userCDWithdrawTransaction">Withdraw</Dropdown.Item>
+                                    <Dropdown.Item href="/userCDTransferTransaction">Transfer</Dropdown.Item>
+                                    <Dropdown.Item href="/userCDGetTransaction">Transactions</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -166,6 +182,10 @@ function User({ authorized }) {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/userAddRothIRAAccount">Add Account</Dropdown.Item>
                                     <Dropdown.Item href="/userGetRothIRAAccount">List of Accounts</Dropdown.Item>
+                                    <Dropdown.Item href="/userRothIRADepositTransaction">Deposit</Dropdown.Item>
+                                    <Dropdown.Item href="/userRothIRAWithdrawTransaction">Withdraw</Dropdown.Item>
+                                    <Dropdown.Item href="/userRothIRATransferTransaction">Transfer</Dropdown.Item>
+                                    <Dropdown.Item href="/userRothIRAGetTransaction">Transactions</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -182,6 +202,10 @@ function User({ authorized }) {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/userAddRegularIRAAccount">Add Account</Dropdown.Item>
                                     <Dropdown.Item href="/userGetRegularIRAAccount">List of Accounts</Dropdown.Item>
+                                    <Dropdown.Item href="/userRegularIRADepositTransaction">Deposit</Dropdown.Item>
+                                    <Dropdown.Item href="/userRegularIRAWithdrawTransaction">Withdraw</Dropdown.Item>
+                                    <Dropdown.Item href="/userRegularIRATransferTransaction">Transfer</Dropdown.Item>
+                                    <Dropdown.Item href="/userRegularIRAGetTransaction">Transactions</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -197,6 +221,10 @@ function User({ authorized }) {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/userAddRolloverIRAAccount">Add Account</Dropdown.Item>
                                     <Dropdown.Item href="/userGetRolloverIRAAccount">List of Accounts</Dropdown.Item>
+                                    <Dropdown.Item href="/userRolloverIRADepositTransaction">Deposit</Dropdown.Item>
+                                    <Dropdown.Item href="/userRolloverIRAWithdrawTransaction">Withdraw</Dropdown.Item>
+                                    <Dropdown.Item href="/userRolloverIRATransferTransaction">Transfer</Dropdown.Item>
+                                    <Dropdown.Item href="/userRolloverIRAGetTransaction">Transactions</Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>

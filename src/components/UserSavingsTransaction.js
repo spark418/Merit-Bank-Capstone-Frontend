@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, BreadcrumbItem,Breadcrumb } from 'reactstrap';
 import DepositTransactionTypes from './DepositTransactionTypes';
 import WithdrawTransactionTypes from './WithdrawTransactionTypes';
 //import {baseUrl} from "../utils/constants";
+import { Link } from 'react-router-dom';
 
 export function UserSavingsDepositTransaction() {
     const [amount, setAmount] = useState("");
@@ -68,7 +69,15 @@ console.log(error)
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container ">
+             <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Savings Deposit</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row ">
             <div className="col-md-7">
             <h3>Please make your Deposit </h3>
@@ -76,7 +85,7 @@ console.log(error)
 
                 <FormGroup className="col-sm-5" >
                     <Label for="amount">Amount</Label>
-                    <Input type="amount" name="amount"
+                    <Input type="amount" name="amount" required
                         id="amount" placeholder="amount" value={amount}
                         onChange={ev => setAmount(ev.target.value)}></Input>
                 </FormGroup>
@@ -87,7 +96,7 @@ console.log(error)
 
                 <FormGroup className="col-sm-5">
                     <Label for="type">Transaction Type</Label>
-                    <Input type="type" name="type"
+                    <Input type="type" name="type" required
                         id="type" placeholder="Transaction Type" value={type}
                         onChange={ev => setType(ev.target.value)}></Input>
                 </FormGroup>
@@ -116,7 +125,7 @@ export function UserSavingsWithdrawTransaction() {
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
-    const handleSubmit = (event) => {
+    const handleSubmit =async (event) => {
         event.preventDefault();
         alert("amount:" + amount  + "type: " + type);
         var payload = {
@@ -125,7 +134,7 @@ export function UserSavingsWithdrawTransaction() {
             "transactionType": type
 
         }
-        fetch(USER_SAVINGS_WITHDRAW_URL, {
+        await fetch(USER_SAVINGS_WITHDRAW_URL, {
 
             method: 'POST',
             body: JSON.stringify(payload),
@@ -169,7 +178,15 @@ console.log(error)
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container">
+             <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active> Savings Withdraw</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row ">
             <div className="col-md-7">
             <h3>Please make your Withdrawal </h3>
@@ -177,7 +194,7 @@ console.log(error)
 
                 <FormGroup className="col-sm-5" >
                     <Label for="amount">Amount</Label>
-                    <Input type="amount" name="amount"
+                    <Input type="amount" name="amount" required
                         id="amount" placeholder="amount" value={amount}
                         onChange={ev => setAmount((ev.target.value))}></Input>
                 </FormGroup>
@@ -193,7 +210,7 @@ console.log(error)
 
                 <FormGroup className="col-sm-5">
                     <Label for="type">Transaction Type</Label>
-                    <Input type="type" name="type"
+                    <Input type="type" name="type" required
                         id="type" placeholder="Transaction Type" value={type}
                         onChange={ev => setType(ev.target.value)}></Input>
                 </FormGroup>
@@ -223,7 +240,7 @@ export function UserSavingsTransferTransaction() {
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         //alert("amount: " + amount + " accHolderId: " + accHolderId + " From AccNum: " + sourceAccNum + " To AccNum: " + targetAccNum);
         var payload = {
@@ -236,7 +253,7 @@ export function UserSavingsTransferTransaction() {
                 
 
         }
-        fetch(SAVINGS_TRANSFER_URL, {
+        await fetch(SAVINGS_TRANSFER_URL, {
 
             method: 'POST',
             body: JSON.stringify(payload),
@@ -281,13 +298,21 @@ export function UserSavingsTransferTransaction() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container ">
+             <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active> Savings Transfer</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <h3>Please make the Transfer </h3>
             <Form onSubmit={handleSubmit} className="mt-3">
 
                 <FormGroup className="col-sm-5" >
                     <Label for="amount">Amount</Label>
-                    <Input type="amount" name="amount"
+                    <Input type="amount" name="amount" required
                         id="amount" placeholder="amount" value={amount}
                         onChange={ev => setAmount(ev.target.value)}></Input>
                 </FormGroup>
@@ -296,27 +321,27 @@ export function UserSavingsTransferTransaction() {
 
                 <FormGroup className="col-sm-5">
                     <Label for="sourceAccNum">From Account Number</Label>
-                    <Input type="sourceAccNum" name="sourceAccNum"
+                    <Input type="sourceAccNum" name="sourceAccNum" required
                         id="sourceAccNum" placeholder="Source a/c Number" value={sourceAccNum}
                         onChange={ev => setSourceAccNum(ev.target.value)}></Input>
                 </FormGroup>
 
                 <FormGroup className="col-sm-5">
                     <Label for="targetAccNum">To Account Number</Label>
-                    <Input type="targetAccNum" name="targetAccNum"
+                    <Input type="targetAccNum" name="targetAccNum" required
                         id="targetAccNum" placeholder="Target a/c Number" value={targetAccNum}
                         onChange={ev => setTargetAccNum(ev.target.value)}></Input>
                 </FormGroup>
                 <FormGroup className="col-sm-5">
                     <Label for="accHolderId"> To Account Holder Id</Label>
-                    <Input type="accHolderId" name="accHolderId"
+                    <Input type="accHolderId" name="accHolderId" required
                         id="accHolderId" placeholder="Account Holder Id" value={accHolderId}
                         onChange={ev => setAccHolderId(ev.target.value)}></Input>
                 </FormGroup>
 
                 <FormGroup className="col-sm-5">
                     <Label for="type">Transaction Type</Label>
-                    <Input type="type" name="type"
+                    <Input type="type" name="type" required
                         id="type" placeholder="Transaction Type" value={type}
                         onChange={ev => setType(ev.target.value)}></Input>
                 </FormGroup>
@@ -391,6 +416,14 @@ export function UserSavingsTransferTransaction() {
 
     return (
         <div className=" container">
+             <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active> Savings Transactions</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
                 <TransactionTable transact={transact} />
             {/* </div> */}
         </div>
@@ -398,7 +431,7 @@ export function UserSavingsTransferTransaction() {
 }
 
 function TransactionTable({ transact }) {
-    console.log("transact:" + transact)
+   // console.log("transact:" + transact)
     if (transact == []) {
         return (
             <h3>No Transactions to be displayed!</h3>
@@ -409,10 +442,11 @@ function TransactionTable({ transact }) {
             <table className="table table-hover table-responsive table-bordered">
                 <thead style={{ fontWeight: 600 }}>
                     <tr>
-                        <td>Transaction Type</td>
-                        <td>Transaction Amount $</td>
+                        <td> Type</td>
+                        <td>Amount $</td>
+                        <td>Transaction</td>
                         <td>a/c Balance $</td>
-                        <td>Transaction Date</td>
+                        <td>Date</td>
 
                     </tr>
                 </thead>
@@ -423,6 +457,7 @@ function TransactionTable({ transact }) {
                                 <tr key={t.id}>
                                     <td>{t.type}</td>
                                     <td> {t.amount}</td>
+                                    <td>{t.action}</td>
                                     <td> {t.postedBalance}</td>
                                     <td> {(t.date.substring(0, 10))} at {t.date.substring(11, 19)}</td>
 

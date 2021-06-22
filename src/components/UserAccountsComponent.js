@@ -1,12 +1,20 @@
 import React from 'react';
 // import Logout from "./LogoutComponent";
-// import { Navbar,  Nav, NavItem,  Card } from 'reactstrap';
-// import { NavLink, Redirect } from 'react-router-dom';
+ import { Breadcrumb,BreadcrumbItem } from 'reactstrap';
+ import { Link } from 'react-router-dom';
 //import {baseUrl} from "../utils/constants";
 
 export function UserAddAccount() {
     return (
         <div className="container ">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Add AccountS</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row row-content">
                 <div className="col-md-4">
 
@@ -93,6 +101,14 @@ export function UserGetAccount() {
     
     return(
         <div className="container ">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/user">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active> AccountS List</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
         <div className="row row-content">
             <div className="col-md-4">
 

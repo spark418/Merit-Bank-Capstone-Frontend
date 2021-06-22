@@ -3,7 +3,7 @@ export default function DepositTransactionTypes() {
         <table className="table table-hover table-responsive ">
             <thead style={{ fontWeight: 600 }}>
                 <tr>
-                    <td>#</td>
+                    
                     <td>Transaction Types</td>
                 </tr>
                 <tr>

@@ -7,11 +7,11 @@ const bearer = 'Bearer ' + localStorage.getItem('token');
 export function BestCDOffer() {
     const [amount, setAmount] = useState("");
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         event.preventDefault();
         alert("balance:" + amount);
 
-        fetch(BEST_CDOFFERING_URL.replace(`{balance}`, amount), {
+        await fetch(BEST_CDOFFERING_URL.replace(`{balance}`, amount), {
 
             method: 'GET',
             headers: {
@@ -22,8 +22,7 @@ export function BestCDOffer() {
         })
             .then(res => {
                 if (res.ok) {
-                    //console.log(res.json());
-                    alert(res);
+                    
                     return res;
                 } else {
                     const error = new Error(`Error ${res.status}: ${res.statusText}`);
@@ -36,6 +35,7 @@ export function BestCDOffer() {
                 }
             )
             .then(res => res.json())
+            .then ((Object)=>{alert("Best CD Offering:\n Id:"+Object.id+"\n Term:"+ Object.term+"\n Interest Rate:"+Object.interestRate)})
 
             .catch((error) => {
                 if (error.res.status == "400") {
@@ -59,7 +59,7 @@ export function BestCDOffer() {
                 <FormGroup className="col-md-6">
                     <Label htmlFor="amount">Enter Amount</Label>
                     <Input type="text" id="amount" name="amount" placeholder="Amount"
-                        value={amount}
+                        value={amount} required
 
                         onChange={ev => setAmount(ev.target.value)}
                     />

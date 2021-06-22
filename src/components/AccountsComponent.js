@@ -1,12 +1,20 @@
 import React from 'react';
 // import Logout from "./LogoutComponent";
-// import { Navbar,  Nav, NavItem,  Card } from 'reactstrap';
-// import { NavLink, Redirect } from 'react-router-dom';
+ import { Breadcrumb,BreadcrumbItem} from 'reactstrap';
+ import { Link } from 'react-router-dom';
 //import {baseUrl} from "../utils/constants";
 
 export function AddAccount() {
     return (
         <div className="container ">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Add Accounts</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row row-content">
                 <div className="col-md-4">
 
@@ -15,7 +23,7 @@ export function AddAccount() {
 
 
                     <div className="col">
-                        <a href="/addDBACheckingAccount/accHolderId" className="btn btn-dark ">Add Account</a>
+                        <a href="/addDBACheckingAccount" className="btn btn-dark ">Add Account</a>
                         
                     </div>
                 </div>
@@ -93,6 +101,14 @@ export function GetAccount() {
     
     return(
         <div className="container ">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Account List</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
         <div className="row row-content">
             <div className="col-md-4">
 

@@ -77,7 +77,7 @@ class CDOffering extends Component {
                                 <thead style={{ fontWeight: 600 }}>
                                     <tr>
                                         <td>Id</td>
-                                        <td>Interest Rate %</td>
+                                        <td>Interest Rate </td>
                                         <td>Term</td>
                                     </tr>
                                 </thead>

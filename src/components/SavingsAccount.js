@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, Card,Breadcrumb,BreadcrumbItem } from 'reactstrap';
 //import {baseUrl} from "../utils/constants";
+import { Link } from 'react-router-dom';
 
 export function AddSavingsAccount() {
     const [balance, setBalance] = useState('');
@@ -58,7 +59,15 @@ export function AddSavingsAccount() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Add Account</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row">
                 <div className="col-md-6">
                     <Card>
@@ -67,14 +76,14 @@ export function AddSavingsAccount() {
                         <Form onSubmit={handleSubmit} className="mt-3">
                             <FormGroup className="col-md-6" >
                                 <Label for="balance">Enter Opening Balance</Label>
-                                <Input type="balance" name="balance"
+                                <Input type="balance" name="balance" required
                                     id="balance" placeholder=" Opening Balance" value={balance}
                                     onChange={ev => setBalance(ev.target.value)}></Input>
                             </FormGroup>
 
                             <FormGroup className="col-md-6" >
                                 <Label for="accHolderid">AccountHolder-Id</Label>
-                                <Input type="accHolderid" name="accHolderid"
+                                <Input type="accHolderid" name="accHolderid" required
                                     id="accHolderid" placeholder=" AccountHolder-Id" value={accHolderid}
                                     onChange={ev => setAccHolderid(ev.target.value)}></Input>
                             </FormGroup>
@@ -126,7 +135,7 @@ export function GetSavingsAccount() {
         .then(res => {
             setAccount(res)
         })
-        .then((account)=>console.log(account))
+       // .then((account)=>console.log(account))
        
         .catch((error) => {
              
@@ -138,7 +147,15 @@ export function GetSavingsAccount() {
         });
     }
     return (
-        <div className="container mt-5">
+        <div className="container">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Account List</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
             <div className="row">
                 <div className="col-md-7">
                     <Card>
@@ -146,7 +163,7 @@ export function GetSavingsAccount() {
                         <Form onSubmit={handleSubmit} className="mt-3">
                             <FormGroup className="col-md-6" >
                                 <Label for="accHolderid">Enter the AccountHolder-Id</Label>
-                                <Input type="accHolderid" name="accHolderid"
+                                <Input type="accHolderid" name="accHolderid" required
                                     id="accHolderid" placeholder=" AccountHolder-Id" value={accHolderid}
                                     onChange={ev => setAccHolderid(ev.target.value)}></Input>
                                 <Button type="submit" value="submit" color="primary" className="mt-3">Submit</Button>
@@ -163,7 +180,7 @@ export function GetSavingsAccount() {
 }
 
 function AccountsTable({ account }) {
-    console.log("account:"+account)
+   // console.log("account:"+account)
     if (account == null) {
         return (
             <h3>No accounts to be displayed!</h3>
@@ -197,4 +214,85 @@ function AccountsTable({ account }) {
         );
     }
     return <div />
+}
+
+export function CloseSavingsAccount(){
+    const [accHolderid,setAccHolderid] = useState("");
+    const [message, setMessage] = useState("");
+    //const [accNumber, setAccNumber] = useState("");
+    const bearer = 'Bearer ' + localStorage.getItem('token');
+
+    const CLOSE_SAVINGS_ACCOUNT_URL = process.env.REACT_APP_API_ENDPOINT+"accountholder/{id}/savingsaccount";
+    const handleSubmit=async(event)=>{
+        event.preventDefault();
+        await fetch(CLOSE_SAVINGS_ACCOUNT_URL.replace('{id}',accHolderid),{
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': bearer
+            },
+        })
+            .then(res=> {
+                if(res.ok){
+                    
+                    return res;
+                } else {
+                    const error = new Error(`Error ${res.status}: ${res.statusText}`);
+                    error.res = res;
+                    throw error ;
+                }
+            },
+            error=> { 
+                throw error;
+            }
+            )
+            .then(res=>console.log(res.text()))
+            // .then(message => {
+            //     setMessage(message);
+            // })
+   
+           // .then(()=>alert(message))
+            .then(()=>alert("Account closed!\n Remaining Balance has been transferred"))
+            .catch((error) => {
+             
+                if(error.res.status == "404"){
+                    alert('Error: AccountHolder not found')
+                }
+                if(error.res.status == "403") {
+                    alert('Error: Account is closed!')
+                }
+                
+    
+            });
+  
+    }
+    return(
+        <div className="container ">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Close Account </BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
+            <div className="row">
+                <div className="col-md-7">
+                    <Card>
+                        <h2 className="text-center">Close Savings Account </h2>
+                        <Form onSubmit={handleSubmit} className="mt-3">
+                            <FormGroup className="col-md-6" >
+                                <Label for="accHolderid">Enter the AccountHolder-Id</Label>
+                                <Input type="accHolderid" name="accHolderid" required
+                                    id="accHolderid" placeholder=" AccountHolder-Id" value={accHolderid}
+                                    onChange={ev => setAccHolderid(ev.target.value)}></Input>
+                                <Button type="submit" value="submit" color="primary" className="mt-3">Submit</Button>
+                            </FormGroup>
+                        </Form>
+                    </Card>
+                    
+                </div>
+            </div>
+        </div>
+    );
 }

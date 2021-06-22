@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button,Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button,Form, FormGroup, Input, Label, Breadcrumb,BreadcrumbItem } from 'reactstrap';
 //import {baseUrl} from "../utils/constants";
-
+import { Link } from 'react-router-dom';
 export function CreateUser() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -13,7 +13,7 @@ export function CreateUser() {
 
     
 
-     const handleSubmit=  (event) => {
+     const handleSubmit= async (event) => {
        event.preventDefault();
         alert("Username: " + username + " Password: " + password + " Active: " + active + " role: " +role);
         var payload = {
@@ -24,7 +24,7 @@ export function CreateUser() {
         }
         
 
-        fetch(REGISTER_URL, {
+        await fetch(REGISTER_URL, {
 
             method: 'POST',
             body: JSON.stringify(payload),
@@ -67,26 +67,34 @@ export function CreateUser() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Register User</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
              <h3>Register new User</h3> 
             <Form onSubmit={handleSubmit} className="mt-4">
                 <FormGroup className="col-sm-5" >
                     <Label for="username">Username</Label>
-                    <Input type="username" name="username"
+                    <Input type="username" name="username" required
                         id="username" placeholder="Username" value={username}
                         onChange={ev => setUsername(ev.target.value)}></Input>
                 </FormGroup>
 
                 <FormGroup className="col-sm-5">
                     <Label for="password">Password</Label>
-                    <Input type="password" name="password"
+                    <Input type="password" name="password" required
                         id="password" placeholder="Password" value={password}
                         onChange={ev => setPassword(ev.target.value)}></Input>
                 </FormGroup>
 
                 <FormGroup className="col-sm-5">
                     <Label for="Select">Active</Label>
-                    <Input type="select" name="select" id="active" onChange={ev => setActive(ev.target.value)}>
+                    <Input type="select" name="select" id="active"  required onChange={ev => setActive(ev.target.value)}>
                         <option>true</option>
                         <option>false</option>
                     </Input>
@@ -94,7 +102,7 @@ export function CreateUser() {
 
                 <FormGroup className="col-sm-5">
                     <Label for="Select">Select Role</Label>
-                    <Input type="select" name="select" id="role" onChange={ev => setRole(ev.target.value)}>
+                    <Input type="select" name="select" required id="role" onChange={ev => setRole(ev.target.value)}>
                         <option>ROLE_ADMIN</option>
                         <option>ROLE_USER</option>
                     </Input>
@@ -112,7 +120,7 @@ export function UpdateUser() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [active, setActive] = useState('true');
-    const [role, setRole] = useState('');
+    //const [role, setRole] = useState('');
     const [userid, setUserid] = useState('');
 
     const UPDATE_USER_URL=process.env.REACT_APP_API_ENDPOINT+"authenticate/{id}/updateuser";
@@ -120,18 +128,18 @@ export function UpdateUser() {
 
     
 
-     const handleSubmit=  (event) => {
+     const handleSubmit=  async (event) => {
        event.preventDefault();
-        alert("Username: " + username + " Password: " + password + " Active: " + active + " role: " +role);
+        alert("Username: " + username + " Password: " + password + " Active: " + active );
         var payload = {
             "userName": username,
             "password": password,
             "active": active,
-            "roles": role
+           // "roles": role
         }
         
 
-        fetch(UPDATE_USER_URL.replace('{id}',userid), {
+        await fetch(UPDATE_USER_URL.replace('{id}',userid), {
 
             method: 'PUT',
             body: JSON.stringify(payload),
@@ -177,45 +185,53 @@ export function UpdateUser() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-4">
+            {/* <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Update User</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div> */}
             <h3>Update the User</h3> 
             <Form onSubmit={handleSubmit} className="mt-4">
             <FormGroup className="col-sm-5" >
                     <Label for="userid">Enter User-Id to update</Label>
-                    <Input type="userid" name="userid"
+                    <Input type="userid" name="userid" required
                         id="userid" placeholder="User-Id" value={userid}
                         onChange={ev => setUserid(ev.target.value)}></Input>
                 </FormGroup>
 
                 <FormGroup className="col-sm-5" >
                     <Label for="username">Username</Label>
-                    <Input type="username" name="username"
+                    <Input type="username" name="username" required
                         id="username" placeholder="Username" value={username}
                         onChange={ev => setUsername(ev.target.value)}></Input>
                 </FormGroup>
 
                 <FormGroup className="col-sm-5">
                     <Label for="password">Password</Label>
-                    <Input type="password" name="password"
+                    <Input type="password" name="password" required
                         id="password" placeholder="Password" value={password}
                         onChange={ev => setPassword(ev.target.value)}></Input>
                 </FormGroup>
 
                 <FormGroup className="col-sm-5">
                     <Label for="Select">Active</Label>
-                    <Input type="select" name="select" id="active" onChange={ev => setActive(ev.target.value)}>
+                    <Input type="select" name="select" required id="active" onChange={ev => setActive(ev.target.value)}>
                         <option>true</option>
                         <option>false</option>
                     </Input>
                 </FormGroup>
 
-                <FormGroup className="col-sm-5">
+                {/* <FormGroup className="col-sm-5">
                     <Label for="Select">Select Role</Label>
                     <Input type="select" name="select" id="role" onChange={ev => setRole(ev.target.value)}>
                         <option>ROLE_ADMIN</option>
                         <option>ROLE_USER</option>
                     </Input>
-                </FormGroup>
+                </FormGroup> */}
                
                 <FormGroup className="col-sm-5" >
                     <Button type="submit" value="submit" color="primary">Submit</Button>

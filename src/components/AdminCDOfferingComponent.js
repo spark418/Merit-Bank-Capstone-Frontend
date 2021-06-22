@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import { Button, Form, FormGroup, Input, Label, Card } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, Card,Breadcrumb,BreadcrumbItem } from 'reactstrap';
 
-import {Redirect} from'react-router-dom';
+import {Redirect, Link} from'react-router-dom';
 import { baseUrl } from '../utils/constants';
 
 const CDOFFERING_URL = process.env.REACT_APP_API_ENDPOINT+"cdofferings";
@@ -46,7 +46,7 @@ class AdminCDOffering extends Component {
                     }
                 })
                     .then(res => res.json())
-                    .then(data => console.log(data))
+                    //.then(data => console.log(data))
                     
                 
                     .catch(err => console.log(err.message));
@@ -92,12 +92,12 @@ class AdminCDOffering extends Component {
          })
          
          .then(res => res.json())
-         .then ((res)=>console.log(res.json))
+         .then ((Object)=>{alert("Best CD Offering:\n Id:"+Object.id+"\n Term:"+ Object.term+"\n Interest Rate:"+Object.interestRate)})
          
         //   .then((res)=> alert(res.json))
              
               
-         .catch(err => console.log(err.message));
+         .catch(err => alert(err.message));
                   
      }
     render(){
@@ -107,6 +107,14 @@ class AdminCDOffering extends Component {
        
         return (
             <div className="container margin-auto">
+                 <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/admin">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>CD Offering</BreadcrumbItem>
+                </Breadcrumb>
+
+                <hr />
+            </div>
                 <div className="row">
                 
                 <div className="col-md-4 mt-5  text-center cdform">
@@ -115,7 +123,7 @@ class AdminCDOffering extends Component {
                     <h2>Add new CDOffering</h2>
                     <FormGroup className="col-md-6">
                         <Label htmlFor="rate">Enter Interest Rate</Label>
-                        <Input type="text" id="rate" name="interestRate" placeholder="Interest Rate"
+                        <Input type="text" id="rate" name="interestRate" required placeholder="Interest Rate"
                             innerRef={(input) => this.interestRate = input}
                            
                             onChange={this.handleChange}
@@ -123,7 +131,7 @@ class AdminCDOffering extends Component {
                     </FormGroup>
                     <FormGroup className="col-md-6">
                         <Label htmlFor="term">Enter term</Label>
-                        <Input type="text" id="term" name="term" placeholder="term"
+                        <Input type="text" id="term" name="term" required placeholder="term"
                             innerRef={(input) => this.term = input}
                            
                             onChange={this.handleChange}
@@ -143,7 +151,7 @@ class AdminCDOffering extends Component {
                     <thead style={{fontWeight:600}}>
                         <tr>
                             <td>Id</td>
-                            <td>Interest Rate %</td>
+                            <td>Interest Rate</td>
                             <td>Term</td>
                         </tr>
                     </thead>
@@ -153,7 +161,7 @@ class AdminCDOffering extends Component {
                                 cd => 
                                 <tr key={cd.id}>
                                     <td>{cd.id}</td>
-                                    <td>{(Math.round(cd.interestRate * 100) / 100).toFixed(2)}</td> 
+                                    <td>{cd.interestRate }</td> 
                                     <td>{cd.term}</td>
                                 </tr>
                             )
@@ -169,7 +177,7 @@ class AdminCDOffering extends Component {
                     <h2>Get Best CDOffering</h2>
                     <FormGroup className="col-md-6">
                         <Label htmlFor="amount">Enter Amount</Label>
-                        <Input type="text" id="amount" name="amount" placeholder="Amount"
+                        <Input type="text" id="amount" required name="amount" placeholder="Amount"
                             innerRef={(input) => this.amount = input}
                            
                             onChange={this.handleChange}
